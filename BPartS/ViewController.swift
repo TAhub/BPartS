@@ -12,7 +12,8 @@ class ViewController: UIViewController {
 	
 	@IBOutlet weak var gameView: SKView!
 	
-	var cc:CreatureController!
+	var ccM:CreatureController!
+	var ccF:CreatureController!
 
 	override func viewWillAppear(animated: Bool)
 	{
@@ -27,10 +28,11 @@ class ViewController: UIViewController {
 		gameView.presentScene(scene)
 		
 		
-		let shape = SKShapeNode(rect: CGRect(x: 150, y: 200, width: 100, height: 100))
+		let shape = SKShapeNode(rect: CGRect(x: 100, y: 300, width: 200, height: 100))
 		shape.fillColor = UIColor.blueColor()
 		flipNode.addChild(shape)
 		
-		cc = CreatureController(rootNode: flipNode)
+		ccM = CreatureController(rootNode: flipNode, morph: "human male", position: CGPoint(x: 150, y: 300))
+		ccF = CreatureController(rootNode: flipNode, morph: "human female", position: CGPoint(x: 250, y: 300))
 	}
 }

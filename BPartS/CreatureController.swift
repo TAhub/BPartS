@@ -52,7 +52,10 @@ class BodyLimb
 		//set sprite node values
 		spriteNode.anchorPoint = CGPoint(x: CGFloat(centerX) / spriteNode.size.width, y: CGFloat(centerY) / spriteNode.size.height)
 		spriteNode.colorBlendFactor = 1
-		spriteNode.color = UIColor.whiteColor()
+		
+		let h = CGFloat(arc4random_uniform(100)) * 0.01
+		let s = CGFloat(arc4random_uniform(50)) * 0.01 + 0.5
+		spriteNode.color = UIColor(hue: h, saturation: s, brightness: 1.0, alpha: 1.0)
 	}
 }
 
@@ -61,19 +64,22 @@ class CreatureController
 	private var lastBS:String?
 	private var creatureNode:SKNode
 	
-	private let morph = "human male"
+	private let morph:String
 	private let states = "human"
 	
 	private var limbs = [String : BodyLimb]()
+	private var masterLimb:BodyLimb!
 	
-	init(rootNode:SKNode)
+	init(rootNode:SKNode, morph:String, position:CGPoint)
 	{
+		self.morph = morph
+		
 		creatureNode = SKNode()
 		rootNode.addChild(creatureNode)
 		constructBody()
 		setBodyState("neutral")
 		
-		creatureNode.position = CGPoint(x: 200, y: 200)
+		creatureNode.position = position
 	}
 	
 	private func constructBody()
@@ -97,6 +103,10 @@ class CreatureController
 			if let parentName = limb.parentName
 			{
 				limb.parent = limbs[parentName]
+			}
+			else
+			{
+				masterLimb = limb
 			}
 		}
 	}
@@ -211,7 +221,7 @@ class CreatureController
 					y += parent.spriteNode.position.y
 				}
 				
-				print("\(limb.name): \(x), \(y)")
+//				print("\(limb.name): \(x), \(y)")
 				limb.spriteNode.position = CGPoint(x: x, y: y)
 			}
 			
@@ -219,6 +229,19 @@ class CreatureController
 		for limb in limbs.values
 		{
 			recursiveLimbPosition(limb)
+		}
+		
+		//estimate how far below (0, 0) you are, then adjust accordingly
+		var heightAdj:CGFloat = 0
+		for limb in limbs.values
+		{
+			let adj = limb.spriteNode.position.y + limb.spriteNode.size.height - limb.spriteNode.anchorPoint.y
+			print("adj \(limb.name): \(adj)")
+			heightAdj = max(heightAdj, adj)
+		}
+		for limb in limbs.values
+		{
+			limb.spriteNode.position = CGPoint(x: limb.spriteNode.position.x, y: limb.spriteNode.position.y - heightAdj)
 		}
 	}
 }
