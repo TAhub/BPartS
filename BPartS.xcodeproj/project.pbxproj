@@ -13,6 +13,11 @@
 		E4CFD7A41D51103400D6A93B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4CFD7A31D51103400D6A93B /* Assets.xcassets */; };
 		E4CFD7A71D51103400D6A93B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4CFD7A51D51103400D6A93B /* LaunchScreen.storyboard */; };
 		E4CFD7B21D51103500D6A93B /* BPartSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CFD7B11D51103500D6A93B /* BPartSTests.swift */; };
+		E4CFD7C11D5110E900D6A93B /* CreatureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CFD7C01D5110E900D6A93B /* CreatureController.swift */; };
+		E4CFD7C31D5111D000D6A93B /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CFD7C21D5111D000D6A93B /* DataStore.swift */; };
+		E4CFD7C51D51120E00D6A93B /* BodyMorphs.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4CFD7C41D51120E00D6A93B /* BodyMorphs.plist */; };
+		E4CFD7C71D51121800D6A93B /* BodyStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4CFD7C61D51121800D6A93B /* BodyStates.plist */; };
+		E4CFD7C91D511CBC00D6A93B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CFD7C81D511CBC00D6A93B /* GameScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +41,11 @@
 		E4CFD7AD1D51103400D6A93B /* BPartSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BPartSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4CFD7B11D51103500D6A93B /* BPartSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPartSTests.swift; sourceTree = "<group>"; };
 		E4CFD7B31D51103500D6A93B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4CFD7C01D5110E900D6A93B /* CreatureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureController.swift; sourceTree = "<group>"; };
+		E4CFD7C21D5111D000D6A93B /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		E4CFD7C41D51120E00D6A93B /* BodyMorphs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BodyMorphs.plist; sourceTree = "<group>"; };
+		E4CFD7C61D51121800D6A93B /* BodyStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BodyStates.plist; sourceTree = "<group>"; };
+		E4CFD7C81D511CBC00D6A93B /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +87,10 @@
 		E4CFD79B1D51103400D6A93B /* BPartS */ = {
 			isa = PBXGroup;
 			children = (
-				E4CFD79C1D51103400D6A93B /* AppDelegate.swift */,
-				E4CFD79E1D51103400D6A93B /* ViewController.swift */,
-				E4CFD7A01D51103400D6A93B /* Main.storyboard */,
-				E4CFD7A31D51103400D6A93B /* Assets.xcassets */,
-				E4CFD7A51D51103400D6A93B /* LaunchScreen.storyboard */,
-				E4CFD7A81D51103400D6A93B /* Info.plist */,
+				E4CFD7BC1D5110A200D6A93B /* Model */,
+				E4CFD7BF1D5110B000D6A93B /* Supporting Files */,
+				E4CFD7BE1D5110AD00D6A93B /* View */,
+				E4CFD7BD1D5110A600D6A93B /* Controller */,
 			);
 			path = BPartS;
 			sourceTree = "<group>";
@@ -94,6 +102,45 @@
 				E4CFD7B31D51103500D6A93B /* Info.plist */,
 			);
 			path = BPartSTests;
+			sourceTree = "<group>";
+		};
+		E4CFD7BC1D5110A200D6A93B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E4CFD7C21D5111D000D6A93B /* DataStore.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E4CFD7BD1D5110A600D6A93B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E4CFD7C01D5110E900D6A93B /* CreatureController.swift */,
+				E4CFD79E1D51103400D6A93B /* ViewController.swift */,
+				E4CFD7C81D511CBC00D6A93B /* GameScene.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		E4CFD7BE1D5110AD00D6A93B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E4CFD7A01D51103400D6A93B /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E4CFD7BF1D5110B000D6A93B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E4CFD7C41D51120E00D6A93B /* BodyMorphs.plist */,
+				E4CFD7C61D51121800D6A93B /* BodyStates.plist */,
+				E4CFD7A31D51103400D6A93B /* Assets.xcassets */,
+				E4CFD7A51D51103400D6A93B /* LaunchScreen.storyboard */,
+				E4CFD7A81D51103400D6A93B /* Info.plist */,
+				E4CFD79C1D51103400D6A93B /* AppDelegate.swift */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,7 +224,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4CFD7C71D51121800D6A93B /* BodyStates.plist in Resources */,
 				E4CFD7A71D51103400D6A93B /* LaunchScreen.storyboard in Resources */,
+				E4CFD7C51D51120E00D6A93B /* BodyMorphs.plist in Resources */,
 				E4CFD7A41D51103400D6A93B /* Assets.xcassets in Resources */,
 				E4CFD7A21D51103400D6A93B /* Main.storyboard in Resources */,
 			);
@@ -197,7 +246,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4CFD7C91D511CBC00D6A93B /* GameScene.swift in Sources */,
 				E4CFD79F1D51103400D6A93B /* ViewController.swift in Sources */,
+				E4CFD7C31D5111D000D6A93B /* DataStore.swift in Sources */,
+				E4CFD7C11D5110E900D6A93B /* CreatureController.swift in Sources */,
 				E4CFD79D1D51103400D6A93B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

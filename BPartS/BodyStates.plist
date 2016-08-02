@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   BodyStates.plist
+   BPartS
+
+   Created by Theodore Abshire on 8/2/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+    <key>human</key>
+	<dict>
+		<key>neutral</key>
+		<dict>
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>left arm</key> <integer>90</integer>
+			<key>left forearm</key> <integer>0</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-90</integer>
+			<key>right forearm</key> <integer>0</integer>
+			<key>right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>45</integer>
+			<key>left calf</key> <integer>-25</integer>
+			<key>left foot</key> <integer>-20</integer>
+			<key>right thigh</key> <integer>-45</integer>
+			<key>right calf</key> <integer>25</integer>
+			<key>right foot</key> <integer>20</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>
