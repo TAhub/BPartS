@@ -11,9 +11,6 @@ import SpriteKit
 class ViewController: UIViewController {
 	
 	@IBOutlet weak var gameView: SKView!
-	
-	var ccM:CreatureController!
-	var ccF:CreatureController!
 
 	override func viewWillAppear(animated: Bool)
 	{
@@ -32,7 +29,11 @@ class ViewController: UIViewController {
 		shape.fillColor = UIColor.blueColor()
 		flipNode.addChild(shape)
 		
-		ccM = CreatureController(rootNode: flipNode, morph: "human male", position: CGPoint(x: 150, y: 300))
-		ccF = CreatureController(rootNode: flipNode, morph: "human female", position: CGPoint(x: 250, y: 300))
+		let ccM = CreatureController(rootNode: flipNode, morph: "human male", position: CGPoint(x: 150, y: 300))
+		let ccF = CreatureController(rootNode: flipNode, morph: "human female", position: CGPoint(x: 250, y: 300))
+		scene.creatureControllers.append(ccM)
+		scene.creatureControllers.append(ccF)
+		ccM.setBodyState("bow")
+		ccF.setBodyState("bow")
 	}
 }

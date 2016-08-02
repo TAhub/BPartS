@@ -62,8 +62,10 @@ class BodyLimb
 class CreatureController
 {
 	private var lastBS:String?
-	private var creatureNode:SKNode
+	private var animationLength:CGFloat?
+	private var animationProgress:CGFloat?
 	
+	private let creatureNode:SKNode
 	private let morph:String
 	private let states = "human"
 	
@@ -111,22 +113,98 @@ class CreatureController
 		}
 	}
 	
-	func animate()
+	func animate(elapsed:CGFloat)
 	{
-		//TODO: animate smoothly between the body states
+		if animationLength != nil && animationProgress != nil
+		{
+			animationProgress! += elapsed
+			if animationProgress > animationLength!
+			{
+				animationProgress = animationLength!
+			}
+			
+			let progress = animationProgress! / animationLength!
+			
+			//set body part rotations
+			for limb in limbs.values
+			{
+				//figure out which direction to rotate
+				let forwardDistance:CGFloat
+				let backwardDistance:CGFloat
+				if limb.rotateTo > limb.rotateFrom
+				{
+					forwardDistance = limb.rotateTo - limb.rotateFrom
+					backwardDistance = limb.rotateFrom + 2 * CGFloat(M_PI) - limb.rotateTo
+				}
+				else if limb.rotateTo < limb.rotateFrom
+				{
+					forwardDistance = 2 * CGFloat(M_PI) - limb.rotateFrom + limb.rotateTo
+					backwardDistance = limb.rotateFrom - limb.rotateTo
+				}
+				else
+				{
+					//no animation
+					forwardDistance = 0
+					backwardDistance = 0
+				}
+				
+				if forwardDistance != 0 && backwardDistance != 0
+				{
+					if forwardDistance <= backwardDistance
+					{
+						limb.spriteNode.zRotation = limb.rotateFrom + forwardDistance * progress
+					}
+					else
+					{
+						limb.spriteNode.zRotation = limb.rotateFrom - backwardDistance * progress
+					}
+					while limb.spriteNode.zRotation >= 2 * CGFloat(M_PI)
+					{
+						limb.spriteNode.zRotation -= 2 * CGFloat(M_PI)
+					}
+					while limb.spriteNode.zRotation < 0
+					{
+						limb.spriteNode.zRotation += 2 * CGFloat(M_PI)
+					}
+				}
+			}
+			
+			setPositions()
+			
+			//if the animation is over, end it
+			if animationProgress! == animationLength!
+			{
+				animationProgress = nil
+				animationLength = nil
+				
+				//TODO: AND THEN START THE NEXT ONE, DUN DUN DUN
+				let ar = ["neutral", "cranekick", "bow", "fencing"]
+				while true
+				{
+					let pick = ar[Int(arc4random_uniform(UInt32(ar.count)))]
+					if pick != lastBS!
+					{
+						setBodyState(pick)
+						break
+					}
+				}
+			}
+		}
 	}
 	
 	func setBodyState(bs:String)
 	{
-		//TODO: if lastBS isn't nil, transition between the two states over a series of frames
-		//don't use built-in animations, because that is a guaranteed way to get horrible problems
-		//since I have to just the positions of the nodes manually
+		if lastBS != nil && lastBS! != bs
+		{
+			animationLength = 0.65
+			animationProgress = 0
+		}
 		
 		//set up the animation variables
 		for limb in limbs.values
 		{
 			limb.rotateFrom = limb.spriteNode.zRotation
-			limb.rotateTo = limb.spriteNode.zRotation
+			limb.rotateTo = 0
 		}
 		if let state = DataStore.getDictionary("BodyStates", states, bs) as? [String : NSNumber]
 		{
@@ -155,14 +233,6 @@ class CreatureController
 					{
 						recursiveLimbAngle(parent)
 						limb.rotateTo += parent.rotateTo
-						while limb.rotateTo > CGFloat(M_PI)
-						{
-							limb.rotateTo -= CGFloat(M_PI) * 2
-						}
-						while limb.rotateTo < -CGFloat(M_PI)
-						{
-							limb.rotateTo += CGFloat(M_PI) * 2
-						}
 					}
 				}
 			}
@@ -170,16 +240,32 @@ class CreatureController
 			{
 				recursiveLimbAngle(limb)
 			}
+			
+			//bound all rotation values
+			for limb in limbs.values
+			{
+				while limb.rotateTo >= 2 * CGFloat(M_PI)
+				{
+					limb.rotateTo -= 2 * CGFloat(M_PI)
+				}
+				while limb.rotateTo < 0
+				{
+					limb.rotateTo += 2 * CGFloat(M_PI)
+				}
+			}
 		}
 		else
 		{
 			return
 		}
 		
-		//TODO: remove this later; for now I'm just instantly going to the rotateTo positions
-		for limb in limbs.values
+		//if there's no animation, just insta-rotate the limbs
+		if animationLength == nil
 		{
-			limb.spriteNode.zRotation = limb.rotateTo
+			for limb in limbs.values
+			{
+				limb.spriteNode.zRotation = limb.rotateTo
+			}
 		}
 		
 		setPositions()

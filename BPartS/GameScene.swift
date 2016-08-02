@@ -10,8 +10,19 @@ import SpriteKit
 
 class GameScene: SKScene
 {
+	private var lastTime:NSTimeInterval?
+	var creatureControllers = [CreatureController]()
+	
 	override func update(currentTime: NSTimeInterval)
 	{
-		//TODO: game logic
+		if let lastTime = lastTime
+		{
+			let elapsed = CGFloat(currentTime - lastTime)
+			for cc in creatureControllers
+			{
+				cc.animate(elapsed)
+			}
+		}
+		lastTime = currentTime
 	}
 }

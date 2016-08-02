@@ -11,6 +11,9 @@
 <dict>
     <key>human</key>
 	<dict>
+		<!-- whole reference poses -->
+		
+		<!-- just a simple pose designed to make sure that the body is jointed right -->
 		<key>neutral</key>
 		<dict>
 			<key>head</key> <integer>0</integer>
@@ -27,6 +30,76 @@
 			<key>right thigh</key> <integer>-45</integer>
 			<key>right calf</key> <integer>25</integer>
 			<key>right foot</key> <integer>20</integer>
+		</dict>
+		
+		<!-- CRANE KICK!!!! no can stop -->
+		<key>cranekick</key>
+		<dict>
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>left arm</key> <integer>170</integer>
+			<key>left forearm</key> <integer>0</integer>
+			<key>left hand</key> <integer>100</integer>
+			<key>right arm</key> <integer>-170</integer>
+			<key>right forearm</key> <integer>0</integer>
+			<key>right hand</key> <integer>80</integer>
+			<key>left thigh</key> <integer>0</integer>
+			<key>left calf</key> <integer>0</integer>
+			<key>left foot</key> <integer>0</integer>
+			<key>right thigh</key> <integer>-110</integer>
+			<key>right calf</key> <integer>90</integer>
+			<key>right foot</key> <integer>0</integer>
+		</dict>
+		
+		<!-- this "fencing" pose was supposed to be a martial arts pose but it ended up looking like a fencing stance -->
+		<key>fencing</key>
+		<dict>
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>left arm</key> <integer>100</integer>
+			<key>left forearm</key> <integer>30</integer>
+			<key>left hand</key> <integer>-25</integer>
+			<key>right arm</key> <integer>-70</integer>
+			<key>right forearm</key> <integer>-30</integer>
+			<key>right hand</key> <integer>-30</integer>
+			<key>left thigh</key> <integer>55</integer>
+			<key>left calf</key> <integer>0</integer>
+			<key>left foot</key> <integer>-55</integer>
+			<key>right thigh</key> <integer>-80</integer>
+			<key>right calf</key> <integer>80</integer>
+			<key>right foot</key> <integer>0</integer>
+		</dict>
+		
+		<!-- I had to cheat a bit to get this "bow" pose to not be bow-legged -->
+		<key>bow</key>
+		<dict>
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>45</integer>
+			<key>left arm</key> <integer>0</integer>
+			<key>left forearm</key> <integer>0</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>0</integer>
+			<key>right forearm</key> <integer>0</integer>
+			<key>right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>-45</integer>
+			<key>left calf</key> <integer>0</integer>
+			<key>left foot</key> <integer>0</integer>
+			<key>right thigh</key> <integer>-90</integer>
+			<key>right calf</key> <integer>0</integer>
+			<key>right foot</key> <integer>0</integer>
+		</dict>
+		
+		<!-- partial reference poses -->
+		
+		<!-- this "walk sample" has good leg angles for walking; I found it by accident -->
+		<key>walk sample</key>
+		<dict>
+			<key>left thigh</key> <integer>45</integer>
+			<key>left calf</key> <integer>45</integer>
+			<key>left foot</key> <integer>0</integer>
+			<key>right thigh</key> <integer>-90</integer>
+			<key>right calf</key> <integer>45</integer>
+			<key>right foot</key> <integer>0</integer>
 		</dict>
 	</dict>
 </dict>
