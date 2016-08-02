@@ -11,6 +11,27 @@
 <dict>
     <key>human male</key>
 	<dict>
+		<key>undulations</key>
+		<dict>
+			<key>leg undulation</key>
+			<dict>
+				<key>wavelength</key> <integer>250</integer>
+				<key>phase</key> <integer>50</integer>
+				<key>magnitude</key> <integer>50</integer>
+			</dict>
+			<key>arm undulation</key>
+			<dict>
+				<key>wavelength</key> <integer>250</integer>
+				<key>phase</key> <integer>0</integer>
+				<key>magnitude</key> <integer>50</integer>
+			</dict>
+			<key>head undulation</key>
+			<dict>
+				<key>wavelength</key> <integer>300</integer>
+				<key>phase</key> <integer>0</integer>
+				<key>magnitude</key> <integer>75</integer>
+			</dict>
+		</dict>
 		<key>limbs</key>
 		<array>
 			<!-- left leg -->
@@ -23,6 +44,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
 				<key>connect y</key> <integer>25</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>left calf</string>
@@ -33,6 +55,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>4</integer>
 				<key>connect y</key> <integer>16</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>left foot</string>
@@ -42,6 +65,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>4</integer>
 				<key>connect y</key> <integer>16</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			
 			<!-- right leg -->
@@ -54,6 +78,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>14</integer>
 				<key>connect y</key> <integer>25</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>right calf</string>
@@ -64,6 +89,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>4</integer>
 				<key>connect y</key> <integer>16</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>right foot</string>
@@ -73,6 +99,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>4</integer>
 				<key>connect y</key> <integer>16</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			
 			<!-- right arm -->
@@ -85,6 +112,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>16</integer>
 				<key>connect y</key> <integer>4</integer>
+				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>right forearm</string>
@@ -95,6 +123,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
 				<key>connect y</key> <integer>15</integer>
+				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>right hand</string>
@@ -127,6 +156,7 @@
 				<key>center y</key> <integer>17</integer>
 				<key>connect x</key> <integer>9</integer>
 				<key>connect y</key> <integer>1</integer>
+				<key>undulation</key> <string>head undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>eye</string>
@@ -148,6 +178,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>2</integer>
 				<key>connect y</key> <integer>4</integer>
+				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>left forearm</string>
@@ -158,6 +189,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
 				<key>connect y</key> <integer>15</integer>
+				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>left hand</string>
@@ -173,6 +205,33 @@
 	
     <key>human female</key>
 	<dict>
+		<key>undulations</key>
+		<dict>
+			<key>chest undulation</key>
+			<dict>
+				<key>wavelength</key> <integer>250</integer>
+				<key>phase</key> <integer>0</integer>
+				<key>magnitude</key> <integer>120</integer>
+			</dict>
+			<key>leg undulation</key>
+			<dict>
+				<key>wavelength</key> <integer>250</integer>
+				<key>phase</key> <integer>50</integer>
+				<key>magnitude</key> <integer>50</integer>
+			</dict>
+			<key>arm undulation</key>
+			<dict>
+				<key>wavelength</key> <integer>250</integer>
+				<key>phase</key> <integer>0</integer>
+				<key>magnitude</key> <integer>50</integer>
+			</dict>
+			<key>head undulation</key>
+			<dict>
+				<key>wavelength</key> <integer>300</integer>
+				<key>phase</key> <integer>0</integer>
+				<key>magnitude</key> <integer>75</integer>
+			</dict>
+		</dict>
 		<key>limbs</key>
 		<array>
 			<!-- left leg -->
@@ -185,6 +244,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
 				<key>connect y</key> <integer>22</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>left calf</string>
@@ -195,6 +255,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
 				<key>connect y</key> <integer>14</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>left foot</string>
@@ -204,6 +265,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
 				<key>connect y</key> <integer>15</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			
 			<!-- right leg -->
@@ -216,6 +278,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>13</integer>
 				<key>connect y</key> <integer>22</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>right calf</string>
@@ -226,6 +289,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
 				<key>connect y</key> <integer>14</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>right foot</string>
@@ -235,6 +299,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
 				<key>connect y</key> <integer>15</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			
 			<!-- right arm -->
@@ -247,6 +312,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>14</integer>
 				<key>connect y</key> <integer>4</integer>
+				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>right forearm</string>
@@ -257,6 +323,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>2</integer>
 				<key>connect y</key> <integer>14</integer>
+				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>right hand</string>
@@ -286,6 +353,7 @@
 				<key>center y</key> <integer>0</integer>
 				<key>connect x</key> <integer>3</integer>
 				<key>connect y</key> <integer>2</integer>
+				<key>undulation</key> <string>chest undulation</string>
 			</dict>
 			
 			<!-- head -->
@@ -298,6 +366,7 @@
 				<key>center y</key> <integer>17</integer>
 				<key>connect x</key> <integer>9</integer>
 				<key>connect y</key> <integer>1</integer>
+				<key>undulation</key> <string>head undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>eye</string>
@@ -319,6 +388,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>2</integer>
 				<key>connect y</key> <integer>4</integer>
+				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>left forearm</string>
@@ -329,6 +399,7 @@
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>2</integer>
 				<key>connect y</key> <integer>14</integer>
+				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
 				<key>name</key> <string>left hand</string>

@@ -8,12 +8,67 @@
 
 import SpriteKit
 
+class Undulation
+{
+	let magnitude:CGFloat
+	let wavelength:CGFloat
+	var timer:CGFloat
+	
+	init(undulateDict:[String : NSNumber])
+	{
+		magnitude = CGFloat(undulateDict["magnitude"]!.floatValue) * 0.01
+		wavelength = CGFloat(undulateDict["wavelength"]!.floatValue) * 0.01
+		
+		//set up undulation data
+		let phase = CGFloat(undulateDict["phase"]!.floatValue) * 0.01
+		timer = wavelength * phase
+	}
+	
+	func animate(elapsed:CGFloat)
+	{
+		if magnitude > 0
+		{
+			timer += elapsed
+			if timer > wavelength
+			{
+				timer -= wavelength
+			}
+		}
+	}
+	
+	var offset:CGFloat
+	{
+		let progress = timer * 4 / wavelength
+		var mult:CGFloat
+		if progress < 1
+		{
+			mult = progress
+		}
+		else if progress < 2
+		{
+			mult = 1 - (progress - 1)
+		}
+		else if progress < 3
+		{
+			mult = -(progress - 2)
+		}
+		else
+		{
+			mult = (progress - 3) - 1
+		}
+		
+		return magnitude * mult
+	}
+}
+
 class BodyLimb
 {
 	//information/identity variables
 	let name:String
 	let parentName:String?
 	weak var parent:BodyLimb?
+	let undulationName:String?
+	weak var undulation:Undulation?
 	let spriteNode:SKSpriteNode
 	let limbTag:String?
 	let centerX:Int
@@ -24,6 +79,7 @@ class BodyLimb
 	//animation variables
 	var rotateFrom:CGFloat = 0
 	var rotateTo:CGFloat = 0
+	
 	
 	//misc flags
 	var startFlag = false
@@ -39,17 +95,19 @@ class BodyLimb
 			return nil
 		}
 		
+		//get constants
 		name = limbDict["name"] as! String
 		parentName = limbDict["parent"] as? String
+		undulationName = limbDict["undulation"] as? String
 		let spriteName = limbDict["sprite name"] as! String
-		spriteNode = SKSpriteNode(imageNamed: spriteName)
 		limbTag = limbDict["limb tag"] as? String
 		centerX = intWithName("center x")!
 		centerY = intWithName("center y")!
 		connectX = intWithName("connect x")!
 		connectY = intWithName("connect y")!
 		
-		//set sprite node values
+		//set sprite node data
+		spriteNode = SKSpriteNode(imageNamed: spriteName)
 		spriteNode.anchorPoint = CGPoint(x: CGFloat(centerX) / spriteNode.size.width, y: CGFloat(centerY) / spriteNode.size.height)
 		spriteNode.colorBlendFactor = 1
 		
@@ -70,6 +128,7 @@ class CreatureController
 	private let states = "human"
 	
 	private var limbs = [String : BodyLimb]()
+	private var undulations = [String : Undulation]()
 	private var masterLimb:BodyLimb!
 	
 	init(rootNode:SKNode, morph:String, position:CGPoint)
@@ -78,10 +137,21 @@ class CreatureController
 		
 		creatureNode = SKNode()
 		rootNode.addChild(creatureNode)
+		constructUndulations()
 		constructBody()
 		setBodyState("neutral")
+		setPositions()
 		
 		creatureNode.position = position
+	}
+	
+	private func constructUndulations()
+	{
+		let undulationDict = DataStore.getDictionary("BodyMorphs", morph, "undulations") as! [String : [String : NSNumber]]
+		for (name, dict) in undulationDict
+		{
+			undulations[name] = Undulation(undulateDict: dict)
+		}
 	}
 	
 	private func constructBody()
@@ -99,7 +169,7 @@ class CreatureController
 			creatureNode.addChild(limb.spriteNode)
 		}
 		
-		//link the limbs to their parents
+		//link the limbs to their parents and undulations
 		for limb in limbs.values
 		{
 			if let parentName = limb.parentName
@@ -109,6 +179,10 @@ class CreatureController
 			else
 			{
 				masterLimb = limb
+			}
+			if let undulationName = limb.undulationName
+			{
+				limb.undulation = undulations[undulationName]
 			}
 		}
 	}
@@ -169,8 +243,6 @@ class CreatureController
 				}
 			}
 			
-			setPositions()
-			
 			//if the animation is over, end it
 			if animationProgress! == animationLength!
 			{
@@ -190,6 +262,14 @@ class CreatureController
 				}
 			}
 		}
+		
+		//move undulation timers forward
+		for undulation in undulations.values
+		{
+			undulation.animate(elapsed)
+		}
+		
+		setPositions()
 	}
 	
 	func setBodyState(bs:String)
@@ -268,8 +348,6 @@ class CreatureController
 			}
 		}
 		
-		setPositions()
-		
 		lastBS = bs
 	}
 	
@@ -307,7 +385,9 @@ class CreatureController
 					y += parent.spriteNode.position.y
 				}
 				
-//				print("\(limb.name): \(x), \(y)")
+				//add undulation to it
+				y += limb.undulation?.offset ?? 0
+				
 				limb.spriteNode.position = CGPoint(x: x, y: y)
 			}
 			
@@ -322,7 +402,6 @@ class CreatureController
 		for limb in limbs.values
 		{
 			let adj = limb.spriteNode.position.y + limb.spriteNode.size.height - limb.spriteNode.anchorPoint.y
-			print("adj \(limb.name): \(adj)")
 			heightAdj = max(heightAdj, adj)
 		}
 		for limb in limbs.values
