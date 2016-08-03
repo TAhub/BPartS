@@ -133,7 +133,6 @@ class CreatureController
 	
 	private var limbs = [String : BodyLimb]()
 	private var undulations = [String : Undulation]()
-	private var masterLimb:BodyLimb!
 	
 	//TODO: constants
 	let vibrateMagnitude:CGFloat = 3
@@ -189,10 +188,6 @@ class CreatureController
 			if let parentName = limb.parentName
 			{
 				limb.parent = limbs[parentName]
-			}
-			else
-			{
-				masterLimb = limb
 			}
 			if let undulationName = limb.undulationName
 			{

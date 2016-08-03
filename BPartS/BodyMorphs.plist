@@ -111,6 +111,15 @@
 				<key>connect x</key> <integer>0</integer>
 				<key>connect y</key> <integer>0</integer>
 			</dict>
+			<dict>
+				<key>name</key> <string>torso armor</string>
+				<key>parent</key> <string>torso</string>
+				<key>sprite name</key> <string>leotard_torso_m</string>
+				<key>center x</key> <integer>9</integer>
+				<key>center y</key> <integer>26</integer>
+				<key>connect x</key> <integer>9</integer>
+				<key>connect y</key> <integer>26</integer>
+			</dict>
 			
 			<!-- head -->
 			<dict>
@@ -132,6 +141,15 @@
 				<key>center y</key> <integer>0</integer>
 				<key>connect x</key> <integer>6</integer>
 				<key>connect y</key> <integer>7</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>front hair</string>
+				<key>parent</key> <string>head</string>
+				<key>sprite name</key> <string>human_fronthair1_m</string>
+				<key>center x</key> <integer>8</integer>
+				<key>center y</key> <integer>17</integer>
+				<key>connect x</key> <integer>8</integer>
+				<key>connect y</key> <integer>17</integer>
 			</dict>
 			
 			<!-- left leg -->
@@ -234,6 +252,18 @@
 		</dict>
 		<key>limbs</key>
 		<array>
+			<!-- back hair -->
+			<dict>
+				<key>name</key> <string>back hair</string>
+				<key>parent</key> <string>head</string>
+				<key>sprite name</key> <string>human_backhair1_f</string>
+				<key>center x</key> <integer>8</integer>
+				<key>center y</key> <integer>17</integer>
+				<key>connect x</key> <integer>8</integer>
+				<key>connect y</key> <integer>17</integer>
+				<key>undulation</key> <string>leg undulation</string>
+			</dict>
+			
 			<!-- right leg -->
 			<dict>
 				<key>name</key> <string>right thigh</string>
@@ -312,6 +342,15 @@
 				<key>connect y</key> <integer>0</integer>
 			</dict>
 			<dict>
+				<key>name</key> <string>torso armor</string>
+				<key>parent</key> <string>torso</string>
+				<key>sprite name</key> <string>leotard_torso_f</string>
+				<key>center x</key> <integer>8</integer>
+				<key>center y</key> <integer>24</integer>
+				<key>connect x</key> <integer>8</integer>
+				<key>connect y</key> <integer>24</integer>
+			</dict>
+			<dict>
 				<key>name</key> <string>chest</string>
 				<key>parent</key> <string>torso</string>
 				<key>sprite name</key> <string>human_chest_f</string>
@@ -320,6 +359,15 @@
 				<key>connect x</key> <integer>3</integer>
 				<key>connect y</key> <integer>2</integer>
 				<key>undulation</key> <string>chest undulation</string>
+			</dict>
+			<dict>
+				<key>name</key> <string>chest armor</string>
+				<key>parent</key> <string>chest</string>
+				<key>sprite name</key> <string>leotard_chest_f</string>
+				<key>center x</key> <integer>0</integer>
+				<key>center y</key> <integer>0</integer>
+				<key>connect x</key> <integer>0</integer>
+				<key>connect y</key> <integer>0</integer>
 			</dict>
 			
 			<!-- head -->
@@ -342,6 +390,15 @@
 				<key>center y</key> <integer>0</integer>
 				<key>connect x</key> <integer>6</integer>
 				<key>connect y</key> <integer>7</integer>
+			</dict>
+			<dict>
+				<key>name</key> <string>front hair</string>
+				<key>parent</key> <string>head</string>
+				<key>sprite name</key> <string>human_fronthair1_f</string>
+				<key>center x</key> <integer>8</integer>
+				<key>center y</key> <integer>17</integer>
+				<key>connect x</key> <integer>8</integer>
+				<key>connect y</key> <integer>17</integer>
 			</dict>
 			
 			<!-- left leg -->
