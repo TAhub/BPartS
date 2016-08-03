@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Weapons.plist
+   BPartS
+
+   Created by Theodore Abshire on 8/3/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<!-- DESIGN NOTE
+		the "shots" variable should correspond with the number of POWs in the animation
+		nothing checks for this automatically
+		but the shots variable is responsible for dividing the overall damage evenly, making it take an appropriate amount of ammo, etc
+	-->
+	
+    <!-- "auto" weapons -->
+	<!-- in general they should have ammo that is about 5x as common as manual ammo, and use 4 ammo per attack -->
+	<key>smg</key>
+	<dict>
+		<!-- stats -->
+		<key>type</key> <string>auto</string>
+		<key>damage</key> <integer>55</integer>
+		<key>accuracy bonus</key> <integer>0</integer>
+		<key>shots</key> <integer>4</integer>
+		<!-- TODO: ammo cost, etc -->
+		<!-- animation data -->
+		<key>animation</key> <string>auto gun four shoot</string>
+		<!-- name data -->
+		<!-- TODO: name generation data -->
+	</dict>
+	
+	<!-- "manual" weapons -->
+	<key>revolver</key>
+	<dict>
+		<!-- stats -->
+		<key>type</key> <string>manual</string>
+		<key>damage</key> <integer>45</integer>
+		<key>accuracy bonus</key> <integer>5</integer>
+		<key>shots</key> <integer>1</integer>
+		<!-- TODO: ammo cost, etc -->
+		<!-- animation data -->
+		<key>animation</key> <string>manual gun shoot</string>
+		<!-- name data -->
+		<!-- TODO: name generation data -->
+	</dict>
+	
+	<!-- "high" weapons -->
+	<key>knuckle</key>
+	<dict>
+		<!-- stats -->
+		<key>type</key> <string>high</string>
+		<key>damage</key> <integer>50</integer>
+		<key>accuracy bonus</key> <integer>0</integer>
+		<key>shots</key> <integer>2</integer>
+		<!-- TODO: ammo cost, etc -->
+		<!-- animation data -->
+		<!-- TODO: animation data -->
+		<!-- name data -->
+		<!-- TODO: name generation data -->
+	</dict>
+	
+	<!-- "low" weapons -->
+	
+</dict>
+</plist>

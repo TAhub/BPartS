@@ -15,7 +15,6 @@ class GameScene: SKScene
 	private var lastTime:NSTimeInterval?
 	var creatureControllers = [CreatureController]()
 	var game:Game!
-	var attacked:Bool = false //TODO: this is a temporary variable
 	
 	private func controllerFor(creature:Creature) -> CreatureController
 	{
@@ -47,17 +46,13 @@ class GameScene: SKScene
 			//pick attacks, if appropriate
 			if game.attackAnimStateSet == nil
 			{
-				if !attacked
+				if game.activeCreature === game.players[0]
 				{
-					attacked = true
-					if game.activeCreature === game.players[0]
-					{
-						game.chooseAttack(game.enemies[0])
-					}
-					else
-					{
-						game.chooseAttack(game.players[0])
-					}
+					game.chooseAttack(game.enemies[0])
+				}
+				else
+				{
+					game.chooseAttack(game.players[0])
 				}
 			}
 			

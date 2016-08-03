@@ -19,7 +19,75 @@ struct AttackAnimState
 
 class Weapon
 {
+	let type:String
+	let level:Int
 	
+	init(type:String, level:Int)
+	{
+		self.type = type
+		self.level = level
+	}
+	
+	var battleName:String
+	{
+		//TODO: display a short "in-battle" name
+		return type
+	}
+	var inventoryName:String
+	{
+		//TODO: display a long name for use in inventory menus
+		//this should indicate the level; like "Orric & Sons SMG mk III" or whatever
+		return type
+	}
+	var damage:Int
+	{
+		return DataStore.getInt("Weapons", type, "damage")!
+	}
+	var accuracyBonus:Int
+	{
+		return DataStore.getInt("Weapons", type, "accuracy bonus")!
+	}
+	var numShots:Int
+	{
+		return DataStore.getInt("Weapons", type, "shots")!
+	}
+	var targetType:String
+	{
+		return DataStore.getString("Weapons", type, "type")!
+	}
+	var animation:String
+	{
+		return DataStore.getString("Weapons", type, "animation")!
+	}
+	var melee:Bool
+	{
+		switch(targetType)
+		{
+		case "auto": fallthrough
+		case "manual":
+			return false
+		default: return true
+		}
+	}
+	var hitLimb:String
+	{
+		switch(targetType)
+		{
+		case "auto": return "torso"
+		case "manual": return "head"
+		case "high": return "arm"
+		case "low": return "leg"
+		default: break
+		}
+		assertionFailure()
+		return ""
+	}
+	var weaponStat:Int
+	{
+		//TODO: return a reasonable amount of weapon stat for this weapon, based on its level
+		//for now I'm just assuming it's half the level
+		return level / 2
+	}
 }
 
 class CreatureLimb
@@ -94,6 +162,7 @@ class Creature
 	//attack variables
 	var activeAttack:String?
 	var activeWeapon:Weapon?
+	var shotNumber:Int = 0
 	
 	//derived
 	var maxHealth:Int
@@ -110,7 +179,7 @@ class Creature
 				}
 			}
 		}
-		return Int(300 * (1 + biggerLevelFactor * CGFloat(endurance - baseStat))) * limbBonus / 100
+		return Int(400 * (1 + biggerLevelFactor * CGFloat(endurance - baseStat))) * limbBonus / 100
 	}
 	var defendChance:Int
 	{
@@ -149,8 +218,8 @@ class Creature
 		limbs["torso"]!.armor = "uniform"
 		limbs["right arm"]!.armor = "light robot arm"
 		limbs["left leg"]!.armor = "light robot leg"
-		limbs["right arm"]!.weapon = Weapon()
-		limbs["left arm"]!.weapon = Weapon()
+		limbs["right arm"]!.weapon = Weapon(type: "smg", level: 1)
+		limbs["left arm"]!.weapon = Weapon(type: "revolver", level: 1)
 		
 		//fill up health
 		self.health = maxHealth
@@ -170,17 +239,21 @@ class Creature
 	func pickAttack(attack:String)
 	{
 		activeAttack = attack
+		shotNumber = 0
 	}
 	
 	func pickEngagement(weapon:Weapon)
 	{
 		activeAttack = nil
 		activeWeapon = weapon
+		shotNumber = 0
 	}
 	
 	func executeAttack(target:Creature)
 	{
 		print("POW!")
+		
+		shotNumber += 1
 		
 		if let activeAttack = activeAttack
 		{
@@ -190,19 +263,25 @@ class Creature
 			let accuracyBonus = 0
 			
 			let damage = Int(CGFloat(baseDamage) * (1 + biggerLevelFactor * CGFloat(intellect - baseStat)))
-			target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb)
+			target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, inflictStrain: shotNumber == 1)
 		}
 		else if let activeWeapon = activeWeapon
 		{
-			//TODO: get the actual data values for the weapon
-			let baseDamage = 100
-			let hitLimb = "torso"
-			let accuracyBonus = 0
-			let damageStat = strength
-			let weaponStat = 20 //TODO: weapon stats start at 0, NOT at 20 like creature stats!
+			let baseDamage = activeWeapon.damage
+			let hitLimb = activeWeapon.hitLimb
+			let accuracyBonus = activeWeapon.accuracyBonus
+			let damageStat = activeWeapon.melee ? strength : perception
+			let weaponStat = activeWeapon.weaponStat
+			let numShots = activeWeapon.numShots
 			
-			let damage = Int(CGFloat(baseDamage) + (1 + levelFactor * CGFloat(damageStat + weaponStat - baseStat)))
-			target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb)
+			if shotNumber > numShots
+			{
+				//this is a pretty serious problem, heh
+				assertionFailure()
+			}
+			
+			let damage = Int(CGFloat(baseDamage) + (1 + levelFactor * CGFloat(damageStat + weaponStat - baseStat))) / numShots
+			target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, inflictStrain: shotNumber == 1)
 			
 			//TODO: remember that they might also get to attack you in return
 			//if so, remove their action too and whatnot
@@ -225,7 +304,7 @@ class Creature
 		return w
 	}
 	
-	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String)
+	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String, inflictStrain:Bool)
 	{
 		let finalDefendChance = defendChance - accuracyBonus
 		let defended = Int(arc4random_uniform(100)) <= finalDefendChance
@@ -239,7 +318,7 @@ class Creature
 				limbsCanHit.append(limb)
 			}
 		}
-		if limbsCanHit.count > 0
+		if limbsCanHit.count > 0 && inflictStrain	//inflictStain is so that multi-hit attacks don't inflict multiple strain
 		{
 			let pick = limbsCanHit[Int(arc4random_uniform(UInt32(limbsCanHit.count)))]
 			
@@ -313,13 +392,55 @@ class Creature
 	//MARK: animation data
 	var attackAnimationStateSet:[AttackAnimState]?
 	{
-		//TODO: get the actual animation state set for the active attack or weapon
-		let stateOne = AttackAnimState(myFrame: "neutral", theirFrame: nil, entryTime: 0.4, holdTime: 0.3, pow: false)
-		let stateTwo = AttackAnimState(myFrame: "fencing", theirFrame: nil, entryTime: 0.4, holdTime: 0.3, pow: false)
-		let stateThree = AttackAnimState(myFrame: "bow", theirFrame: "flinch", entryTime: 0.2, holdTime: 0.4, pow: true)
-		let stateFour = AttackAnimState(myFrame: "fencing", theirFrame: "neutral", entryTime: 0.4, holdTime: 0.3, pow: false)
-	
-		return [stateOne, stateTwo, stateThree, stateFour]
+		var anim:String
+		if let activeAttack = activeAttack
+		{
+			anim = "" //TODO: get the animation for that attack
+		}
+		else if let activeWeapon = activeWeapon
+		{
+			anim = activeWeapon.animation
+		}
+		else
+		{
+			return nil
+		}
+		
+		var states = [AttackAnimState]()
+		let frames = DataStore.getArray("Animations", anim, "frames") as! [[String : AnyObject]]
+		for frame in frames
+		{
+			var mF:String?
+			var tF:String?
+			if let myFrame = frame["my frame"] as? String
+			{
+				//replace * in the frame with the limb prefix of the limb holding the active weapon
+				var limbPrefix = ""
+				for limb in limbs.values
+				{
+					if let lWeapon = limb.weapon, let aWeapon = activeWeapon, let lPrefix = limb.prefix
+					{
+						if lWeapon === aWeapon
+						{
+							limbPrefix = lPrefix
+							break
+						}
+					}
+				}
+				mF = myFrame.stringByReplacingOccurrencesOfString("*", withString: limbPrefix)
+			}
+			if let theirFrame = frame["their frame"] as? String
+			{
+				tF = theirFrame
+			}
+			let eT:CGFloat = CGFloat((frame["enter time"] as! NSNumber).floatValue)
+			let hT:CGFloat = CGFloat((frame["hold time"] as! NSNumber).floatValue)
+			let pow = frame["pow"] != nil
+			
+			states.append(AttackAnimState(myFrame: mF, theirFrame: tF, entryTime: eT, holdTime: hT, pow: pow))
+		}
+		
+		return states
 	}
 	var restingState:String
 	{

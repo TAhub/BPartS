@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Animations.plist
+   BPartS
+
+   Created by Theodore Abshire on 8/3/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+    <key>manual gun shoot</key>
+	<dict>
+		<!-- TOOD: required limbs -->
+		<key>frames</key>
+		<array>
+			<dict>
+				<key>my frame</key> <string>* gun</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.3</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun shoot</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.125</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.1</real>
+			</dict>
+		</array>
+	</dict>
+    <key>auto gun three shoot</key>
+	<dict>
+		<!-- TOOD: required limbs -->
+		<key>frames</key>
+		<array>
+			<dict>
+				<key>my frame</key> <string>* gun</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.175</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun shoot</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.075</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.025</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun shoot</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.075</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.025</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun shoot</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.075</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.1</real>
+			</dict>
+		</array>
+	</dict>
+    <key>auto gun four shoot</key>
+	<dict>
+		<!-- TOOD: required limbs -->
+		<key>frames</key>
+		<array>
+			<dict>
+				<key>my frame</key> <string>* gun</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.175</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun shoot</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.075</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.025</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun shoot</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.075</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.025</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun shoot</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.075</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.025</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun shoot</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.075</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* gun</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.1</real>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>
