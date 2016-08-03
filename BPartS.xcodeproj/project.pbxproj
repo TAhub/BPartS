@@ -18,6 +18,9 @@
 		E4CFD7C51D51120E00D6A93B /* BodyMorphs.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4CFD7C41D51120E00D6A93B /* BodyMorphs.plist */; };
 		E4CFD7C71D51121800D6A93B /* BodyStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4CFD7C61D51121800D6A93B /* BodyStates.plist */; };
 		E4CFD7C91D511CBC00D6A93B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CFD7C81D511CBC00D6A93B /* GameScene.swift */; };
+		E4E72ECE1D52634C00843AB5 /* Races.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4E72ECD1D52634C00843AB5 /* Races.plist */; };
+		E4E72ED01D52648100843AB5 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E72ECF1D52648100843AB5 /* Creature.swift */; };
+		E4E72ED21D526BD500843AB5 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4E72ED11D526BD500843AB5 /* Colors.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		E4CFD7C41D51120E00D6A93B /* BodyMorphs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BodyMorphs.plist; sourceTree = "<group>"; };
 		E4CFD7C61D51121800D6A93B /* BodyStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BodyStates.plist; sourceTree = "<group>"; };
 		E4CFD7C81D511CBC00D6A93B /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		E4E72ECD1D52634C00843AB5 /* Races.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Races.plist; sourceTree = "<group>"; };
+		E4E72ECF1D52648100843AB5 /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
+		E4E72ED11D526BD500843AB5 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,7 @@
 		E4CFD7BC1D5110A200D6A93B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E4E72ECF1D52648100843AB5 /* Creature.swift */,
 				E4CFD7C21D5111D000D6A93B /* DataStore.swift */,
 			);
 			name = Model;
@@ -133,6 +140,8 @@
 		E4CFD7BF1D5110B000D6A93B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4E72ED11D526BD500843AB5 /* Colors.plist */,
+				E4E72ECD1D52634C00843AB5 /* Races.plist */,
 				E4CFD7C41D51120E00D6A93B /* BodyMorphs.plist */,
 				E4CFD7C61D51121800D6A93B /* BodyStates.plist */,
 				E4CFD7A31D51103400D6A93B /* Assets.xcassets */,
@@ -229,6 +238,8 @@
 				E4CFD7C51D51120E00D6A93B /* BodyMorphs.plist in Resources */,
 				E4CFD7A41D51103400D6A93B /* Assets.xcassets in Resources */,
 				E4CFD7A21D51103400D6A93B /* Main.storyboard in Resources */,
+				E4E72ECE1D52634C00843AB5 /* Races.plist in Resources */,
+				E4E72ED21D526BD500843AB5 /* Colors.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +259,7 @@
 			files = (
 				E4CFD7C91D511CBC00D6A93B /* GameScene.swift in Sources */,
 				E4CFD79F1D51103400D6A93B /* ViewController.swift in Sources */,
+				E4E72ED01D52648100843AB5 /* Creature.swift in Sources */,
 				E4CFD7C31D5111D000D6A93B /* DataStore.swift in Sources */,
 				E4CFD7C11D5110E900D6A93B /* CreatureController.swift in Sources */,
 				E4CFD79D1D51103400D6A93B /* AppDelegate.swift in Sources */,
@@ -440,6 +452,7 @@
 				E4CFD7B81D51103500D6A93B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4CFD7B91D51103500D6A93B /* Build configuration list for PBXNativeTarget "BPartSTests" */ = {
 			isa = XCConfigurationList;
@@ -448,6 +461,7 @@
 				E4CFD7BB1D51103500D6A93B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

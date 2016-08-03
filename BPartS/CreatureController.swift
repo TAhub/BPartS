@@ -8,6 +8,28 @@
 
 import SpriteKit
 
+extension UIColor
+{
+	static func blendColor(color1:UIColor, color2:UIColor, blendFactor:CGFloat) -> UIColor
+	{
+		let nBlendFactor = 1-blendFactor
+		var r1:CGFloat = 0
+		var g1:CGFloat = 0
+		var b1:CGFloat = 0
+		var a1:CGFloat = 0
+		var r2:CGFloat = 0
+		var g2:CGFloat = 0
+		var b2:CGFloat = 0
+		var a2:CGFloat = 0
+		color1.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
+		color1.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
+		return UIColor(red: r1 * blendFactor + r2 * nBlendFactor,
+		               green: g1 * blendFactor + g2 * nBlendFactor,
+		               blue: b1 * blendFactor + b2 * nBlendFactor,
+		               alpha: a1 * blendFactor + a2 * nBlendFactor)
+	}
+}
+
 class Undulation
 {
 	let magnitude:CGFloat
@@ -61,6 +83,10 @@ class Undulation
 	}
 }
 
+
+
+
+
 class BodyLimb
 {
 	//information/identity variables
@@ -84,7 +110,7 @@ class BodyLimb
 	//misc flags
 	var startFlag = false
 	
-	init(limbDict:[String : NSObject])
+	init(limbDict:[String : NSObject], coloration:[String : String])
 	{
 		func intWithName(name:String) -> Int?
 		{
@@ -100,6 +126,8 @@ class BodyLimb
 		parentName = limbDict["parent"] as? String
 		undulationName = limbDict["undulation"] as? String
 		let spriteName = limbDict["sprite name"] as! String
+		let colorName = limbDict["color name"] as! String
+		let blendName = limbDict["blend name"] as! String
 		limbTag = limbDict["limb tag"] as? String
 		centerX = intWithName("center x")!
 		centerY = intWithName("center y")!
@@ -111,9 +139,23 @@ class BodyLimb
 		spriteNode.anchorPoint = CGPoint(x: CGFloat(centerX) / spriteNode.size.width, y: CGFloat(centerY) / spriteNode.size.height)
 		spriteNode.colorBlendFactor = 1
 		
-		let h = CGFloat(arc4random_uniform(100)) * 0.01
-		let s = CGFloat(arc4random_uniform(50)) * 0.01 + 0.5
-		spriteNode.color = UIColor(hue: h, saturation: s, brightness: 1.0, alpha: 1.0)
+		//pick the color, changing the value as appropriate based on the blend name
+		let baseColor = DataStore.getColorByName(coloration[colorName]!)!
+		var h:CGFloat = 0
+		var s:CGFloat = 0
+		var v:CGFloat = 0
+		var a:CGFloat = 0
+		baseColor.getHue(&h, saturation: &s, brightness: &v, alpha: &a)
+		
+		//TODO: these should probably be constants
+		switch(blendName)
+		{
+		case "back body": v *= 0.85
+		case "fore body": break
+		default: break
+		}
+		
+		spriteNode.color = UIColor(hue: h, saturation: s, brightness: v, alpha: a)
 	}
 }
 
@@ -127,9 +169,18 @@ class CreatureController
 	private var stopUndulation:Bool = false
 	private var vibrate:Bool = false
 	
+	private let creature:Creature
 	private let creatureNode:SKNode
-	private let morph:String
-	private let states = "human"
+	var morph:String
+	{
+		//TODO: get the appropriate morph for them, not just the first one
+		let morphs = DataStore.getArray("Races", creature.race, "morphs") as! [String]
+		return morphs[0]
+	}
+	var states:String
+	{
+		return DataStore.getString("Races", creature.race, "states")!
+	}
 	
 	private var limbs = [String : BodyLimb]()
 	private var undulations = [String : Undulation]()
@@ -137,15 +188,15 @@ class CreatureController
 	//TODO: constants
 	let vibrateMagnitude:CGFloat = 3
 	
-	init(rootNode:SKNode, morph:String, position:CGPoint)
+	init(rootNode:SKNode, creature:Creature, position:CGPoint)
 	{
-		self.morph = morph
+		self.creature = creature
 		
 		creatureNode = SKNode()
 		rootNode.addChild(creatureNode)
 		constructUndulations()
 		constructBody()
-		setBodyState("sitting")
+		setBodyState("neutral")
 		setPositions()
 		
 		creatureNode.position = position
@@ -173,11 +224,15 @@ class CreatureController
 		limbs.removeAll()
 		creatureNode.removeAllChildren()
 		
+		//TODO: load the appropriate coloration array
+		let colorations = DataStore.getArray("Races", creature.race, "colorations") as! [[String : String]]
+		let coloration = colorations[0]
+		
 		//first, read all of the limb data into memory
 		let limbArray = DataStore.getArray("BodyMorphs", morph, "limbs") as! [[String : NSObject]]
 		for limbDict in limbArray
 		{
-			let limb = BodyLimb(limbDict: limbDict)
+			let limb = BodyLimb(limbDict: limbDict, coloration: coloration)
 			limbs[limb.name] = limb
 			creatureNode.addChild(limb.spriteNode)
 		}
@@ -274,16 +329,16 @@ class CreatureController
 				holdLength = nil
 				
 				//TODO: SO YOU SHOULD START THE NEXT ANIMATION, DUN DUN DUN
-				let ar = ["neutral", "cranekick", "bow", "fencing", "flinch", "defend", "sitting"]
-				while true
-				{
-					let pick = ar[Int(arc4random_uniform(UInt32(ar.count)))]
-					if pick != lastBS!
-					{
-						setBodyState(pick)
-						break
-					}
-				}
+//				let ar = ["neutral", "cranekick", "bow", "fencing", "flinch", "defend", "sitting"]
+//				while true
+//				{
+//					let pick = ar[Int(arc4random_uniform(UInt32(ar.count)))]
+//					if pick != lastBS!
+//					{
+//						setBodyState(pick)
+//						break
+//					}
+//				}
 			}
 		}
 		

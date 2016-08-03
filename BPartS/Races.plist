@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Races.plist
+   BPartS
+
+   Created by Theodore Abshire on 8/3/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+    <key>human</key>
+	<dict>
+		<!-- limb data -->
+		<key>limbs</key>
+		<dict>
+			<key>left arm</key>
+			<dict>
+				<key>type</key> <string>arm</string>
+				<key>max strain</key> <integer>2</integer>
+			</dict>
+			<key>right arm</key>
+			<dict>
+				<key>type</key> <string>arm</string>
+				<key>max strain</key> <integer>2</integer>
+			</dict>
+			<key>left leg</key>
+			<dict>
+				<key>type</key> <string>leg</string>
+				<key>max strain</key> <integer>2</integer>
+			</dict>
+			<key>right leg</key>
+			<dict>
+				<key>type</key> <string>leg</string>
+				<key>max strain</key> <integer>2</integer>
+			</dict>
+			<key>head</key>
+			<dict>
+				<key>type</key> <string>head</string>
+				<key>max strain</key> <integer>2</integer>
+			</dict>
+			<key>torso</key>
+			<dict>
+				<key>type</key> <string>torso</string>
+				<key>max strain</key> <integer>4</integer>
+			</dict>
+		</dict>
+		<!-- graphical data -->
+		<key>states</key> <string>human</string>
+		<key>morphs</key>
+		<array>
+			<string>human male</string>
+			<string>human female</string>
+		</array>
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>skin light</string>
+				<key>hair</key> <string>human hair blonde</string>
+				<key>eye</key> <string>white</string>
+				<key>body armor</key> <string>blue cloth</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>skin swarthy</string>
+				<key>hair</key> <string>human hair brown</string>
+				<key>eye</key> <string>white</string>
+				<key>body armor</key> <string>blue cloth</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>skin dark</string>
+				<key>hair</key> <string>human hair black</string>
+				<key>eye</key> <string>white</string>
+				<key>body armor</key> <string>blue cloth</string>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>

@@ -29,11 +29,13 @@ class ViewController: UIViewController {
 		shape.fillColor = UIColor.blueColor()
 		flipNode.addChild(shape)
 		
-		let ccM = CreatureController(rootNode: flipNode, morph: "human male", position: CGPoint(x: 150, y: 300))
-		let ccF = CreatureController(rootNode: flipNode, morph: "human female", position: CGPoint(x: 250, y: 300))
-		scene.creatureControllers.append(ccM)
-		scene.creatureControllers.append(ccF)
-		ccM.setBodyState("bow")
-		ccF.setBodyState("bow")
+		let cr1 = Creature(race: "human")
+		let cr2 = Creature(race: "human")
+		let cc1 = CreatureController(rootNode: flipNode, creature: cr1, position: CGPoint(x: 150, y: 300))
+		let cc2 = CreatureController(rootNode: flipNode, creature: cr2, position: CGPoint(x: 250, y: 300))
+		scene.creatureControllers.append(cc1)
+		scene.creatureControllers.append(cc2)
+//		cc1.setBodyState("bow")
+//		cc2.setBodyState("bow")
 	}
 }
