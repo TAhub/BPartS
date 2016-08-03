@@ -30,6 +30,33 @@ extension UIColor
 	}
 }
 
+class CreatureLimbMemory
+{
+	private var armor:String?
+	private var broken:Bool
+	
+	init(creatureLimb:CreatureLimb)
+	{
+		armor = creatureLimb.armor
+		broken = creatureLimb.broken
+	}
+	func compare(creatureLimb:CreatureLimb) -> Bool
+	{
+		if (armor == nil) != (creatureLimb.armor == nil)
+		{
+			return false
+		}
+		if let armor = armor, let cArmor = creatureLimb.armor
+		{
+			if armor != cArmor
+			{
+				return false
+			}
+		}
+		return broken == creatureLimb.broken
+	}
+}
+
 class Undulation
 {
 	let magnitude:CGFloat
@@ -214,6 +241,7 @@ class CreatureController
 	
 	private var limbs = [String : BodyLimb]()
 	private var undulations = [String : Undulation]()
+	private var memories = [String : CreatureLimbMemory]()
 	
 	//TODO: constants
 	let vibrateMagnitude:CGFloat = 3
@@ -231,6 +259,10 @@ class CreatureController
 		
 		creatureNode.position = position
 		
+		for (name, limb) in creature.limbs
+		{
+			memories[name] = CreatureLimbMemory(creatureLimb: limb)
+		}
 		
 		//draw bounding box
 //		let bb = getBoundingBox()
@@ -293,6 +325,55 @@ class CreatureController
 		return animationLength != nil || animationProgress != nil || holdLength != nil || holdProgress != nil
 	}
 	
+	private func setRotations()
+	{
+		let progress = animationProgress! / animationLength!
+		
+		//set body part rotations
+		for limb in limbs.values
+		{
+			//figure out which direction to rotate
+			let forwardDistance:CGFloat
+			let backwardDistance:CGFloat
+			if limb.rotateTo > limb.rotateFrom
+			{
+				forwardDistance = limb.rotateTo - limb.rotateFrom
+				backwardDistance = limb.rotateFrom + 2 * CGFloat(M_PI) - limb.rotateTo
+			}
+			else if limb.rotateTo < limb.rotateFrom
+			{
+				forwardDistance = 2 * CGFloat(M_PI) - limb.rotateFrom + limb.rotateTo
+				backwardDistance = limb.rotateFrom - limb.rotateTo
+			}
+			else
+			{
+				//no animation
+				forwardDistance = 0
+				backwardDistance = 0
+			}
+			
+			if forwardDistance != 0 && backwardDistance != 0
+			{
+				if forwardDistance <= backwardDistance
+				{
+					limb.spriteNode.zRotation = limb.rotateFrom + forwardDistance * progress
+				}
+				else
+				{
+					limb.spriteNode.zRotation = limb.rotateFrom - backwardDistance * progress
+				}
+				while limb.spriteNode.zRotation >= 2 * CGFloat(M_PI)
+				{
+					limb.spriteNode.zRotation -= 2 * CGFloat(M_PI)
+				}
+				while limb.spriteNode.zRotation < 0
+				{
+					limb.spriteNode.zRotation += 2 * CGFloat(M_PI)
+				}
+			}
+		}
+	}
+	
 	func animate(elapsed:CGFloat)
 	{
 		if animationLength != nil && animationProgress != nil
@@ -303,51 +384,7 @@ class CreatureController
 				animationProgress = animationLength!
 			}
 			
-			let progress = animationProgress! / animationLength!
-			
-			//set body part rotations
-			for limb in limbs.values
-			{
-				//figure out which direction to rotate
-				let forwardDistance:CGFloat
-				let backwardDistance:CGFloat
-				if limb.rotateTo > limb.rotateFrom
-				{
-					forwardDistance = limb.rotateTo - limb.rotateFrom
-					backwardDistance = limb.rotateFrom + 2 * CGFloat(M_PI) - limb.rotateTo
-				}
-				else if limb.rotateTo < limb.rotateFrom
-				{
-					forwardDistance = 2 * CGFloat(M_PI) - limb.rotateFrom + limb.rotateTo
-					backwardDistance = limb.rotateFrom - limb.rotateTo
-				}
-				else
-				{
-					//no animation
-					forwardDistance = 0
-					backwardDistance = 0
-				}
-				
-				if forwardDistance != 0 && backwardDistance != 0
-				{
-					if forwardDistance <= backwardDistance
-					{
-						limb.spriteNode.zRotation = limb.rotateFrom + forwardDistance * progress
-					}
-					else
-					{
-						limb.spriteNode.zRotation = limb.rotateFrom - backwardDistance * progress
-					}
-					while limb.spriteNode.zRotation >= 2 * CGFloat(M_PI)
-					{
-						limb.spriteNode.zRotation -= 2 * CGFloat(M_PI)
-					}
-					while limb.spriteNode.zRotation < 0
-					{
-						limb.spriteNode.zRotation += 2 * CGFloat(M_PI)
-					}
-				}
-			}
+			setRotations()
 			
 			//if the animation is over, end it
 			if animationProgress! == animationLength!
@@ -364,6 +401,40 @@ class CreatureController
 				//you're done holding
 				holdProgress = nil
 				holdLength = nil
+			}
+		}
+		
+		if !animating
+		{
+			//now that the anim is over, check to see if you need to remake your body any
+			
+			var change = false
+			for limb in creature.limbs.values
+			{
+				let memory = memories[limb.name]!
+				if !memory.compare(limb)
+				{
+					change = true
+					break
+				}
+			}
+			
+			if change
+			{
+				//remake your memories
+				memories.removeAll()
+				for (name, limb) in creature.limbs
+				{
+					memories[name] = CreatureLimbMemory(creatureLimb: limb)
+				}
+				
+				//remake the body
+				constructBody()
+				
+				//and snap to the new position
+				let bs = lastBS!
+				lastBS = nil
+				setBodyState(bs, length: 0, hold: 0)
 			}
 		}
 		

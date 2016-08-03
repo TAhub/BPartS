@@ -49,6 +49,8 @@ class CreatureLimb
 		self.type = limbDict["type"] as! String
 		self.baseMaxStrain = intWithName("max strain")!
 		self.strain = 0
+		
+		//TODO: pick an active weapon from your weapons
 	}
 	
 	var maxStrain:Int
@@ -88,7 +90,7 @@ class Creature
 	
 	//attack variables
 	var activeAttack:String?
-	weak var activeWeapon:Weapon?
+	var activeWeapon:Weapon?
 	
 	//derived
 	var maxHealth:Int
@@ -163,7 +165,6 @@ class Creature
 	func pickAttack(attack:String)
 	{
 		activeAttack = attack
-		activeWeapon = nil
 	}
 	
 	func pickEngagement(weapon:Weapon)
@@ -212,7 +213,7 @@ class Creature
 		var limbsCanHit = [CreatureLimb]()
 		for limb in limbs.values
 		{
-			if limb.type == hitLimb && limb.strain < limb.maxStrain
+			if limb.type == hitLimb && !limb.broken
 			{
 				limbsCanHit.append(limb)
 			}
@@ -223,6 +224,8 @@ class Creature
 			
 			//apply strain to that limb
 			pick.strain += 1
+			
+			print("\(pick.name) has \(pick.strain) strain!")
 			
 			if pick.broken
 			{
@@ -238,6 +241,10 @@ class Creature
 				
 				//raise the limb's strain to 9999 to ensure it will still be broken when replaced (in case the broken state is better I guess?)
 				pick.strain = 9999
+				
+				
+				//TODO: check to see if your active weapon's hand was destroyed
+				//if so, set activeWeapon to nil
 			}
 		}
 		

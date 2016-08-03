@@ -88,6 +88,7 @@ class Game
 		if attackAnimStateSet == nil
 		{
 			//TODO: tell the player what the active attack is
+			activeCreature.pickEngagement(Weapon())
 			attackTarget = target
 			
 			if let aASS = activeCreature.attackAnimationStateSet
