@@ -122,6 +122,10 @@ class CreatureController
 	private var lastBS:String?
 	private var animationLength:CGFloat?
 	private var animationProgress:CGFloat?
+	private var holdLength:CGFloat?
+	private var holdProgress:CGFloat?
+	private var stopUndulation:Bool = false
+	private var vibrate:Bool = false
 	
 	private let creatureNode:SKNode
 	private let morph:String
@@ -131,6 +135,9 @@ class CreatureController
 	private var undulations = [String : Undulation]()
 	private var masterLimb:BodyLimb!
 	
+	//TODO: constants
+	let vibrateMagnitude:CGFloat = 3
+	
 	init(rootNode:SKNode, morph:String, position:CGPoint)
 	{
 		self.morph = morph
@@ -139,10 +146,17 @@ class CreatureController
 		rootNode.addChild(creatureNode)
 		constructUndulations()
 		constructBody()
-		setBodyState("neutral")
+		setBodyState("sitting")
 		setPositions()
 		
 		creatureNode.position = position
+		
+		
+		//draw bounding box
+//		let bb = getBoundingBox()
+//		let bbS = SKShapeNode(rect: bb)
+//		bbS.fillColor = UIColor.darkGrayColor()
+//		creatureNode.insertChild(bbS, atIndex: 0)
 	}
 	
 	private func constructUndulations()
@@ -185,6 +199,11 @@ class CreatureController
 				limb.undulation = undulations[undulationName]
 			}
 		}
+	}
+	
+	var animating:Bool
+	{
+		return animationLength != nil || animationProgress != nil || holdLength != nil || holdProgress != nil
 	}
 	
 	func animate(elapsed:CGFloat)
@@ -248,9 +267,19 @@ class CreatureController
 			{
 				animationProgress = nil
 				animationLength = nil
+			}
+		}
+		else if holdLength != nil || holdProgress != nil
+		{
+			holdProgress! += elapsed
+			if holdProgress! >= holdLength!
+			{
+				//you're done holding
+				holdProgress = nil
+				holdLength = nil
 				
-				//TODO: AND THEN START THE NEXT ONE, DUN DUN DUN
-				let ar = ["neutral", "cranekick", "bow", "fencing"]
+				//TODO: SO YOU SHOULD START THE NEXT ANIMATION, DUN DUN DUN
+				let ar = ["neutral", "cranekick", "bow", "fencing", "flinch", "defend", "sitting"]
 				while true
 				{
 					let pick = ar[Int(arc4random_uniform(UInt32(ar.count)))]
@@ -264,21 +293,39 @@ class CreatureController
 		}
 		
 		//move undulation timers forward
-		for undulation in undulations.values
+		if !stopUndulation || !applyFlags
 		{
-			undulation.animate(elapsed)
+			for undulation in undulations.values
+			{
+				undulation.animate(elapsed)
+			}
 		}
 		
 		setPositions()
+	}
+	
+	private var applyFlags:Bool
+	{
+		if let animationLength = animationLength, let animationProgress = animationProgress
+		{
+			return animationProgress > animationLength / 2
+		}
+		return true
 	}
 	
 	func setBodyState(bs:String)
 	{
 		if lastBS != nil && lastBS! != bs
 		{
-			animationLength = 0.65
+			animationLength = 0.2
 			animationProgress = 0
 		}
+		holdLength = 0.5
+		holdProgress = 0
+		
+		//reset flags
+		stopUndulation = false
+		vibrate = false
 		
 		//set up the animation variables
 		for limb in limbs.values
@@ -290,9 +337,18 @@ class CreatureController
 		{
 			for (limbName, degreeNumber) in state
 			{
-				if let limb = limbs[limbName]
+				//check for flags
+				switch(limbName)
 				{
-					limb.rotateTo = CGFloat(M_PI) * CGFloat(degreeNumber.floatValue) / 180
+				case "stop undulation":
+					stopUndulation = true
+				case "vibrate":
+					vibrate = true
+				default:
+					if let limb = limbs[limbName]
+					{
+						limb.rotateTo = CGFloat(M_PI) * CGFloat(degreeNumber.floatValue) / 180
+					}
 				}
 			}
 			
@@ -376,9 +432,8 @@ class CreatureController
 					let connectY = limb.connectY - parent.centerY
 					
 					//add them to the position, rotated
-					let dirAngle = parent.spriteNode.zRotation// + CGFloat(M_PI) / 2
-					x += cos(dirAngle) * CGFloat(connectX) - sin(dirAngle) * CGFloat(connectY)
-					y += cos(dirAngle) * CGFloat(connectY) + sin(dirAngle) * CGFloat(connectX)
+					x += cos(parent.spriteNode.zRotation) * CGFloat(connectX) - sin(parent.spriteNode.zRotation) * CGFloat(connectY)
+					y += cos(parent.spriteNode.zRotation) * CGFloat(connectY) + sin(parent.spriteNode.zRotation) * CGFloat(connectX)
 					
 					//also add their position
 					x += parent.spriteNode.position.x
@@ -397,16 +452,51 @@ class CreatureController
 			recursiveLimbPosition(limb)
 		}
 		
-		//estimate how far below (0, 0) you are, then adjust accordingly
-		var heightAdj:CGFloat = 0
-		for limb in limbs.values
+		//use the bounding box to estimate how far below (0, 0) you are, then adjust accordingly
+		var yAdj:CGFloat = getBoundingBox().maxY
+		var xAdj:CGFloat = 0
+		if vibrate && applyFlags
 		{
-			let adj = limb.spriteNode.position.y + limb.spriteNode.size.height - limb.spriteNode.anchorPoint.y
-			heightAdj = max(heightAdj, adj)
+			//add some randomness
+			xAdj += (CGFloat(arc4random_uniform(200)) - 100) * 0.01 * vibrateMagnitude
+			yAdj += (CGFloat(arc4random_uniform(200)) - 100) * 0.01 * vibrateMagnitude
 		}
 		for limb in limbs.values
 		{
-			limb.spriteNode.position = CGPoint(x: limb.spriteNode.position.x, y: limb.spriteNode.position.y - heightAdj)
+			limb.spriteNode.position = CGPoint(x: limb.spriteNode.position.x - xAdj, y: limb.spriteNode.position.y - yAdj)
 		}
+	}
+	
+	private func getBoundingBox() -> CGRect
+	{
+		var minX:CGFloat = 999999
+		var maxX:CGFloat = -999999
+		var minY:CGFloat = 999999
+		var maxY:CGFloat = -999999
+		for limb in limbs.values
+		{
+			func transformCheck(pX pX:CGFloat, pY:CGFloat)
+			{
+				let cX = limb.spriteNode.position.x
+				let cY = limb.spriteNode.position.y
+				let a = limb.spriteNode.zRotation
+				let newX = cX + (pX - cX) * cos(a) - (pY - cY) * sin(a)
+				let newY = cY + (pX - cX) * sin(a) + (pY - cY) * cos(a)
+				
+				minX = min(minX, newX)
+				maxX = max(maxX, newX)
+				minY = min(minY, newY)
+				maxY = max(maxY, newY)
+			}
+			let left = limb.spriteNode.position.x - limb.spriteNode.anchorPoint.x * limb.spriteNode.size.width
+			let top = limb.spriteNode.position.y - limb.spriteNode.anchorPoint.y * limb.spriteNode.size.height
+			let right = left + limb.spriteNode.size.width
+			let bottom = top + limb.spriteNode.size.height
+			transformCheck(pX: left, pY: top)
+			transformCheck(pX: right, pY: top)
+			transformCheck(pX: left, pY: bottom)
+			transformCheck(pX: right, pY: bottom)
+		}
+		return CGRect(x: minX, y: minY, width: maxX-minX, height: maxY-minY)
 	}
 }

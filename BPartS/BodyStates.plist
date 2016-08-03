@@ -13,9 +13,99 @@
 	<dict>
 		<!-- whole reference poses -->
 		
+		<key>pure neutral</key>
+		<dict>
+			<!-- flags -->
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>left arm</key> <integer>90</integer>
+			<key>left forearm</key> <integer>0</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-90</integer>
+			<key>right forearm</key> <integer>0</integer>
+			<key>right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>45</integer>
+			<key>left calf</key> <integer>0</integer>
+			<key>left foot</key> <integer>-40</integer>
+			<key>right thigh</key> <integer>-45</integer>
+			<key>right calf</key> <integer>0</integer>
+			<key>right foot</key> <integer>45</integer>
+		</dict>
+		
+		<!-- an attempt at a defend pose -->
+		<key>defend</key>
+		<dict>
+			<!-- flags -->
+			<key>stop undulation</key> <integer>0</integer>
+			<key>vibrate</key> <integer>0</integer>
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>-5</integer>
+			<key>left arm</key> <integer>-80</integer>
+			<key>left forearm</key> <integer>-90</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-90</integer>
+			<key>right forearm</key> <integer>-90</integer>
+			<key>right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>50</integer>
+			<key>left calf</key> <integer>-5</integer>
+			<key>left foot</key> <integer>-40</integer>
+			<key>right thigh</key> <integer>-35</integer>
+			<key>right calf</key> <integer>0</integer>
+			<key>right foot</key> <integer>45</integer>
+		</dict>
+		
+		<!-- an attempt at a damage flinch pose -->
+		<key>flinch</key>
+		<dict>
+			<!-- flags -->
+			<key>stop undulation</key> <integer>0</integer>
+			<key>vibrate</key> <integer>0</integer>
+			<!-- angles -->
+			<key>head</key> <integer>30</integer>
+			<key>torso</key> <integer>-15</integer>
+			<key>left arm</key> <integer>30</integer>
+			<key>left forearm</key> <integer>-30</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-60</integer>
+			<key>right forearm</key> <integer>-10</integer>
+			<key>right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>20</integer>
+			<key>left calf</key> <integer>0</integer>
+			<key>left foot</key> <integer>-20</integer>
+			<key>right thigh</key> <integer>-20</integer>
+			<key>right calf</key> <integer>0</integer>
+			<key>right foot</key> <integer>-15</integer>
+		</dict>
+		
+		<!-- an attempt at a sitting pose -->
+		<key>sitting</key>
+		<dict>
+			<!-- flags -->
+			<key>stop undulation</key> <integer>0</integer>
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>left arm</key> <integer>50</integer>
+			<key>left forearm</key> <integer>-5</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-50</integer>
+			<key>right forearm</key> <integer>5</integer>
+			<key>right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>-75</integer>
+			<key>left calf</key> <integer>0</integer>
+			<key>left foot</key> <integer>0</integer>
+			<key>right thigh</key> <integer>-85</integer>
+			<key>right calf</key> <integer>0</integer>
+			<key>right foot</key> <integer>0</integer>
+		</dict>
+		
 		<!-- just a simple pose designed to make sure that the body is jointed right -->
 		<key>neutral</key>
 		<dict>
+			<!-- flags -->
+			<!-- angles -->
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>left arm</key> <integer>90</integer>
@@ -35,6 +125,8 @@
 		<!-- CRANE KICK!!!! no can stop -->
 		<key>cranekick</key>
 		<dict>
+			<!-- flags -->
+			<!-- angles -->
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>left arm</key> <integer>170</integer>
@@ -54,6 +146,8 @@
 		<!-- this "fencing" pose was supposed to be a martial arts pose but it ended up looking like a fencing stance -->
 		<key>fencing</key>
 		<dict>
+			<!-- flags -->
+			<!-- angles -->
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>left arm</key> <integer>100</integer>
@@ -70,9 +164,11 @@
 			<key>right foot</key> <integer>0</integer>
 		</dict>
 		
-		<!-- I had to cheat a bit to get this "bow" pose to not be bow-legged -->
+		<!-- I had to cheat a bit to get this "bow" pose to not be bow-legged; at the moment it's not using the arms at all -->
 		<key>bow</key>
 		<dict>
+			<!-- flags -->
+			<!-- angles -->
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>45</integer>
 			<key>left arm</key> <integer>0</integer>

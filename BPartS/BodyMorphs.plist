@@ -34,40 +34,6 @@
 		</dict>
 		<key>limbs</key>
 		<array>
-			<!-- left leg -->
-			<dict>
-				<key>name</key> <string>left thigh</string>
-				<key>parent</key> <string>torso</string>
-				<key>sprite name</key> <string>human_leg_m</string>
-				<key>limb tag</key> <string>left leg</string>
-				<key>center x</key> <integer>4</integer>
-				<key>center y</key> <integer>1</integer>
-				<key>connect x</key> <integer>3</integer>
-				<key>connect y</key> <integer>25</integer>
-				<key>undulation</key> <string>leg undulation</string>
-			</dict>
-			<dict>
-				<key>name</key> <string>left calf</string>
-				<key>parent</key> <string>left thigh</string>
-				<key>sprite name</key> <string>human_leg_m</string>
-				<key>limb tag</key> <string>left leg</string>
-				<key>center x</key> <integer>4</integer>
-				<key>center y</key> <integer>1</integer>
-				<key>connect x</key> <integer>4</integer>
-				<key>connect y</key> <integer>16</integer>
-				<key>undulation</key> <string>leg undulation</string>
-			</dict>
-			<dict>
-				<key>name</key> <string>left foot</string>
-				<key>parent</key> <string>left calf</string>
-				<key>sprite name</key> <string>human_foot</string>
-				<key>center x</key> <integer>3</integer>
-				<key>center y</key> <integer>1</integer>
-				<key>connect x</key> <integer>4</integer>
-				<key>connect y</key> <integer>16</integer>
-				<key>undulation</key> <string>leg undulation</string>
-			</dict>
-			
 			<!-- right leg -->
 			<dict>
 				<key>name</key> <string>right thigh</string>
@@ -168,6 +134,40 @@
 				<key>connect y</key> <integer>7</integer>
 			</dict>
 			
+			<!-- left leg -->
+			<dict>
+				<key>name</key> <string>left thigh</string>
+				<key>parent</key> <string>torso</string>
+				<key>sprite name</key> <string>human_leg_m</string>
+				<key>limb tag</key> <string>left leg</string>
+				<key>center x</key> <integer>4</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>25</integer>
+				<key>undulation</key> <string>leg undulation</string>
+			</dict>
+			<dict>
+				<key>name</key> <string>left calf</string>
+				<key>parent</key> <string>left thigh</string>
+				<key>sprite name</key> <string>human_leg_m</string>
+				<key>limb tag</key> <string>left leg</string>
+				<key>center x</key> <integer>4</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>4</integer>
+				<key>connect y</key> <integer>16</integer>
+				<key>undulation</key> <string>leg undulation</string>
+			</dict>
+			<dict>
+				<key>name</key> <string>left foot</string>
+				<key>parent</key> <string>left calf</string>
+				<key>sprite name</key> <string>human_foot</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>4</integer>
+				<key>connect y</key> <integer>16</integer>
+				<key>undulation</key> <string>leg undulation</string>
+			</dict>
+			
 			<!-- left arm -->
 			<dict>
 				<key>name</key> <string>left arm</string>
@@ -234,40 +234,6 @@
 		</dict>
 		<key>limbs</key>
 		<array>
-			<!-- left leg -->
-			<dict>
-				<key>name</key> <string>left thigh</string>
-				<key>parent</key> <string>torso</string>
-				<key>sprite name</key> <string>human_leg_f</string>
-				<key>limb tag</key> <string>left leg</string>
-				<key>center x</key> <integer>3</integer>
-				<key>center y</key> <integer>1</integer>
-				<key>connect x</key> <integer>3</integer>
-				<key>connect y</key> <integer>22</integer>
-				<key>undulation</key> <string>leg undulation</string>
-			</dict>
-			<dict>
-				<key>name</key> <string>left calf</string>
-				<key>parent</key> <string>left thigh</string>
-				<key>sprite name</key> <string>human_leg_f</string>
-				<key>limb tag</key> <string>left leg</string>
-				<key>center x</key> <integer>3</integer>
-				<key>center y</key> <integer>1</integer>
-				<key>connect x</key> <integer>3</integer>
-				<key>connect y</key> <integer>14</integer>
-				<key>undulation</key> <string>leg undulation</string>
-			</dict>
-			<dict>
-				<key>name</key> <string>left foot</string>
-				<key>parent</key> <string>left calf</string>
-				<key>sprite name</key> <string>human_foot</string>
-				<key>center x</key> <integer>3</integer>
-				<key>center y</key> <integer>1</integer>
-				<key>connect x</key> <integer>3</integer>
-				<key>connect y</key> <integer>15</integer>
-				<key>undulation</key> <string>leg undulation</string>
-			</dict>
-			
 			<!-- right leg -->
 			<dict>
 				<key>name</key> <string>right thigh</string>
@@ -376,6 +342,40 @@
 				<key>center y</key> <integer>0</integer>
 				<key>connect x</key> <integer>6</integer>
 				<key>connect y</key> <integer>7</integer>
+			</dict>
+			
+			<!-- left leg -->
+			<dict>
+				<key>name</key> <string>left thigh</string>
+				<key>parent</key> <string>torso</string>
+				<key>sprite name</key> <string>human_leg_f</string>
+				<key>limb tag</key> <string>left leg</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>22</integer>
+				<key>undulation</key> <string>leg undulation</string>
+			</dict>
+			<dict>
+				<key>name</key> <string>left calf</string>
+				<key>parent</key> <string>left thigh</string>
+				<key>sprite name</key> <string>human_leg_f</string>
+				<key>limb tag</key> <string>left leg</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>14</integer>
+				<key>undulation</key> <string>leg undulation</string>
+			</dict>
+			<dict>
+				<key>name</key> <string>left foot</string>
+				<key>parent</key> <string>left calf</string>
+				<key>sprite name</key> <string>human_foot</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>15</integer>
+				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			
 			<!-- left arm -->
