@@ -254,7 +254,7 @@ class CreatureController
 		rootNode.addChild(creatureNode)
 		constructUndulations()
 		constructBody()
-		setBodyState("neutral")
+		setBodyState(creature.restingState)
 		setPositions()
 		
 		creatureNode.position = position
@@ -484,67 +484,65 @@ class CreatureController
 			limb.rotateFrom = limb.spriteNode.zRotation
 			limb.rotateTo = 0
 		}
-		if let state = DataStore.getDictionary("BodyStates", states, bs) as? [String : NSNumber]
+		
+		
+		let state = DataStore.getDictionary("BodyStates", states, bs) as! [String : NSNumber]
+		
+		for (limbName, degreeNumber) in state
 		{
-			for (limbName, degreeNumber) in state
+			//check for flags
+			switch(limbName)
 			{
-				//check for flags
-				switch(limbName)
+			case "stop undulation":
+				stopUndulation = true
+			case "vibrate":
+				vibrate = true
+			default:
+				if let limb = limbs[limbName]
 				{
-				case "stop undulation":
-					stopUndulation = true
-				case "vibrate":
-					vibrate = true
-				default:
-					if let limb = limbs[limbName]
-					{
-						limb.rotateTo = CGFloat(M_PI) * CGFloat(degreeNumber.floatValue) / 180
-					}
-				}
-			}
-			
-			
-			//set all of the start flags up
-			for limb in limbs.values
-			{
-				limb.startFlag = true
-			}
-			
-			//set up recursive angle adding algorithm
-			func recursiveLimbAngle(limb:BodyLimb)
-			{
-				if limb.startFlag
-				{
-					limb.startFlag = false
-					if let parent = limb.parent
-					{
-						recursiveLimbAngle(parent)
-						limb.rotateTo += parent.rotateTo
-					}
-				}
-			}
-			for limb in limbs.values
-			{
-				recursiveLimbAngle(limb)
-			}
-			
-			//bound all rotation values
-			for limb in limbs.values
-			{
-				while limb.rotateTo >= 2 * CGFloat(M_PI)
-				{
-					limb.rotateTo -= 2 * CGFloat(M_PI)
-				}
-				while limb.rotateTo < 0
-				{
-					limb.rotateTo += 2 * CGFloat(M_PI)
+					limb.rotateTo = CGFloat(M_PI) * CGFloat(degreeNumber.floatValue) / 180
 				}
 			}
 		}
-		else
+		
+		
+		//set all of the start flags up
+		for limb in limbs.values
 		{
-			return
+			limb.startFlag = true
 		}
+		
+		//set up recursive angle adding algorithm
+		func recursiveLimbAngle(limb:BodyLimb)
+		{
+			if limb.startFlag
+			{
+				limb.startFlag = false
+				if let parent = limb.parent
+				{
+					recursiveLimbAngle(parent)
+					limb.rotateTo += parent.rotateTo
+				}
+			}
+		}
+		for limb in limbs.values
+		{
+			recursiveLimbAngle(limb)
+		}
+		
+		//bound all rotation values
+		for limb in limbs.values
+		{
+			while limb.rotateTo >= 2 * CGFloat(M_PI)
+			{
+				limb.rotateTo -= 2 * CGFloat(M_PI)
+			}
+			while limb.rotateTo < 0
+			{
+				limb.rotateTo += 2 * CGFloat(M_PI)
+			}
+		}
+		
 		
 		//if there's no animation, just insta-rotate the limbs
 		if animationLength == nil

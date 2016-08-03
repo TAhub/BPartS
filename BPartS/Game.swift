@@ -87,8 +87,11 @@ class Game
 	{
 		if attackAnimStateSet == nil
 		{
-			//TODO: tell the player what the active attack is
-			activeCreature.pickEngagement(Weapon())
+			//TODO: tell the player what the active attack is, instead of just picking something at random
+			
+			let w = activeCreature.validWeapons
+			let pick = w[Int(arc4random_uniform(UInt32(w.count)))]
+			activeCreature.pickEngagement(pick)
 			attackTarget = target
 			
 			if let aASS = activeCreature.attackAnimationStateSet

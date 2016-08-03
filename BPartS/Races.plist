@@ -18,21 +18,25 @@
 			<dict>
 				<key>type</key> <string>arm</string>
 				<key>max strain</key> <integer>2</integer>
+				<key>prefix</key> <string>left</string>
 			</dict>
 			<key>right arm</key>
 			<dict>
 				<key>type</key> <string>arm</string>
 				<key>max strain</key> <integer>2</integer>
+				<key>prefix</key> <string>right</string>
 			</dict>
 			<key>left leg</key>
 			<dict>
 				<key>type</key> <string>leg</string>
 				<key>max strain</key> <integer>2</integer>
+				<key>prefix</key> <string>left</string>
 			</dict>
 			<key>right leg</key>
 			<dict>
 				<key>type</key> <string>leg</string>
 				<key>max strain</key> <integer>2</integer>
+				<key>prefix</key> <string>right</string>
 			</dict>
 			<key>head</key>
 			<dict>

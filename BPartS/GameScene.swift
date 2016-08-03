@@ -8,11 +8,14 @@
 
 import SpriteKit
 
+let returnToNeutralTime:CGFloat = 0.4
+
 class GameScene: SKScene
 {
 	private var lastTime:NSTimeInterval?
 	var creatureControllers = [CreatureController]()
 	var game:Game!
+	var attacked:Bool = false //TODO: this is a temporary variable
 	
 	private func controllerFor(creature:Creature) -> CreatureController
 	{
@@ -44,13 +47,17 @@ class GameScene: SKScene
 			//pick attacks, if appropriate
 			if game.attackAnimStateSet == nil
 			{
-				if game.activeCreature === game.players[0]
+				if !attacked
 				{
-					game.chooseAttack(game.enemies[0])
-				}
-				else
-				{
-					game.chooseAttack(game.players[0])
+					attacked = true
+					if game.activeCreature === game.players[0]
+					{
+						game.chooseAttack(game.enemies[0])
+					}
+					else
+					{
+						game.chooseAttack(game.players[0])
+					}
 				}
 			}
 			
@@ -69,6 +76,13 @@ class GameScene: SKScene
 					//set it to "defend"
 					
 					controllerFor(game.attackTarget).setBodyState(theirFrame, length: state.entryTime, hold: state.holdTime)
+				}
+			}
+			else
+			{
+				for creature in game.players + game.enemies
+				{
+					controllerFor(creature).setBodyState(creature.restingState, length: returnToNeutralTime, hold: 0)
 				}
 			}
 		}

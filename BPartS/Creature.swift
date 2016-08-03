@@ -28,6 +28,7 @@ class CreatureLimb
 	let name:String
 	let type:String
 	let baseMaxStrain:Int
+	let prefix:String?
 	
 	//variables
 	var strain:Int
@@ -47,6 +48,7 @@ class CreatureLimb
 		
 		self.name = name
 		self.type = limbDict["type"] as! String
+		self.prefix = limbDict["prefix"] as? String
 		self.baseMaxStrain = intWithName("max strain")!
 		self.strain = 0
 		
@@ -71,6 +73,7 @@ class CreatureLimb
 let levelFactor:CGFloat = 0.1
 let biggerLevelFactor:CGFloat = 0.15 //roughly 1.5x level factor
 let baseStat = 20
+let baseDefendChance = 30
 
 class Creature
 {
@@ -112,7 +115,7 @@ class Creature
 	var defendChance:Int
 	{
 		//you get defend penalties/bonuses from ALL armor, even broken pieces
-		var dC = 30
+		var dC = baseDefendChance
 		for limb in limbs.values
 		{
 			if let armor = limb.armor
@@ -146,6 +149,8 @@ class Creature
 		limbs["torso"]!.armor = "uniform"
 		limbs["right arm"]!.armor = "light robot arm"
 		limbs["left leg"]!.armor = "light robot leg"
+		limbs["right arm"]!.weapon = Weapon()
+		limbs["left arm"]!.weapon = Weapon()
 		
 		//fill up health
 		self.health = maxHealth
@@ -204,6 +209,22 @@ class Creature
 		}
 	}
 	
+	var validWeapons:[Weapon]
+	{
+		var w = [Weapon]()
+		for limb in limbs.values
+		{
+			if !limb.broken
+			{
+				if let weapon = limb.weapon
+				{
+					w.append(weapon)
+				}
+			}
+		}
+		return w
+	}
+	
 	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String)
 	{
 		let finalDefendChance = defendChance - accuracyBonus
@@ -242,9 +263,14 @@ class Creature
 				//raise the limb's strain to 9999 to ensure it will still be broken when replaced (in case the broken state is better I guess?)
 				pick.strain = 9999
 				
-				
-				//TODO: check to see if your active weapon's hand was destroyed
-				//if so, set activeWeapon to nil
+				//check to see if your active weapon's hand was destroyed
+				if activeWeapon != nil
+				{
+					if !weaponInValidLimb(activeWeapon!)
+					{
+						activeWeapon = nil
+					}
+				}
 			}
 		}
 		
@@ -266,7 +292,25 @@ class Creature
 		health = min(maxHealth, health)
 	}
 	
-	//MARK: attack animation data
+	private func weaponInValidLimb(weapon:Weapon) -> Bool
+	{
+		for limb in limbs.values
+		{
+			if !limb.broken
+			{
+				if let wp = limb.weapon
+				{
+					if weapon === wp
+					{
+						return true
+					}
+				}
+			}
+		}
+		return false
+	}
+	
+	//MARK: animation data
 	var attackAnimationStateSet:[AttackAnimState]?
 	{
 		//TODO: get the actual animation state set for the active attack or weapon
@@ -276,5 +320,22 @@ class Creature
 		let stateFour = AttackAnimState(myFrame: "fencing", theirFrame: "neutral", entryTime: 0.4, holdTime: 0.3, pow: false)
 	
 		return [stateOne, stateTwo, stateThree, stateFour]
+	}
+	var restingState:String
+	{
+		if let activeWeapon = activeWeapon
+		{
+			for limb in limbs.values
+			{
+				if let weapon = limb.weapon, let prefix = limb.prefix
+				{
+					if weapon === activeWeapon
+					{
+						return "\(prefix) neutral"
+					}
+				}
+			}
+		}
+		return "neutral"
 	}
 }
