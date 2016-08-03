@@ -67,6 +67,7 @@
 				<key>sprite name</key> <string>human_foot</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>right leg</string>
 				<key>center x</key> <integer>3</integer>
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>4</integer>
@@ -107,6 +108,7 @@
 				<key>sprite name</key> <string>human_hand</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>right arm</string>
 				<key>center x</key> <integer>3</integer>
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
@@ -126,11 +128,13 @@
 				<key>connect y</key> <integer>0</integer>
 			</dict>
 			<dict>
+				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>torso armor</string>
 				<key>parent</key> <string>torso</string>
-				<key>sprite name</key> <string>leotard_torso_m</string>
-				<key>color name</key> <string>body armor</string>
+				<key>sprite name</key> <string>human_torso_m</string>
+				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>torso</string>
 				<key>center x</key> <integer>9</integer>
 				<key>center y</key> <integer>26</integer>
 				<key>connect x</key> <integer>9</integer>
@@ -207,6 +211,7 @@
 				<key>sprite name</key> <string>human_foot</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>left leg</string>
 				<key>center x</key> <integer>3</integer>
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>4</integer>
@@ -247,6 +252,7 @@
 				<key>sprite name</key> <string>human_hand</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>left arm</string>
 				<key>center x</key> <integer>3</integer>
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
@@ -333,6 +339,7 @@
 				<key>sprite name</key> <string>human_foot</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>right leg</string>
 				<key>center x</key> <integer>3</integer>
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
@@ -373,6 +380,7 @@
 				<key>sprite name</key> <string>human_hand</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>right arm</string>
 				<key>center x</key> <integer>3</integer>
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>2</integer>
@@ -392,11 +400,13 @@
 				<key>connect y</key> <integer>0</integer>
 			</dict>
 			<dict>
+				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>torso armor</string>
+				<key>sprite name</key> <string>human_torso_f</string>
+				<key>color name</key> <string>skin</string>
 				<key>parent</key> <string>torso</string>
-				<key>sprite name</key> <string>leotard_torso_f</string>
-				<key>color name</key> <string>body armor</string>
 				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>torso</string>
 				<key>center x</key> <integer>8</integer>
 				<key>center y</key> <integer>24</integer>
 				<key>connect x</key> <integer>8</integer>
@@ -408,6 +418,7 @@
 				<key>sprite name</key> <string>human_chest_f</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>torso</string>
 				<key>center x</key> <integer>0</integer>
 				<key>center y</key> <integer>0</integer>
 				<key>connect x</key> <integer>3</integer>
@@ -415,11 +426,13 @@
 				<key>undulation</key> <string>chest undulation</string>
 			</dict>
 			<dict>
+				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>chest armor</string>
 				<key>parent</key> <string>chest</string>
-				<key>sprite name</key> <string>leotard_chest_f</string>
-				<key>color name</key> <string>body armor</string>
+				<key>sprite name</key> <string>human_chest_f</string>
+				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>torso</string>
 				<key>center x</key> <integer>0</integer>
 				<key>center y</key> <integer>0</integer>
 				<key>connect x</key> <integer>0</integer>
@@ -496,6 +509,7 @@
 				<key>sprite name</key> <string>human_foot</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>left leg</string>
 				<key>center x</key> <integer>3</integer>
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
@@ -536,6 +550,7 @@
 				<key>sprite name</key> <string>human_hand</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>left arm</string>
 				<key>center x</key> <integer>3</integer>
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>2</integer>

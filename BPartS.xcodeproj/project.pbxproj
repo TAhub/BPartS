@@ -21,6 +21,7 @@
 		E4E72ECE1D52634C00843AB5 /* Races.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4E72ECD1D52634C00843AB5 /* Races.plist */; };
 		E4E72ED01D52648100843AB5 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E72ECF1D52648100843AB5 /* Creature.swift */; };
 		E4E72ED21D526BD500843AB5 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4E72ED11D526BD500843AB5 /* Colors.plist */; };
+		E4E72ED41D52712500843AB5 /* Armors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4E72ED31D52712500843AB5 /* Armors.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		E4E72ECD1D52634C00843AB5 /* Races.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Races.plist; sourceTree = "<group>"; };
 		E4E72ECF1D52648100843AB5 /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
 		E4E72ED11D526BD500843AB5 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
+		E4E72ED31D52712500843AB5 /* Armors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Armors.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +95,8 @@
 		E4CFD79B1D51103400D6A93B /* BPartS */ = {
 			isa = PBXGroup;
 			children = (
-				E4CFD7BC1D5110A200D6A93B /* Model */,
 				E4CFD7BF1D5110B000D6A93B /* Supporting Files */,
+				E4CFD7BC1D5110A200D6A93B /* Model */,
 				E4CFD7BE1D5110AD00D6A93B /* View */,
 				E4CFD7BD1D5110A600D6A93B /* Controller */,
 			);
@@ -140,6 +142,7 @@
 		E4CFD7BF1D5110B000D6A93B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4E72ED31D52712500843AB5 /* Armors.plist */,
 				E4E72ED11D526BD500843AB5 /* Colors.plist */,
 				E4E72ECD1D52634C00843AB5 /* Races.plist */,
 				E4CFD7C41D51120E00D6A93B /* BodyMorphs.plist */,
@@ -235,6 +238,7 @@
 			files = (
 				E4CFD7C71D51121800D6A93B /* BodyStates.plist in Resources */,
 				E4CFD7A71D51103400D6A93B /* LaunchScreen.storyboard in Resources */,
+				E4E72ED41D52712500843AB5 /* Armors.plist in Resources */,
 				E4CFD7C51D51120E00D6A93B /* BodyMorphs.plist in Resources */,
 				E4CFD7A41D51103400D6A93B /* Assets.xcassets in Resources */,
 				E4CFD7A21D51103400D6A93B /* Main.storyboard in Resources */,

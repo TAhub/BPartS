@@ -110,7 +110,7 @@ class BodyLimb
 	//misc flags
 	var startFlag = false
 	
-	init(limbDict:[String : NSObject], coloration:[String : String])
+	init(limbDict:[String : NSObject], coloration:[String : String], creatureLimb:CreatureLimb?, morph:String)
 	{
 		func intWithName(name:String) -> Int?
 		{
@@ -125,8 +125,8 @@ class BodyLimb
 		name = limbDict["name"] as! String
 		parentName = limbDict["parent"] as? String
 		undulationName = limbDict["undulation"] as? String
-		let spriteName = limbDict["sprite name"] as! String
-		let colorName = limbDict["color name"] as! String
+		var spriteName = limbDict["sprite name"] as! String
+		var colorName = limbDict["color name"] as! String
 		let blendName = limbDict["blend name"] as! String
 		limbTag = limbDict["limb tag"] as? String
 		centerX = intWithName("center x")!
@@ -134,28 +134,58 @@ class BodyLimb
 		connectX = intWithName("connect x")!
 		connectY = intWithName("connect y")!
 		
+		var invisible = limbDict["invisible unless replaced"] != nil
+		
+		//check what the creature limb's armor will do
+		if let creatureLimb = creatureLimb, let armor = creatureLimb.armor
+		{
+			//does it have anything for this particular limb?
+			let morphAppearances = DataStore.getDictionary("Armors", armor, "appearance by morph") as! [String : [String : [String : String]]]
+			if let morphAppearance = morphAppearances[morph]
+			{
+				for (part, partAppearance) in morphAppearance
+				{
+					//this will take partial matches, so I don't need to separately define each limb
+					if name.containsString(part)
+					{
+						spriteName = partAppearance["sprite name"]!
+						colorName = partAppearance["color name"]!
+						invisible = false
+						break
+					}
+				}
+			}
+		}
+		
 		//set sprite node data
 		spriteNode = SKSpriteNode(imageNamed: spriteName)
 		spriteNode.anchorPoint = CGPoint(x: CGFloat(centerX) / spriteNode.size.width, y: CGFloat(centerY) / spriteNode.size.height)
 		spriteNode.colorBlendFactor = 1
 		
-		//pick the color, changing the value as appropriate based on the blend name
-		let baseColor = DataStore.getColorByName(coloration[colorName]!)!
-		var h:CGFloat = 0
-		var s:CGFloat = 0
-		var v:CGFloat = 0
-		var a:CGFloat = 0
-		baseColor.getHue(&h, saturation: &s, brightness: &v, alpha: &a)
-		
-		//TODO: these should probably be constants
-		switch(blendName)
+		if invisible
 		{
-		case "back body": v *= 0.85
-		case "fore body": break
-		default: break
+			spriteNode.hidden = true
 		}
-		
-		spriteNode.color = UIColor(hue: h, saturation: s, brightness: v, alpha: a)
+		else
+		{
+			//pick the color, changing the value as appropriate based on the blend name
+			let baseColor = DataStore.getColorByName(coloration[colorName]!)!
+			var h:CGFloat = 0
+			var s:CGFloat = 0
+			var v:CGFloat = 0
+			var a:CGFloat = 0
+			baseColor.getHue(&h, saturation: &s, brightness: &v, alpha: &a)
+			
+			//TODO: these should probably be constants
+			switch(blendName)
+			{
+			case "back body": v *= 0.9
+			case "fore body": break
+			default: break
+			}
+			
+			spriteNode.color = UIColor(hue: h, saturation: s, brightness: v, alpha: a)
+		}
 	}
 }
 
@@ -232,7 +262,14 @@ class CreatureController
 		let limbArray = DataStore.getArray("BodyMorphs", morph, "limbs") as! [[String : NSObject]]
 		for limbDict in limbArray
 		{
-			let limb = BodyLimb(limbDict: limbDict, coloration: coloration)
+			//get the correct creature limb for this limb
+			var cL:CreatureLimb?
+			if let tag = limbDict["limb tag"] as? String
+			{
+				cL = creature.limbs[tag]!
+			}
+			
+			let limb = BodyLimb(limbDict: limbDict, coloration: coloration, creatureLimb: cL, morph: morph)
 			limbs[limb.name] = limb
 			creatureNode.addChild(limb.spriteNode)
 		}

@@ -58,19 +58,19 @@
 				<key>skin</key> <string>skin light</string>
 				<key>hair</key> <string>human hair blonde</string>
 				<key>eye</key> <string>white</string>
-				<key>body armor</key> <string>blue cloth</string>
+				<key>armor</key> <string>blue cloth</string>
 			</dict>
 			<dict>
 				<key>skin</key> <string>skin swarthy</string>
 				<key>hair</key> <string>human hair brown</string>
 				<key>eye</key> <string>white</string>
-				<key>body armor</key> <string>blue cloth</string>
+				<key>armor</key> <string>blue cloth</string>
 			</dict>
 			<dict>
 				<key>skin</key> <string>skin dark</string>
 				<key>hair</key> <string>human hair black</string>
 				<key>eye</key> <string>white</string>
-				<key>body armor</key> <string>blue cloth</string>
+				<key>armor</key> <string>blue cloth</string>
 			</dict>
 		</array>
 	</dict>

@@ -51,7 +51,7 @@ class Creature
 {
 	//identity
 	let race:String
-	var limbs = [CreatureLimb]()
+	var limbs = [String : CreatureLimb]()
 	
 	//variables
 	var health:Int
@@ -91,8 +91,12 @@ class Creature
 		let limbDicts = DataStore.getDictionary("Races", race, "limbs") as! [String : [String : AnyObject]]
 		for (name, limbDict) in limbDicts
 		{
-			limbs.append(CreatureLimb(name: name, limbDict: limbDict))
+			limbs[name] = (CreatureLimb(name: name, limbDict: limbDict))
 		}
+		
+		//stick some temp armor on
+		limbs["torso"]!.armor = "uniform"
+		limbs["right arm"]!.armor = "light robot arm"
 		
 		//fill up health
 		self.health = maxHealth
@@ -116,7 +120,7 @@ class Creature
 		
 		//take strain
 		var limbsCanHit = [CreatureLimb]()
-		for limb in limbs
+		for limb in limbs.values
 		{
 			if limb.type == hitLimb && limb.strain < limb.maxStrain
 			{
