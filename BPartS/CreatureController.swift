@@ -199,7 +199,7 @@ class CreatureController
 	private var stopUndulation:Bool = false
 	private var vibrate:Bool = false
 	
-	private let creature:Creature
+	let creature:Creature
 	private let creatureNode:SKNode
 	var morph:String
 	{
@@ -364,18 +364,6 @@ class CreatureController
 				//you're done holding
 				holdProgress = nil
 				holdLength = nil
-				
-				//TODO: SO YOU SHOULD START THE NEXT ANIMATION, DUN DUN DUN
-//				let ar = ["neutral", "cranekick", "bow", "fencing", "flinch", "defend", "sitting"]
-//				while true
-//				{
-//					let pick = ar[Int(arc4random_uniform(UInt32(ar.count)))]
-//					if pick != lastBS!
-//					{
-//						setBodyState(pick)
-//						break
-//					}
-//				}
 			}
 		}
 		
@@ -400,14 +388,19 @@ class CreatureController
 		return true
 	}
 	
-	func setBodyState(bs:String)
+	func setBodyState(bs:String, length:CGFloat = 0.2, hold:CGFloat = 0.5)
 	{
+		if lastBS != nil && lastBS! == bs
+		{
+			return
+		}
+		
 		if lastBS != nil && lastBS! != bs
 		{
-			animationLength = 0.2
+			animationLength = length
 			animationProgress = 0
 		}
-		holdLength = 0.5
+		holdLength = hold
 		holdProgress = 0
 		
 		//reset flags

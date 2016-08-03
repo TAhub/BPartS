@@ -22,6 +22,7 @@
 		E4E72ED01D52648100843AB5 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E72ECF1D52648100843AB5 /* Creature.swift */; };
 		E4E72ED21D526BD500843AB5 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4E72ED11D526BD500843AB5 /* Colors.plist */; };
 		E4E72ED41D52712500843AB5 /* Armors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4E72ED31D52712500843AB5 /* Armors.plist */; };
+		E4E72ED61D5293BA00843AB5 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E72ED51D5293BA00843AB5 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		E4E72ECF1D52648100843AB5 /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
 		E4E72ED11D526BD500843AB5 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
 		E4E72ED31D52712500843AB5 /* Armors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Armors.plist; sourceTree = "<group>"; };
+		E4E72ED51D5293BA00843AB5 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				E4E72ECF1D52648100843AB5 /* Creature.swift */,
+				E4E72ED51D5293BA00843AB5 /* Game.swift */,
 				E4CFD7C21D5111D000D6A93B /* DataStore.swift */,
 			);
 			name = Model;
@@ -263,6 +266,7 @@
 			files = (
 				E4CFD7C91D511CBC00D6A93B /* GameScene.swift in Sources */,
 				E4CFD79F1D51103400D6A93B /* ViewController.swift in Sources */,
+				E4E72ED61D5293BA00843AB5 /* Game.swift in Sources */,
 				E4E72ED01D52648100843AB5 /* Creature.swift in Sources */,
 				E4CFD7C31D5111D000D6A93B /* DataStore.swift in Sources */,
 				E4CFD7C11D5110E900D6A93B /* CreatureController.swift in Sources */,

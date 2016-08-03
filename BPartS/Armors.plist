@@ -13,6 +13,7 @@
 	<dict>
 		<!-- identity -->
 		<key>slot</key> <string>torso</string>
+		<!-- <key>breaks into</key> <string>uniform</string> -->
 		<!-- stats -->
 		<key>bonus strain</key> <integer>0</integer>
 		<key>bonus health</key> <integer>0</integer>
@@ -38,6 +39,56 @@
 				<key>chest armor</key>
 				<dict>
 					<key>sprite name</key> <string>leotard_chest_f</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+	
+	<key>light robot leg</key>
+	<dict>
+		<!-- identity -->
+		<key>slot</key> <string>leg</string>
+		<!-- stats -->
+		<key>bonus strain</key> <integer>0</integer>
+		<key>bonus health</key> <integer>0</integer>
+		<key>bonus defend</key> <integer>0</integer>
+		<!-- graphical data -->
+		<key>appearance by morph</key>
+		<dict>
+			<key>human male</key>
+			<dict>
+				<key>thigh</key>
+				<dict>
+					<key>sprite name</key> <string>human_leg_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>calf</key>
+				<dict>
+					<key>sprite name</key> <string>human_leg_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>foot</key>
+				<dict>
+					<key>sprite name</key> <string>human_foot</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
+			<key>human female</key>
+			<dict>
+				<key>thigh</key>
+				<dict>
+					<key>sprite name</key> <string>human_leg_f</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>calf</key>
+				<dict>
+					<key>sprite name</key> <string>human_leg_f</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>foot</key>
+				<dict>
+					<key>sprite name</key> <string>human_foot</string>
 					<key>color name</key> <string>armor</string>
 				</dict>
 			</dict>

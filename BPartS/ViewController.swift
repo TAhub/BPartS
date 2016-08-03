@@ -24,18 +24,20 @@ class ViewController: UIViewController {
 		scene.addChild(flipNode)
 		gameView.presentScene(scene)
 		
-		
-		let shape = SKShapeNode(rect: CGRect(x: 100, y: 300, width: 200, height: 100))
+		let shape = SKShapeNode(rect: CGRect(x: 50, y: 300, width: 600, height: 100))
 		shape.fillColor = UIColor.blueColor()
 		flipNode.addChild(shape)
 		
-		let cr1 = Creature(race: "human")
-		let cr2 = Creature(race: "human")
-		let cc1 = CreatureController(rootNode: flipNode, creature: cr1, position: CGPoint(x: 150, y: 300))
-		let cc2 = CreatureController(rootNode: flipNode, creature: cr2, position: CGPoint(x: 250, y: 300))
-		scene.creatureControllers.append(cc1)
-		scene.creatureControllers.append(cc2)
-//		cc1.setBodyState("bow")
-//		cc2.setBodyState("bow")
+		let game = Game()
+		game.players.append(Creature(race: "human"))
+		game.enemies.append(Creature(race: "human"))
+		for (i, cr) in (game.players + game.enemies).enumerate()
+		{
+			let cc = CreatureController(rootNode: flipNode, creature: cr, position: CGPoint(x: 100 + 100 * i, y: 300))
+			scene.creatureControllers.append(cc)
+		}
+		scene.game = game
+		
+		game.start()
 	}
 }
