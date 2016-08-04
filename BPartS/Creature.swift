@@ -225,6 +225,11 @@ class Creature
 		self.health = maxHealth
 	}
 	
+	var dead:Bool
+	{
+		return health == 0
+	}
+	
 	func startTurn()
 	{
 		//TODO: apply DOT from broken limbs, poison, whatever
@@ -238,15 +243,23 @@ class Creature
 	
 	func pickAttack(attack:String)
 	{
+		action = false
 		activeAttack = attack
 		shotNumber = 0
 	}
 	
 	func pickEngagement(weapon:Weapon)
 	{
+		action = false
 		activeAttack = nil
 		activeWeapon = weapon
 		shotNumber = 0
+	}
+	
+	var canCounter:Bool
+	{
+		//TODO: return false if you have a trait that prevents you from countering
+		return activeWeapon != nil && !dead
 	}
 	
 	func executeAttack(target:Creature)

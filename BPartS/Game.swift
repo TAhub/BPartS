@@ -19,6 +19,10 @@ class Game
 	var attackAnimStateSet:[AttackAnimState]?
 	var attackAnimStateSetProgress:Int = 0
 	var attackTarget:Creature!
+	var canCounter:Bool = false
+	
+	var swapActive:Bool?
+	var swapOn:Int?
 	
 	var activeArray:[Creature]
 	{
@@ -46,6 +50,65 @@ class Game
 	
 	private func actionOver()
 	{
+		//TODO: check for victory and defeat
+		
+		if canCounter && attackTarget.canCounter
+		{
+			//save the current active person so you can revert to them later
+			swapActive = playersActive
+			swapOn = creatureOn
+			
+			//figure out the creature number for the target
+			var newOn:Int?
+			var newPlayer:Bool?
+			for (i, player) in players.enumerate()
+			{
+				if player === attackTarget
+				{
+					newPlayer = true
+					newOn = i
+					break
+				}
+			}
+			if newOn == nil
+			{
+				for (i, enemy) in enemies.enumerate()
+				{
+					if enemy === attackTarget
+					{
+						newPlayer = false
+						newOn = i
+						break
+					}
+				}
+			}
+			if let newOn = newOn, let newPlayer = newPlayer
+			{
+				attackTarget = activeCreature
+				creatureOn = newOn
+				playersActive = newPlayer
+			}
+			else
+			{
+				//if you couldn't find the target, it's some horrible error
+				assertionFailure()
+			}
+			
+			//the attack target will counter-attack
+			canCounter = false
+			activeCreature.pickEngagement(activeCreature.activeWeapon!)
+			setAASS()
+			return
+		}
+		
+		if let swapActive = swapActive, let swapOn = swapOn
+		{
+			playersActive = swapActive
+			creatureOn = swapOn
+			self.swapActive = nil
+			self.swapOn = nil
+		}
+		
 		if creatureOn == activeArray.count - 1
 		{
 			for cr in activeArray
@@ -62,6 +125,12 @@ class Game
 		else
 		{
 			creatureOn += 1
+		}
+		
+		//skip turns if you can't act
+		if activeCreature.dead || !activeCreature.action
+		{
+			actionOver()
 		}
 	}
 	
@@ -93,19 +162,25 @@ class Game
 			let pick = w[Int(arc4random_uniform(UInt32(w.count)))]
 			activeCreature.pickEngagement(pick)
 			attackTarget = target
+			canCounter = true //TODO: only set to false if it's not an engagement
 			
-			if let aASS = activeCreature.attackAnimationStateSet
-			{
-				attackAnimStateSet = aASS
-				attackAnimStateSetProgress = -1
-				animComplete()
-			}
-			else
-			{
-				//just instantly execute the effect of the attack and call it a day
-				activeCreature.executeAttack(attackTarget)
-				actionOver()
-			}
+			setAASS()
+		}
+	}
+	
+	private func setAASS()
+	{
+		if let aASS = activeCreature.attackAnimationStateSet
+		{
+			attackAnimStateSet = aASS
+			attackAnimStateSetProgress = -1
+			animComplete()
+		}
+		else
+		{
+			//just instantly execute the effect of the attack and call it a day
+			activeCreature.executeAttack(attackTarget)
+			actionOver()
 		}
 	}
 	

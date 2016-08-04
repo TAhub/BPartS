@@ -33,6 +33,9 @@
 			</dict>
 		</array>
 	</dict>
+	
+	<!-- these auto gun shoot animations are meant for short bursts from automatic guns
+		there's no pause in-between the shots, and it only does the shot frame in the last one (to represent the recoil) -->
     <key>auto gun three shoot</key>
 	<dict>
 		<!-- TOOD: required limbs -->
@@ -44,34 +47,24 @@
 				<key>hold time</key> <real>0.175</real>
 			</dict>
 			<dict>
-				<key>my frame</key> <string>* gun shoot</string>
+				<key>my frame</key> <string>* gun</string>
 				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.075</real>
+				<key>hold time</key> <real>0.09</real>
 				<key>pow</key> <true/>
 			</dict>
 			<dict>
 				<key>my frame</key> <string>* gun</string>
-				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.025</real>
-			</dict>
-			<dict>
-				<key>my frame</key> <string>* gun shoot</string>
 				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.075</real>
+				<key>hold time</key> <real>0.09</real>
 				<key>pow</key> <true/>
 			</dict>
 			<dict>
-				<key>my frame</key> <string>* gun</string>
-				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.025</real>
-			</dict>
-			<dict>
 				<key>my frame</key> <string>* gun shoot</string>
 				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.075</real>
+				<key>hold time</key> <real>0.09</real>
 				<key>pow</key> <true/>
 			</dict>
 			<dict>
@@ -92,46 +85,31 @@
 				<key>hold time</key> <real>0.175</real>
 			</dict>
 			<dict>
-				<key>my frame</key> <string>* gun shoot</string>
+				<key>my frame</key> <string>* gun</string>
 				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.075</real>
+				<key>hold time</key> <real>0.085</real>
 				<key>pow</key> <true/>
 			</dict>
 			<dict>
 				<key>my frame</key> <string>* gun</string>
-				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.025</real>
-			</dict>
-			<dict>
-				<key>my frame</key> <string>* gun shoot</string>
 				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.075</real>
+				<key>hold time</key> <real>0.085</real>
 				<key>pow</key> <true/>
 			</dict>
 			<dict>
 				<key>my frame</key> <string>* gun</string>
-				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.025</real>
-			</dict>
-			<dict>
-				<key>my frame</key> <string>* gun shoot</string>
 				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.075</real>
+				<key>hold time</key> <real>0.085</real>
 				<key>pow</key> <true/>
 			</dict>
 			<dict>
-				<key>my frame</key> <string>* gun</string>
-				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.025</real>
-			</dict>
-			<dict>
 				<key>my frame</key> <string>* gun shoot</string>
 				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.075</real>
+				<key>hold time</key> <real>0.085</real>
 				<key>pow</key> <true/>
 			</dict>
 			<dict>
