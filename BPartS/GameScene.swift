@@ -46,12 +46,13 @@ class GameScene: SKScene
 			//pick attacks, if appropriate
 			if game.attackAnimStateSet == nil
 			{
-				if game.activeCreature === game.players[0]
+				if game.playersActive
 				{
-					game.chooseAttack(game.enemies[0])
+					//TODO: wait for orders
 				}
 				else
 				{
+					//TODO: actual AI script
 					game.chooseAttack(game.players[0])
 				}
 			}
@@ -72,6 +73,10 @@ class GameScene: SKScene
 					
 					controllerFor(game.attackTarget).setBodyState(theirFrame, length: state.entryTime, hold: state.holdTime)
 				}
+				
+				//TODO: temporarily apply flips to people to ensure that are facing the right direction during these animations
+				//so that if you use a healing ability on an ally, they turn to you
+				//etc
 			}
 			else
 			{

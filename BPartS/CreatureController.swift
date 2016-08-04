@@ -260,13 +260,21 @@ class CreatureController
 	private var stopUndulation:Bool = false
 	private var vibrate:Bool = false
 	
+	var flipped:Bool = false
+	{
+		didSet
+		{
+			flipNode.xScale = flipped ? -1 : 1
+		}
+	}
 	let creature:Creature
 	private let creatureNode:SKNode
+	private let flipNode:SKNode
 	var morph:String
 	{
 		//TODO: get the appropriate morph for them, not just the first one
 		let morphs = DataStore.getArray("Races", creature.race, "morphs") as! [String]
-		return morphs[0]
+		return morphs[1]
 	}
 	var states:String
 	{
@@ -286,6 +294,10 @@ class CreatureController
 		
 		creatureNode = SKNode()
 		rootNode.addChild(creatureNode)
+		
+		flipNode = SKNode()
+		creatureNode.addChild(flipNode)
+		
 		constructUndulations()
 		constructBody()
 		setBodyState(creature.restingState)
@@ -318,7 +330,7 @@ class CreatureController
 	{
 		//clear the limb data in case you are re-constructing the body
 		limbs.removeAll()
-		creatureNode.removeAllChildren()
+		flipNode.removeAllChildren()
 		
 		//TODO: load the appropriate coloration array
 		let colorations = DataStore.getArray("Races", creature.race, "colorations") as! [[String : String]]
@@ -337,7 +349,7 @@ class CreatureController
 			
 			let limb = BodyLimb(limbDict: limbDict, coloration: coloration, creatureLimb: cL, morph: morph)
 			limbs[limb.name] = limb
-			creatureNode.addChild(limb.spriteNode)
+			flipNode.addChild(limb.spriteNode)
 		}
 		
 		//link the limbs to their parents and undulations

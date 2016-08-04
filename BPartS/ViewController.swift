@@ -16,6 +16,7 @@ class ViewController: UIViewController {
 	{
 		super.viewWillAppear(animated)
 		
+		//make scene
 		let scene = GameScene(size: gameView.bounds.size)
 		let flipNode = SKNode()
 		flipNode.yScale = -1
@@ -24,20 +25,47 @@ class ViewController: UIViewController {
 		scene.addChild(flipNode)
 		gameView.presentScene(scene)
 		
-		let shape = SKShapeNode(rect: CGRect(x: 50, y: 300, width: 600, height: 100))
-		shape.fillColor = UIColor.blueColor()
+		
+		//make the terrain
+		let shape = SKShapeNode(rect: CGRect(x: 0, y: 290, width: 700, height: 900))
+		shape.fillColor = UIColor.brownColor()
+		shape.strokeColor = UIColor.darkGrayColor()
 		flipNode.addChild(shape)
 		
+		
+		//make UI
+		//TODO: make UI
+		
+		
+		//make the game
 		let game = Game()
 		game.players.append(Creature(race: "human"))
+		game.players.append(Creature(race: "human"))
+		game.players.append(Creature(race: "human"))
 		game.enemies.append(Creature(race: "human"))
-		for (i, cr) in (game.players + game.enemies).enumerate()
-		{
-			let cc = CreatureController(rootNode: flipNode, creature: cr, position: CGPoint(x: 100 + 100 * i, y: 300))
-			scene.creatureControllers.append(cc)
-		}
+		game.enemies.append(Creature(race: "human"))
+		game.enemies.append(Creature(race: "human"))
 		scene.game = game
 		
+		
+		//make creature controllers for the creatures
+		func makeCC(array:[Creature], xStart:CGFloat, xOff:CGFloat, flipped:Bool)
+		{
+			for (i, cr) in array.enumerate()
+			{
+				let cc = CreatureController(rootNode: flipNode, creature: cr, position: CGPointMake(xStart + xOff * CGFloat(i), 300))
+				if flipped
+				{
+					cc.flipped = true
+				}
+				scene.creatureControllers.append(cc)
+			}
+		}
+		makeCC(game.players, xStart: 50, xOff: 75, flipped: false)
+		makeCC(game.enemies, xStart: gameView.frame.size.width - 50, xOff: -75, flipped: true)
+		
+		
+		//and start everything
 		game.start()
 	}
 }
