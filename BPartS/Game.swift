@@ -152,9 +152,37 @@ class Game
 		}
 	}
 	
+	func aiAction()
+	{
+		//TODO: a more sophisticated AI
+		//choosing to use specials
+		//ideally it should be capable of aiming buff and healing specials
+		//choosing WHICH weapon to use (and not using any weapons if it has none!)
+		//etc
+		
+		var targets = [Creature]()
+		for player in players
+		{
+			if !player.dead
+			{
+				targets.append(player)
+			}
+		}
+		
+		if targets.count == 0
+		{
+			//TODO: if all players are dead, that means the battle SHOULD be over
+			assertionFailure()
+		}
+		
+		let pick = targets[Int(arc4random_uniform(UInt32(players.count)))]
+		
+		chooseAttack(pick)
+	}
+	
 	func chooseAttack(target:Creature)
 	{
-		if attackAnimStateSet == nil
+		if attackAnimStateSet == nil && !target.dead
 		{
 			//TODO: tell the player what the active attack is, instead of just picking something at random
 			

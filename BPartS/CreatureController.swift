@@ -8,6 +8,9 @@
 
 import SpriteKit
 
+let auraWidth:CGFloat = 125.0
+let auraHeight:CGFloat = 60.0
+
 extension UIColor
 {
 	static func blendColor(color1:UIColor, color2:UIColor, blendFactor:CGFloat) -> UIColor
@@ -268,8 +271,9 @@ class CreatureController
 		}
 	}
 	let creature:Creature
-	private let creatureNode:SKNode
+	let creatureNode:SKNode
 	private let flipNode:SKNode
+	private var auraNode:SKShapeNode!
 	var morph:String
 	{
 		//TODO: get the appropriate morph for them, not just the first one
@@ -314,7 +318,18 @@ class CreatureController
 //		let bb = getBoundingBox()
 //		let bbS = SKShapeNode(rect: bb)
 //		bbS.fillColor = UIColor.darkGrayColor()
-//		creatureNode.insertChild(bbS, atIndex: 0)
+//		flipNode.insertChild(bbS, atIndex: 0)
+		
+		//make the aura node
+		auraNode = SKShapeNode(ellipseOfSize: CGSize(width: auraWidth / 2, height: auraHeight / 2))
+		creatureNode.insertChild(auraNode, atIndex: 0)
+		auraNode.alpha = 0
+	}
+	
+	private func setAuraNodeColor(active:Bool)
+	{
+		auraNode.fillColor = active ? UIColor.whiteColor() : (creature.action ? UIColor.lightGrayColor() : UIColor.darkGrayColor())
+		auraNode.alpha = 0.5
 	}
 	
 	private func constructUndulations()
@@ -420,8 +435,10 @@ class CreatureController
 		}
 	}
 	
-	func animate(elapsed:CGFloat)
+	func animate(elapsed:CGFloat, active:Bool)
 	{
+		setAuraNodeColor(active)
+		
 		if animationLength != nil && animationProgress != nil
 		{
 			animationProgress! += elapsed
@@ -662,7 +679,7 @@ class CreatureController
 		}
 	}
 	
-	private func getBoundingBox() -> CGRect
+	func getBoundingBox() -> CGRect
 	{
 		var minX:CGFloat = 999999
 		var maxX:CGFloat = -999999

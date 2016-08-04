@@ -123,8 +123,6 @@ class CreatureLimb
 		self.prefix = limbDict["prefix"] as? String
 		self.baseMaxStrain = intWithName("max strain")!
 		self.strain = 0
-		
-		//TODO: pick an active weapon from your weapons
 	}
 	
 	var maxStrain:Int
@@ -231,6 +229,19 @@ class Creature
 		
 		//fill up health
 		self.health = maxHealth
+		
+		//pick an initial active weapon
+		pickActiveWeapon()
+	}
+	
+	private func pickActiveWeapon()
+	{
+		let vW = validWeapons
+		if validWeapons.count > 0
+		{
+			let pick = vW[Int(arc4random_uniform(UInt32(vW.count)))]
+			activeWeapon = pick
+		}
 	}
 	
 	var dead:Bool
@@ -272,8 +283,6 @@ class Creature
 	
 	func executeAttack(target:Creature)
 	{
-		print("POW!")
-		
 		shotNumber += 1
 		
 		if let activeAttack = activeAttack
@@ -303,9 +312,6 @@ class Creature
 			
 			let damage = Int(CGFloat(baseDamage) + (1 + levelFactor * CGFloat(damageStat + weaponStat - baseStat))) / numShots
 			target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, inflictStrain: shotNumber == 1)
-			
-			//TODO: remember that they might also get to attack you in return
-			//if so, remove their action too and whatnot
 		}
 	}
 	
@@ -345,8 +351,6 @@ class Creature
 			
 			//apply strain to that limb
 			pick.strain += 1
-			
-			print("\(pick.name) has \(pick.strain) strain!")
 			
 			if pick.broken
 			{
