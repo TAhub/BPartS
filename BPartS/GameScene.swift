@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-//TODO: select distance, aura size, and player spacing should probably all be based on the single variable
+//TODO: select distance, aura size, and player spacing should probably all be based on some single variable
 let returnToNeutralTime:CGFloat = 0.4
 let selectDistance:CGFloat = 75
 let textDistance:CGFloat = 150

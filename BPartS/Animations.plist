@@ -9,6 +9,12 @@
 -->
 <plist version="1.0">
 <dict>
+	<!-- NOTE:
+		the "pow" of a frame happens upon the animation STARTING
+		that's not bad for guns (it means that the bullet fires out THEN it recoils)
+		but it's a problem for guns
+	-->
+	
     <key>manual gun shoot</key>
 	<dict>
 		<!-- TOOD: required limbs -->
@@ -48,13 +54,23 @@
 				<key>my frame</key> <string>* punch throw</string>
 				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.075</real>
-				<key>hold time</key> <real>0.125</real>
+				<key>hold time</key> <real>0</real>
 				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* punch throw</string>
+				<key>enter time</key> <real>0.075</real>
+				<key>hold time</key> <real>0.125</real>
 			</dict>
 			<dict>
 				<key>my frame</key> <string>* punch</string>
 				<key>enter time</key> <real>0.15</real>
 				<key>hold time</key> <real>0.05</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* punch throw</string>
+				<key>enter time</key> <real>0.075</real>
+				<key>hold time</key> <real>0</real>
 			</dict>
 			<dict>
 				<key>my frame</key> <string>* punch throw</string>

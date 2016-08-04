@@ -223,7 +223,7 @@ class Creature
 		limbs["right arm"]!.armor = "light robot arm"
 		limbs["left arm"]!.armor = "natural arm"
 		limbs["right leg"]!.armor = "natural leg"
-		limbs["left leg"]!.armor = "light robot leg"
+		limbs["left leg"]!.armor = "heavy robot leg"
 		limbs["head"]!.armor = "helmet"
 		limbs["right arm"]!.weapon = Weapon(type: "smg", level: 1)
 		limbs["left arm"]!.weapon = Weapon(type: "knuckle", level: 1)
