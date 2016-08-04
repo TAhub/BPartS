@@ -227,7 +227,7 @@ class Creature
 		limbs["left leg"]!.armor = "light robot leg"
 		limbs["head"]!.armor = "helmet"
 		limbs["right arm"]!.weapon = Weapon(type: "smg", level: 1)
-		limbs["left arm"]!.weapon = Weapon(type: "laser pistol", level: 1)
+		limbs["left arm"]!.weapon = Weapon(type: "knuckle", level: 1)
 		
 		//fill up health
 		self.health = maxHealth

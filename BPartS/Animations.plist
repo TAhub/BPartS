@@ -34,6 +34,43 @@
 		</array>
 	</dict>
 	
+    <key>two punch</key>
+	<dict>
+		<!-- TOOD: required limbs -->
+		<key>frames</key>
+		<array>
+			<dict>
+				<key>my frame</key> <string>* punch</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.15</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* punch throw</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.075</real>
+				<key>hold time</key> <real>0.125</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* punch</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.05</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* punch throw</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.075</real>
+				<key>hold time</key> <real>0.125</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* punch</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.1</real>
+			</dict>
+		</array>
+	</dict>
+	
 	<!-- these auto gun shoot animations are meant for short bursts from automatic guns
 		there's no pause in-between the shots, and it only does the shot frame in the last one (to represent the recoil) -->
     <key>auto gun three shoot</key>

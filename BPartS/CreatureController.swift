@@ -161,11 +161,14 @@ class BodyLimb
 		var invisible:Bool = true
 		if limbDict["weapon limb"] != nil
 		{
-			//it's a weapon limb, so unless you have a weapon it's invisible
-			if let weapon = creatureLimb?.weapon
+			if !(creatureLimb?.broken ?? true)
 			{
-				invisible = false
-				spriteName = weapon.sprite
+				//it's a weapon limb, so unless you have a weapon it's invisible
+				if let weapon = creatureLimb?.weapon
+				{
+					invisible = false
+					spriteName = weapon.sprite
+				}
 			}
 		}
 		else

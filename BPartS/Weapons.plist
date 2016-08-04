@@ -86,7 +86,7 @@
 		<key>shots</key> <integer>2</integer>
 		<!-- TODO: ammo cost, etc -->
 		<!-- animation data -->
-		<!-- TODO: animation data -->
+		<key>animation</key> <string>two punch</string>
 		<key>sprite</key> <string>knuckle</string>
 		<!-- name data -->
 		<!-- TODO: name generation data -->

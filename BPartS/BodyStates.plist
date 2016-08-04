@@ -153,6 +153,86 @@
 			<key>right foot</key> <integer>20</integer>
 		</dict>
 		
+		<key>left punch</key>
+		<dict>
+			<!-- flags -->
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>left arm</key> <integer>80</integer>
+			<key>left forearm</key> <integer>-180</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-75</integer>
+			<key>right forearm</key> <integer>0</integer>
+			<key>right hand</key> <integer>-20</integer>
+			<key>left thigh</key> <integer>45</integer>
+			<key>left calf</key> <integer>-25</integer>
+			<key>left foot</key> <integer>-20</integer>
+			<key>right thigh</key> <integer>-45</integer>
+			<key>right calf</key> <integer>25</integer>
+			<key>right foot</key> <integer>20</integer>
+		</dict>
+		
+		<key>left punch throw</key>
+		<dict>
+			<!-- flags -->
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>left arm</key> <integer>-90</integer>
+			<key>left forearm</key> <integer>0</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-45</integer>
+			<key>right forearm</key> <integer>-90</integer>
+			<key>right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>45</integer>
+			<key>left calf</key> <integer>-25</integer>
+			<key>left foot</key> <integer>-20</integer>
+			<key>right thigh</key> <integer>-45</integer>
+			<key>right calf</key> <integer>25</integer>
+			<key>right foot</key> <integer>20</integer>
+		</dict>
+		
+		<key>right punch</key>
+		<dict>
+			<!-- flags -->
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>left arm</key> <integer>-75</integer>
+			<key>left forearm</key> <integer>0</integer>
+			<key>left hand</key> <integer>-20</integer>
+			<key>right arm</key> <integer>80</integer>
+			<key>right forearm</key> <integer>-180</integer>
+			<key>right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>45</integer>
+			<key>left calf</key> <integer>-25</integer>
+			<key>left foot</key> <integer>-20</integer>
+			<key>right thigh</key> <integer>-45</integer>
+			<key>right calf</key> <integer>25</integer>
+			<key>right foot</key> <integer>20</integer>
+		</dict>
+		
+		<key>right punch throw</key>
+		<dict>
+			<!-- flags -->
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>left arm</key> <integer>-45</integer>
+			<key>left forearm</key> <integer>-90</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-90</integer>
+			<key>right forearm</key> <integer>0</integer>
+			<key>right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>45</integer>
+			<key>left calf</key> <integer>-25</integer>
+			<key>left foot</key> <integer>-20</integer>
+			<key>right thigh</key> <integer>-45</integer>
+			<key>right calf</key> <integer>25</integer>
+			<key>right foot</key> <integer>20</integer>
+		</dict>
+		
 		
 		<!-- whole reference poses -->
 		
