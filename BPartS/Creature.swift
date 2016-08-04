@@ -69,6 +69,10 @@ class Weapon
 		default: return true
 		}
 	}
+	var sprite:String
+	{
+		return DataStore.getString("Weapons", type, "sprite")!
+	}
 	var hitLimb:String
 	{
 		switch(targetType)
@@ -141,7 +145,8 @@ class CreatureLimb
 let levelFactor:CGFloat = 0.1
 let biggerLevelFactor:CGFloat = 0.15 //roughly 1.5x level factor
 let baseStat = 20
-let baseDefendChance = 30
+let maxDefendChance = 90
+let baseDefendChance = 50
 
 class Creature
 {
@@ -217,9 +222,12 @@ class Creature
 		//stick some temp armor on
 		limbs["torso"]!.armor = "uniform"
 		limbs["right arm"]!.armor = "light robot arm"
+		limbs["left arm"]!.armor = "natural arm"
+		limbs["right leg"]!.armor = "natural leg"
 		limbs["left leg"]!.armor = "light robot leg"
+		limbs["head"]!.armor = "helmet"
 		limbs["right arm"]!.weapon = Weapon(type: "smg", level: 1)
-		limbs["left arm"]!.weapon = Weapon(type: "revolver", level: 1)
+		limbs["left arm"]!.weapon = Weapon(type: "laser pistol", level: 1)
 		
 		//fill up health
 		self.health = maxHealth
@@ -319,7 +327,7 @@ class Creature
 	
 	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String, inflictStrain:Bool)
 	{
-		let finalDefendChance = defendChance - accuracyBonus
+		let finalDefendChance = min(defendChance - accuracyBonus, maxDefendChance)
 		let defended = Int(arc4random_uniform(100)) <= finalDefendChance
 		
 		//take strain

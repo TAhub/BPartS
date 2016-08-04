@@ -63,18 +63,21 @@
 				<key>hair</key> <string>human hair blonde</string>
 				<key>eye</key> <string>white</string>
 				<key>armor</key> <string>blue cloth</string>
+				<key>weapon</key> <string>steel</string>
 			</dict>
 			<dict>
 				<key>skin</key> <string>skin swarthy</string>
 				<key>hair</key> <string>human hair brown</string>
 				<key>eye</key> <string>white</string>
 				<key>armor</key> <string>blue cloth</string>
+				<key>weapon</key> <string>steel</string>
 			</dict>
 			<dict>
 				<key>skin</key> <string>skin dark</string>
 				<key>hair</key> <string>human hair black</string>
 				<key>eye</key> <string>white</string>
 				<key>armor</key> <string>blue cloth</string>
+				<key>weapon</key> <string>steel</string>
 			</dict>
 		</array>
 	</dict>

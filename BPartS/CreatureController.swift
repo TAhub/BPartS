@@ -111,9 +111,6 @@ class Undulation
 }
 
 
-
-
-
 class BodyLimb
 {
 	//information/identity variables
@@ -161,24 +158,45 @@ class BodyLimb
 		connectX = intWithName("connect x")!
 		connectY = intWithName("connect y")!
 		
-		var invisible = limbDict["invisible unless replaced"] != nil
-		
-		//check what the creature limb's armor will do
-		if let creatureLimb = creatureLimb, let armor = creatureLimb.armor
+		var invisible:Bool = true
+		if limbDict["weapon limb"] != nil
 		{
-			//does it have anything for this particular limb?
-			let morphAppearances = DataStore.getDictionary("Armors", armor, "appearance by morph") as! [String : [String : [String : String]]]
-			if let morphAppearance = morphAppearances[morph]
+			//it's a weapon limb, so unless you have a weapon it's invisible
+			if let weapon = creatureLimb?.weapon
 			{
-				for (part, partAppearance) in morphAppearance
+				invisible = false
+				spriteName = weapon.sprite
+			}
+		}
+		else
+		{
+			//it's not a weapon limb, so check to see if it will be replaced by armor
+			invisible = limbDict["invisible unless replaced"] != nil
+			
+			//check what the creature limb's armor will do
+			if let creatureLimb = creatureLimb, let armor = creatureLimb.armor
+			{
+				//does it have anything for this particular limb?
+				let morphAppearances = DataStore.getDictionary("Armors", armor, "appearance by morph") as! [String : [String : [String : String]]]
+				if let morphAppearance = morphAppearances[morph]
 				{
-					//this will take partial matches, so I don't need to separately define each limb
-					if name.containsString(part)
+					for (part, partAppearance) in morphAppearance
 					{
-						spriteName = partAppearance["sprite name"]!
-						colorName = partAppearance["color name"]!
-						invisible = false
-						break
+						//this will take partial matches, so I don't need to separately define each limb
+						if name.containsString(part)
+						{
+							if partAppearance["invisible"] == nil
+							{
+								spriteName = partAppearance["sprite name"] ?? spriteName
+								colorName = partAppearance["color name"] ?? colorName
+								invisible = false
+							}
+							else
+							{
+								invisible = true
+							}
+							break
+						}
 					}
 				}
 			}
@@ -213,6 +231,19 @@ class BodyLimb
 			
 			spriteNode.color = UIColor(hue: h, saturation: s, brightness: v, alpha: a)
 		}
+	}
+	
+	func transformPoint(point:CGPoint) -> CGPoint
+	{
+		let pX = point.x
+		let pY = point.y
+		let cX = spriteNode.position.x
+		let cY = spriteNode.position.y
+		let a = spriteNode.zRotation
+		let newX = cX + (pX - cX) * cos(a) - (pY - cY) * sin(a)
+		let newY = cY + (pX - cX) * sin(a) + (pY - cY) * cos(a)
+		
+		return CGPoint(x: newX, y: newY)
 	}
 }
 
@@ -626,11 +657,9 @@ class CreatureController
 		{
 			func transformCheck(pX pX:CGFloat, pY:CGFloat)
 			{
-				let cX = limb.spriteNode.position.x
-				let cY = limb.spriteNode.position.y
-				let a = limb.spriteNode.zRotation
-				let newX = cX + (pX - cX) * cos(a) - (pY - cY) * sin(a)
-				let newY = cY + (pX - cX) * sin(a) + (pY - cY) * cos(a)
+				let newPoint = limb.transformPoint(CGPoint(x: pX, y: pY))
+				let newX = newPoint.x
+				let newY = newPoint.y
 				
 				minX = min(minX, newX)
 				maxX = max(maxX, newX)

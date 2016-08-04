@@ -27,6 +27,21 @@
 		<!-- TODO: ammo cost, etc -->
 		<!-- animation data -->
 		<key>animation</key> <string>auto gun four shoot</string>
+		<key>sprite</key> <string>smg</string>
+		<!-- name data -->
+		<!-- TODO: name generation data -->
+	</dict>
+	<key>rapid blaster</key>
+	<dict>
+		<!-- stats -->
+		<key>type</key> <string>auto</string>
+		<key>damage</key> <integer>52</integer>
+		<key>accuracy bonus</key> <integer>0</integer>
+		<key>shots</key> <integer>3</integer>
+		<!-- TODO: ammo cost, etc -->
+		<!-- animation data -->
+		<key>animation</key> <string>auto gun three shoot</string>
+		<key>sprite</key> <string>blaster</string>
 		<!-- name data -->
 		<!-- TODO: name generation data -->
 	</dict>
@@ -36,12 +51,27 @@
 	<dict>
 		<!-- stats -->
 		<key>type</key> <string>manual</string>
+		<key>damage</key> <integer>50</integer>
+		<key>accuracy bonus</key> <integer>0</integer>
+		<key>shots</key> <integer>1</integer>
+		<!-- TODO: ammo cost, etc -->
+		<!-- animation data -->
+		<key>animation</key> <string>manual gun shoot</string>
+		<key>sprite</key> <string>revolver</string>
+		<!-- name data -->
+		<!-- TODO: name generation data -->
+	</dict>
+	<key>laser pistol</key>
+	<dict>
+		<!-- stats -->
+		<key>type</key> <string>manual</string>
 		<key>damage</key> <integer>45</integer>
 		<key>accuracy bonus</key> <integer>5</integer>
 		<key>shots</key> <integer>1</integer>
 		<!-- TODO: ammo cost, etc -->
 		<!-- animation data -->
 		<key>animation</key> <string>manual gun shoot</string>
+		<key>sprite</key> <string>laserpistol</string>
 		<!-- name data -->
 		<!-- TODO: name generation data -->
 	</dict>
@@ -57,6 +87,7 @@
 		<!-- TODO: ammo cost, etc -->
 		<!-- animation data -->
 		<!-- TODO: animation data -->
+		<key>sprite</key> <string>knuckle</string>
 		<!-- name data -->
 		<!-- TODO: name generation data -->
 	</dict>
