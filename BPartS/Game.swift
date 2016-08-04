@@ -8,8 +8,15 @@
 
 import UIKit
 
+protocol GameDelegate
+{
+	func damageNumber(number:Int)
+}
+
 class Game
 {
+	var delegate:GameDelegate?
+	
 	var players = [Creature]()
 	var enemies = [Creature]()
 	
@@ -147,7 +154,8 @@ class Game
 			}
 			else if aASS[attackAnimStateSetProgress].pow
 			{
-				activeCreature.executeAttack(attackTarget)
+				let dNum = activeCreature.executeAttack(attackTarget)
+				delegate?.damageNumber(dNum)
 			}
 		}
 	}
@@ -207,7 +215,8 @@ class Game
 		else
 		{
 			//just instantly execute the effect of the attack and call it a day
-			activeCreature.executeAttack(attackTarget)
+			let dNum = activeCreature.executeAttack(attackTarget)
+			delegate?.damageNumber(dNum)
 			actionOver()
 		}
 	}

@@ -11,12 +11,16 @@ import SpriteKit
 //TODO: select distance, aura size, and player spacing should probably all be based on the single variable
 let returnToNeutralTime:CGFloat = 0.4
 let selectDistance:CGFloat = 75
+let textDistance:CGFloat = 150
+let textTime:Double = 0.75
 
-class GameScene: SKScene
+class GameScene: SKScene, GameDelegate
 {
 	private var lastTime:NSTimeInterval?
 	var creatureControllers = [CreatureController]()
 	var game:Game!
+	var lastPow:Int = 0
+	var flipNode:SKNode!
 	
 	private func controllerFor(creature:Creature) -> CreatureController
 	{
@@ -53,10 +57,13 @@ class GameScene: SKScene
 				{
 					controllerFor(game.activeCreature).setBodyState(myFrame, length: state.entryTime, hold: state.holdTime)
 				}
-				if let theirFrame = state.theirFrame
+				if var theirFrame = state.theirFrame
 				{
-					//TODO: if the game reports a "defend" from the most recent pow, and this is "flinch"
-					//set it to "defend"
+					//switch flinches to defend if the person defended 
+					if theirFrame == "flinch" && lastPow == 0
+					{
+						theirFrame = "defend"
+					}
 					
 					controllerFor(game.attackTarget).setBodyState(theirFrame, length: state.entryTime, hold: state.holdTime)
 				}
@@ -91,8 +98,15 @@ class GameScene: SKScene
 	
 	override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
 	{
+		//can you give orders?
+		if !game.playersActive || game.attackAnimStateSet != nil
+		{
+			return
+		}
+		
+		
 		let touch = touches.first!
-		let location = touch.locationInNode(self)
+		let location = touch.locationInNode(flipNode)
 		
 		//find the closest enemy
 		var closestDistance:CGFloat = selectDistance
@@ -115,6 +129,26 @@ class GameScene: SKScene
 		{
 			print("Targeted a \(closestPlayer ? "player" : "enemy")!")
 			game.chooseAttack(closest)
+		}
+	}
+	
+	//MARK: delegate actions
+	func damageNumber(number: Int)
+	{
+		lastPow = number
+		
+		//display damage number
+		let tNode = SKLabelNode(text: "\(number)")
+		
+		let position = flipNode.convertPoint(controllerFor(game.attackTarget).creatureNode.position, toNode: self)
+		tNode.position = CGPoint(x: position.x, y: position.y)
+		self.addChild(tNode)
+		
+		let moveAnim = SKAction.moveTo(CGPoint(x: position.x, y: position.y + textDistance), duration: textTime)
+		let fadeAnim = SKAction.fadeAlphaTo(0.1, duration: textTime)
+		tNode.runAction(SKAction.group([moveAnim, fadeAnim]))
+		{
+			tNode.removeFromParent()
 		}
 	}
 }

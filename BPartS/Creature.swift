@@ -166,6 +166,7 @@ class Creature
 	var activeAttack:String?
 	var activeWeapon:Weapon?
 	var shotNumber:Int = 0
+	var shotHit:Bool = false
 	
 	//derived
 	var maxHealth:Int
@@ -281,7 +282,7 @@ class Creature
 		return activeWeapon != nil && !dead
 	}
 	
-	func executeAttack(target:Creature)
+	func executeAttack(target:Creature) -> Int
 	{
 		shotNumber += 1
 		
@@ -293,7 +294,7 @@ class Creature
 			let accuracyBonus = 0
 			
 			let damage = Int(CGFloat(baseDamage) * (1 + biggerLevelFactor * CGFloat(intellect - baseStat)))
-			target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, inflictStrain: shotNumber == 1)
+			return target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, initialHit: shotNumber == 1)
 		}
 		else if let activeWeapon = activeWeapon
 		{
@@ -311,8 +312,10 @@ class Creature
 			}
 			
 			let damage = Int(CGFloat(baseDamage) + (1 + levelFactor * CGFloat(damageStat + weaponStat - baseStat))) / numShots
-			target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, inflictStrain: shotNumber == 1)
+			return target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, initialHit: shotNumber == 1)
 		}
+		assertionFailure()
+		return 0
 	}
 	
 	var validWeapons:[Weapon]
@@ -331,10 +334,20 @@ class Creature
 		return w
 	}
 	
-	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String, inflictStrain:Bool)
+	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String, initialHit:Bool) -> Int
 	{
-		let finalDefendChance = min(defendChance - accuracyBonus, maxDefendChance)
-		let defended = Int(arc4random_uniform(100)) <= finalDefendChance
+		//the entire attack either hits or misses, just to make the animations tidier
+		let defended:Bool
+		if !initialHit
+		{
+			defended = shotHit
+		}
+		else
+		{
+			let finalDefendChance = min(defendChance - accuracyBonus, maxDefendChance)
+			defended = Int(arc4random_uniform(100)) <= finalDefendChance
+			shotHit = defended
+		}
 		
 		//take strain
 		var limbsCanHit = [CreatureLimb]()
@@ -345,7 +358,7 @@ class Creature
 				limbsCanHit.append(limb)
 			}
 		}
-		if limbsCanHit.count > 0 && inflictStrain	//inflictStain is so that multi-hit attacks don't inflict multiple strain
+		if limbsCanHit.count > 0 && initialHit	//inflictStain is so that multi-hit attacks don't inflict multiple strain
 		{
 			let pick = limbsCanHit[Int(arc4random_uniform(UInt32(limbsCanHit.count)))]
 			
@@ -378,6 +391,8 @@ class Creature
 			}
 		}
 		
+		var displayDamage:Int = 0
+		
 		if !defended
 		{
 			var finalDamage = baseDamage
@@ -390,10 +405,14 @@ class Creature
 			
 			//take damage
 			health = max(0, health - finalDamage)
+			
+			displayDamage = finalDamage
 		}
 		
 		//just in case, adjust health to max health, because if a limb is broken your max health might be different not
 		health = min(maxHealth, health)
+		
+		return displayDamage
 	}
 	
 	private func weaponInValidLimb(weapon:Weapon) -> Bool
