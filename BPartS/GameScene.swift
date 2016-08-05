@@ -13,6 +13,7 @@ let returnToNeutralTime:CGFloat = 0.4
 let selectDistance:CGFloat = 75
 let textDistance:CGFloat = 150
 let textTime:Double = 0.75
+let effectTime:Double = 0.15
 
 class UILabelNode:SKLabelNode
 {
@@ -72,37 +73,7 @@ class GameScene: SKScene, GameDelegate
 			
 			game.update(elapsed, animating: anyoneAnimating)
 			
-			//apply animations to people
-			if let attackAnimStateSet = game.attackAnimStateSet
-			{
-				//you're doing an attack animation!
-				let state = attackAnimStateSet[game.attackAnimStateSetProgress]
-				if let myFrame = state.myFrame
-				{
-					controllerFor(game.activeCreature).setBodyState(myFrame, length: state.entryTime, hold: state.holdTime)
-				}
-				if var theirFrame = state.theirFrame
-				{
-					//switch flinches to defend if the person defended 
-					if theirFrame == "flinch" && lastPow == 0
-					{
-						theirFrame = "defend"
-					}
-					
-					controllerFor(game.attackTarget).setBodyState(theirFrame, length: state.entryTime, hold: state.holdTime)
-				}
-				
-				//TODO: temporarily apply flips to people to ensure that are facing the right direction during these animations
-				//so that if you use a healing ability on an ally, they turn to you
-				//etc
-			}
-			else
-			{
-				for creature in game.players + game.enemies
-				{
-					controllerFor(creature).setBodyState(creature.restingState, length: returnToNeutralTime, hold: 0)
-				}
-			}
+			applyAnimations()
 			
 			//pick attacks, if appropriate
 			if game.attackAnimStateSet == nil
@@ -116,8 +87,44 @@ class GameScene: SKScene, GameDelegate
 					game.aiAction()
 				}
 			}
+			
+			applyAnimations()
 		}
 		lastTime = currentTime
+	}
+	
+	private func applyAnimations()
+	{
+		if let attackAnimStateSet = game.attackAnimStateSet
+		{
+			//you're doing an attack animation!
+			let state = attackAnimStateSet[game.attackAnimStateSetProgress]
+			if let myFrame = state.myFrame
+			{
+				controllerFor(game.activeCreature).setBodyState(myFrame, length: state.entryTime, hold: state.holdTime)
+			}
+			if var theirFrame = state.theirFrame
+			{
+				//switch flinches to defend if the person defended
+				if theirFrame == "flinch" && lastPow == 0
+				{
+					theirFrame = "defend"
+				}
+				
+				controllerFor(game.attackTarget).setBodyState(theirFrame, length: state.entryTime, hold: state.holdTime)
+			}
+			
+			//TODO: temporarily apply flips to people to ensure that are facing the right direction during these animations
+			//so that if you use a healing ability on an ally, they turn to you
+			//etc
+		}
+		else
+		{
+			for creature in game.players + game.enemies
+			{
+				controllerFor(creature).setBodyState(creature.restingState, length: returnToNeutralTime, hold: 0)
+			}
+		}
 	}
 	
 	override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
@@ -173,6 +180,9 @@ class GameScene: SKScene, GameDelegate
 			//remove the attack select node
 			attackSelectNode?.removeFromParent()
 			attackSelectNode = nil
+			
+			//apply animations
+			applyAnimations()
 		}
 	}
 	
@@ -216,14 +226,17 @@ class GameScene: SKScene, GameDelegate
 	}
 	
 	//MARK: delegate actions
-	func damageNumber(number: Int)
+	func attackAnim(number:Int, hitLimb:CreatureLimb)
 	{
+		let attackerController = controllerFor(game.activeCreature)
+		let targetController = controllerFor(game.attackTarget)
+		
 		lastPow = number
 		
 		//display damage number
 		let tNode = SKLabelNode(text: "\(number)")
 		
-		let position = flipNode.convertPoint(controllerFor(game.attackTarget).creatureNode.position, toNode: self)
+		let position = flipNode.convertPoint(targetController.creatureNode.position, toNode: self)
 		tNode.position = CGPoint(x: position.x, y: position.y)
 		self.addChild(tNode)
 		
@@ -232,6 +245,23 @@ class GameScene: SKScene, GameDelegate
 		tNode.runAction(SKAction.group([moveAnim, fadeAnim]))
 		{
 			tNode.removeFromParent()
+		}
+		
+		//make bullet effect
+		if game.activeCreature.activeAttack == nil
+		{
+			if let weapon = game.activeCreature.activeWeapon
+			{
+				if let weaponEffect = attackerController.makeEffectForWeapon(weapon, toController: targetController, toLimb: hitLimb)
+				{
+					let weaponEffectFadeAnim = SKAction.fadeAlphaTo(0.5, duration: effectTime)
+					flipNode.addChild(weaponEffect)
+					weaponEffect.runAction(weaponEffectFadeAnim)
+					{
+						weaponEffect.removeFromParent()
+					}
+				}
+			}
 		}
 	}
 }

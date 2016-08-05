@@ -28,6 +28,9 @@
 		<!-- animation data -->
 		<key>animation</key> <string>auto gun four shoot</string>
 		<key>sprite</key> <string>smg</string>
+		<key>muzzle x</key> <integer>16</integer>
+		<key>muzzle y</key> <integer>17</integer>
+		<key>effect color</key> <string>yellow</string>
 		<!-- name data -->
 		<!-- TODO: name generation data -->
 	</dict>
@@ -42,6 +45,9 @@
 		<!-- animation data -->
 		<key>animation</key> <string>auto gun three shoot</string>
 		<key>sprite</key> <string>blaster</string>
+		<key>muzzle x</key> <integer>13</integer>
+		<key>muzzle y</key> <integer>17</integer>
+		<key>effect color</key> <string>green</string>
 		<!-- name data -->
 		<!-- TODO: name generation data -->
 	</dict>
@@ -58,6 +64,9 @@
 		<!-- animation data -->
 		<key>animation</key> <string>manual gun shoot</string>
 		<key>sprite</key> <string>revolver</string>
+		<key>muzzle x</key> <integer>14</integer>
+		<key>muzzle y</key> <integer>19</integer>
+		<key>effect color</key> <string>yellow</string>
 		<!-- name data -->
 		<!-- TODO: name generation data -->
 	</dict>
@@ -72,6 +81,9 @@
 		<!-- animation data -->
 		<key>animation</key> <string>manual gun shoot</string>
 		<key>sprite</key> <string>laserpistol</string>
+		<key>muzzle x</key> <integer>15</integer>
+		<key>muzzle y</key> <integer>20</integer>
+		<key>effect color</key> <string>red</string>
 		<!-- name data -->
 		<!-- TODO: name generation data -->
 	</dict>

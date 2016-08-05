@@ -10,7 +10,7 @@ import UIKit
 
 protocol GameDelegate
 {
-	func damageNumber(number:Int)
+	func attackAnim(number:Int, hitLimb:CreatureLimb)
 }
 
 class Game
@@ -164,8 +164,8 @@ class Game
 			}
 			else if aASS[attackAnimStateSetProgress].pow
 			{
-				let dNum = activeCreature.executeAttack(attackTarget)
-				delegate?.damageNumber(dNum)
+				let (dNum, hitLimb) = activeCreature.executeAttack(attackTarget)
+				delegate?.attackAnim(dNum, hitLimb: hitLimb)
 			}
 		}
 	}
@@ -180,8 +180,7 @@ class Game
 		
 		//pick a random weapon for now
 		let w = activeCreature.validWeapons
-		let pick = w[Int(arc4random_uniform(UInt32(w.count)))]
-		activeCreature.pickEngagement(pick)
+		activeCreature.pickEngagement(w.randomElement!)
 		
 		var targets = [Creature]()
 		for player in players
@@ -198,9 +197,7 @@ class Game
 			assertionFailure()
 		}
 		
-		let pickTwo = targets[Int(arc4random_uniform(UInt32(players.count)))]
-		
-		chooseAttack(pickTwo)
+		chooseAttack(targets.randomElement!)
 	}
 	
 	func chooseAttack(target:Creature)
@@ -225,8 +222,8 @@ class Game
 		else
 		{
 			//just instantly execute the effect of the attack and call it a day
-			let dNum = activeCreature.executeAttack(attackTarget)
-			delegate?.damageNumber(dNum)
+			let (dNum, hitLimb) = activeCreature.executeAttack(attackTarget)
+			delegate?.attackAnim(dNum, hitLimb: hitLimb)
 			actionOver()
 		}
 	}

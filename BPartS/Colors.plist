@@ -11,6 +11,7 @@
 <dict>
 	<!-- pure colors -->
 	<key>red</key> <string>FF0000</string>
+	<key>yellow</key> <string>FFFF00</string>
 	<key>green</key> <string>00FF00</string>
 	<key>blue</key> <string>0000FF</string>
 	<key>white</key> <string>FFFFFF</string>

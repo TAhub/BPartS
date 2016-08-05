@@ -128,6 +128,8 @@ class BodyLimb
 	let centerY:Int
 	let connectX:Int
 	let connectY:Int
+	let creatureLimb:CreatureLimb?
+	let weaponLimb:Bool
 	
 	//animation variables
 	var rotateFrom:CGFloat = 0
@@ -148,6 +150,8 @@ class BodyLimb
 			return nil
 		}
 		
+		self.creatureLimb = creatureLimb
+		
 		//get constants
 		name = limbDict["name"] as! String
 		parentName = limbDict["parent"] as? String
@@ -155,6 +159,7 @@ class BodyLimb
 		var spriteName = limbDict["sprite name"] as! String
 		var colorName = limbDict["color name"] as! String
 		let blendName = limbDict["blend name"] as! String
+		weaponLimb = limbDict["weapon limb"] != nil
 		limbTag = limbDict["limb tag"] as? String
 		centerX = intWithName("center x")!
 		centerY = intWithName("center y")!
@@ -162,7 +167,7 @@ class BodyLimb
 		connectY = intWithName("connect y")!
 		
 		var invisible:Bool = true
-		if limbDict["weapon limb"] != nil
+		if weaponLimb
 		{
 			if !(creatureLimb?.broken ?? true)
 			{
@@ -250,6 +255,21 @@ class BodyLimb
 		let newY = cY + (pX - cX) * sin(a) + (pY - cY) * cos(a)
 		
 		return CGPoint(x: newX, y: newY)
+	}
+	
+	var hitRect:CGRect
+	{
+		let left = spriteNode.position.x - spriteNode.anchorPoint.x * spriteNode.size.width
+		let top = spriteNode.position.y - spriteNode.anchorPoint.y * spriteNode.size.height
+		let right = left + spriteNode.size.width
+		let bottom = top + spriteNode.size.height
+		let p1 = transformPoint(CGPoint(x: left, y: top))
+		let p2 = transformPoint(CGPoint(x: right, y: bottom))
+		let finalX = min(p1.x, p2.x)
+		let finalWidth = max(p1.x, p2.x) - finalX
+		let finalY = min(p1.y, p2.y)
+		let finalHeight = max(p1.y, p2.y) - finalY
+		return CGRect(x: finalX, y: finalY, width: finalWidth, height: finalHeight)
 	}
 }
 
@@ -529,7 +549,7 @@ class CreatureController
 			return
 		}
 		
-		if lastBS != nil && lastBS! != bs
+		if lastBS != nil
 		{
 			animationLength = length
 			animationProgress = 0
@@ -726,5 +746,66 @@ class CreatureController
 			transformCheck(pX: right, pY: bottom)
 		}
 		return CGRect(x: minX, y: minY, width: maxX-minX, height: maxY-minY)
+	}
+	
+	func makeEffectForWeapon(weapon:Weapon, toController:CreatureController, toLimb:CreatureLimb) -> SKShapeNode?
+	{
+		//find out which body-part holds that weapon
+		var weaponLimb:BodyLimb?
+		for limb in limbs.values
+		{
+			if limb.weaponLimb && limb.creatureLimb != nil && limb.creatureLimb!.weapon != nil && limb.creatureLimb!.weapon! === weapon
+			{
+				weaponLimb = limb
+				break
+			}
+		}
+		
+		//find non-invisible, non-weapon body parts on the target to hit
+		var possibleHits = [BodyLimb]()
+		for limb in toController.limbs.values
+		{
+			if !limb.weaponLimb && !limb.spriteNode.hidden && limb.creatureLimb != nil && limb.creatureLimb! === toLimb
+			{
+				possibleHits.append(limb)
+			}
+		}
+		
+		if possibleHits.count > 0
+		{
+			if let weaponLimb = weaponLimb
+			{
+				//find the muzzle position on it
+				if let muzzleX = weapon.muzzleX, let muzzleY = weapon.muzzleY, let effectColor = weapon.effectColor
+				{
+					//find which limb you hit
+					let pick = possibleHits.randomElement!
+					
+					//translate the point into the weapon limb's coordinate space
+					let muzzlePoint = weaponLimb.transformPoint(CGPoint(x: CGFloat(muzzleX - weaponLimb.centerX) + weaponLimb.spriteNode.position.x, y: CGFloat(muzzleY - weaponLimb.centerY) + weaponLimb.spriteNode.position.y))
+					
+					//find the center of the limb you hit
+					let hitRect = pick.hitRect
+					let hitPoint = CGPoint(x: pick.hitRect.midX, y: pick.hitRect.midY)
+					
+					//translate both points to the parent coordinate space
+					let muzzlePointFinal = flipNode.convertPoint(muzzlePoint, toNode: creatureNode.parent!)
+					let hitPointFinal = toController.flipNode.convertPoint(hitPoint, toNode: toController.creatureNode.parent!)
+					
+					//make the path
+					let path = CGPathCreateMutable()
+					CGPathMoveToPoint(path, nil, muzzlePointFinal.x, muzzlePointFinal.y)
+					CGPathAddLineToPoint(path, nil, hitPointFinal.x, hitPointFinal.y)
+					
+					let line = SKShapeNode(path: path)
+					line.strokeColor = effectColor
+					return line
+				}
+				return nil
+			}
+		}
+		
+		assertionFailure()
+		return nil
 	}
 }

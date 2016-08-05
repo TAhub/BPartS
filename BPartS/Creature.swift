@@ -8,6 +8,19 @@
 
 import UIKit
 
+extension Array
+{
+	var randomElement:Element?
+	{
+		if count == 0
+		{
+			return nil
+		}
+		let pick = Int(arc4random_uniform(UInt32(count)))
+		return (self)[pick]
+	}
+}
+
 struct AttackAnimState
 {
 	let myFrame:String?
@@ -58,6 +71,18 @@ class Weapon
 	var animation:String
 	{
 		return DataStore.getString("Weapons", type, "animation")!
+	}
+	var muzzleX:Int?
+	{
+		return DataStore.getInt("Weapons", type, "muzzle x")
+	}
+	var muzzleY:Int?
+	{
+		return DataStore.getInt("Weapons", type, "muzzle y")
+	}
+	var effectColor:UIColor?
+	{
+		return DataStore.getColor("Weapons", type, "effect color")
 	}
 	var melee:Bool
 	{
@@ -229,7 +254,7 @@ class Creature
 		limbs["lower left arm"]?.armor = "natural arm"
 		limbs["right leg"]?.armor = "natural leg"
 		limbs["left leg"]?.armor = "heavy robot leg"
-		limbs["right arm"]?.weapon = Weapon(type: "smg", level: 1)
+		limbs["right arm"]?.weapon = Weapon(type: "laser pistol", level: 1)
 		limbs["upper right arm"]?.weapon = Weapon(type: "smg", level: 1)
 		limbs["lower right arm"]?.weapon = Weapon(type: "revolver", level: 1)
 		limbs["left arm"]?.weapon = Weapon(type: "knife", level: 1)
@@ -248,7 +273,7 @@ class Creature
 		let vW = validWeapons
 		if validWeapons.count > 0
 		{
-			let pick = vW[Int(arc4random_uniform(UInt32(vW.count)))]
+			let pick = vW.randomElement!
 			activeWeapon = pick
 		}
 		else
@@ -294,7 +319,7 @@ class Creature
 		return activeWeapon != nil && !dead
 	}
 	
-	func executeAttack(target:Creature) -> Int
+	func executeAttack(target:Creature) -> (Int, CreatureLimb)
 	{
 		shotNumber += 1
 		
@@ -327,7 +352,7 @@ class Creature
 			return target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, initialHit: shotNumber == 1)
 		}
 		assertionFailure()
-		return 0
+		return (0, limbs.first!.1)
 	}
 	
 	var validWeapons:[Weapon]
@@ -346,7 +371,7 @@ class Creature
 		return w
 	}
 	
-	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String, initialHit:Bool) -> Int
+	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String, initialHit:Bool) -> (Int, CreatureLimb)
 	{
 		//the entire attack either hits or misses, just to make the animations tidier
 		let defended:Bool
@@ -363,16 +388,33 @@ class Creature
 		
 		//take strain
 		var limbsCanHit = [CreatureLimb]()
+		var limbsCouldHit = [CreatureLimb]()
 		for limb in limbs.values
 		{
-			if limb.type == hitLimb && !limb.broken
+			if limb.type == hitLimb
 			{
-				limbsCanHit.append(limb)
+				if !limb.broken
+				{
+					limbsCanHit.append(limb)
+				}
+				limbsCouldHit.append(limb)
 			}
+		}
+		
+		var critical:Bool = false
+		var hitLimb:CreatureLimb = limbs["torso"]!
+		if limbsCanHit.count == 0 && limbsCouldHit.count > 0
+		{
+			//it's a critical hit!
+			//"target" a totally random limb that you could have hit, and do double damage
+			//no, you don't get critical hits by shooting a body part the enemy never had to begin with
+			hitLimb = limbsCouldHit.randomElement!
+			critical = true
 		}
 		if limbsCanHit.count > 0 && initialHit	//inflictStain is so that multi-hit attacks don't inflict multiple strain
 		{
-			let pick = limbsCanHit[Int(arc4random_uniform(UInt32(limbsCanHit.count)))]
+			let pick = limbsCanHit.randomElement!
+			hitLimb = pick
 			
 			//apply strain to that limb
 			pick.strain += 1
@@ -409,9 +451,8 @@ class Creature
 		{
 			var finalDamage = baseDamage
 			
-			if limbsCanHit.count == 0
+			if critical
 			{
-				//it's a critical!
 				finalDamage *= 2
 			}
 			
@@ -424,7 +465,7 @@ class Creature
 		//just in case, adjust health to max health, because if a limb is broken your max health might be different not
 		health = min(maxHealth, health)
 		
-		return displayDamage
+		return (displayDamage, hitLimb)
 	}
 	
 	private func weaponInValidLimb(weapon:Weapon) -> Bool
