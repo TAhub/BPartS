@@ -243,6 +243,10 @@ class Creature
 			let pick = vW[Int(arc4random_uniform(UInt32(vW.count)))]
 			activeWeapon = pick
 		}
+		else
+		{
+			activeWeapon = nil
+		}
 	}
 	
 	var dead:Bool
@@ -385,7 +389,7 @@ class Creature
 				{
 					if !weaponInValidLimb(activeWeapon!)
 					{
-						activeWeapon = nil
+						pickActiveWeapon()
 					}
 				}
 			}
@@ -488,6 +492,11 @@ class Creature
 	}
 	var restingState:String
 	{
+		if dead
+		{
+			return "disabled"
+		}
+		
 		if let activeWeapon = activeWeapon
 		{
 			for limb in limbs.values

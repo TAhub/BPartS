@@ -52,15 +52,15 @@
 			</dict>
 			<dict>
 				<key>my frame</key> <string>* punch throw</string>
-				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.075</real>
 				<key>hold time</key> <real>0</real>
-				<key>pow</key> <true/>
 			</dict>
 			<dict>
 				<key>my frame</key> <string>* punch throw</string>
+				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.075</real>
 				<key>hold time</key> <real>0.125</real>
+				<key>pow</key> <true/>
 			</dict>
 			<dict>
 				<key>my frame</key> <string>* punch</string>

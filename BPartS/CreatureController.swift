@@ -550,16 +550,34 @@ class CreatureController
 		
 		
 		let state = DataStore.getDictionary("BodyStates", states, bs) as! [String : NSNumber]
+		var finalState = state
+		if let baseStateNumber = state["base pose"]
+		{
+			//retrieve the base state
+			let baseStateInt = Int(baseStateNumber.intValue)
+			
+			//TODO: you should be able to specify a base state of "-1"
+			//this is the "personality" value, which will redirect you to a different base state per person
+			//so some people might stand in different ways, and hold their arms at rest in different ways, etc
+			
+			let baseState = DataStore.getDictionary("BodyStates", states, "base pose \(baseStateInt)") as! [String : NSNumber]
+			
+			//write over the base state with the main state
+			finalState = baseState
+			for (limbName, degreeNumber) in state
+			{
+				finalState[limbName] = degreeNumber
+			}
+		}
 		
-		for (limbName, degreeNumber) in state
+		for (limbName, degreeNumber) in finalState
 		{
 			//check for flags
 			switch(limbName)
 			{
-			case "stop undulation":
-				stopUndulation = true
-			case "vibrate":
-				vibrate = true
+			case "stop undulation": stopUndulation = true
+			case "vibrate": vibrate = true
+			case "base pose": break
 			default:
 				if let limb = limbs[limbName]
 				{
