@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Specials.plist
+   BPartS
+
+   Created by Theodore Abshire on 8/5/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<!-- a special that strikes the enemy at the highest point (IE head) -->
+	<key>lightning drive</key>
+	<dict>
+		<!-- stats -->
+		<key>hit limb</key> <string>head</string>
+		<key>damage</key> <integer>50</integer>
+		<key>accuracy bonus</key> <integer>25</integer>
+		<key>shots</key> <integer>1</integer>
+		<!-- animation data -->
+		<key>animation</key> <string>one drive</string>
+	</dict>
+	
+	<!-- a special that strikes the enemy at the torso -->
+	<key>flame drive</key>
+	<dict>
+		<!-- stats -->
+		<key>hit limb</key> <string>torso</string>
+		<key>damage</key> <integer>55</integer>
+		<key>accuracy bonus</key> <integer>25</integer>
+		<key>shots</key> <integer>3</integer>
+		<!-- animation data -->
+		<key>animation</key> <string>three drive</string>
+	</dict>
+</dict>
+</plist>

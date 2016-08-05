@@ -18,7 +18,7 @@ let effectTime:Double = 0.15
 class UILabelNode:SKLabelNode
 {
 	var weapon:Weapon?
-	//TODO: attack
+	var special:Special?
 	
 	init(text:String)
 	{
@@ -149,6 +149,11 @@ class GameScene: SKScene, GameDelegate
 					game.activeCreature.pickEngagement(weapon)
 					generateAttackSelect()
 				}
+				else if let special = node.special
+				{
+					game.activeCreature.pickAttack(special)
+					generateAttackSelect()
+				}
 				return
 			}
 		}
@@ -175,14 +180,15 @@ class GameScene: SKScene, GameDelegate
 		if closestDistance < selectDistance
 		{
 			print("Targeted a \(closestPlayer ? "player" : "enemy")!")
-			game.chooseAttack(closest)
-			
-			//remove the attack select node
-			attackSelectNode?.removeFromParent()
-			attackSelectNode = nil
-			
-			//apply animations
-			applyAnimations()
+			if game.chooseAttack(closest)
+			{
+				//remove the attack select node
+				attackSelectNode?.removeFromParent()
+				attackSelectNode = nil
+				
+				//apply animations
+				applyAnimations()
+			}
 		}
 	}
 	
@@ -196,32 +202,49 @@ class GameScene: SKScene, GameDelegate
 		self.attackSelectNode = attackSelectNode
 		self.addChild(attackSelectNode)
 		
-		
 		let startHeight:CGFloat = 420
+		let widthDivider:CGFloat = 30
 		
+		var nextWidth:CGFloat = 0
+		var widthAt:CGFloat = 0
 		var heightAt:CGFloat = 0
-		func addNode(text: String, weapon:Weapon?)
+		func addNode(text: String, weapon:Weapon?, special:Special?)
 		{
 			let node = UILabelNode(text: text)
 			attackSelectNode.addChild(node)
-			node.position = CGPoint(x: node.frame.size.width / 2, y: heightAt - node.frame.size.height / 2)
+			node.position = CGPoint(x: widthAt + node.frame.size.width / 2, y: heightAt - node.frame.size.height / 2)
 			heightAt -= node.frame.size.height
+			nextWidth = max(node.frame.size.width, nextWidth)
 			
 			var selected:Bool = false
 			if let weapon = weapon
 			{
 				node.weapon = weapon
-				selected = game.activeCreature.activeWeapon != nil && weapon === game.activeCreature.activeWeapon!
+				selected = game.activeCreature.activeAttack == nil && game.activeCreature.activeWeapon != nil && weapon === game.activeCreature.activeWeapon!
+			}
+			else if let special = special
+			{
+				node.special = special
+				selected = game.activeCreature.activeAttack != nil && special === game.activeCreature.activeAttack!
 			}
 			
 			node.fontColor = selected ? UIColor.whiteColor() : UIColor.lightGrayColor()
 		}
 		
 		heightAt = startHeight
-		addNode("WEAPONS", weapon: nil)
+		addNode("WEAPONS", weapon: nil, special: nil)
 		for weapon in game.activeCreature.validWeapons
 		{
-			addNode(weapon.battleName, weapon: weapon)
+			addNode(weapon.battleName, weapon: weapon, special: nil)
+		}
+		
+		heightAt = startHeight
+		widthAt += nextWidth + widthDivider
+		nextWidth = 0
+		addNode("SPECIALS", weapon: nil, special: nil)
+		for special in game.activeCreature.validSpecials
+		{
+			addNode(special.type, weapon: nil, special: special)
 		}
 	}
 	
@@ -248,18 +271,19 @@ class GameScene: SKScene, GameDelegate
 		}
 		
 		//make bullet effect
-		if game.activeCreature.activeAttack == nil
+		if let special = game.activeCreature.activeAttack
 		{
-			if let weapon = game.activeCreature.activeWeapon
+			//TODO: make special effect
+		}
+		else if let weapon = game.activeCreature.activeWeapon
+		{
+			if let weaponEffect = attackerController.makeEffectForWeapon(weapon, toController: targetController, toLimb: hitLimb)
 			{
-				if let weaponEffect = attackerController.makeEffectForWeapon(weapon, toController: targetController, toLimb: hitLimb)
+				let weaponEffectFadeAnim = SKAction.fadeAlphaTo(0.5, duration: effectTime)
+				flipNode.addChild(weaponEffect)
+				weaponEffect.runAction(weaponEffectFadeAnim)
 				{
-					let weaponEffectFadeAnim = SKAction.fadeAlphaTo(0.5, duration: effectTime)
-					flipNode.addChild(weaponEffect)
-					weaponEffect.runAction(weaponEffectFadeAnim)
-					{
-						weaponEffect.removeFromParent()
-					}
+					weaponEffect.removeFromParent()
 				}
 			}
 		}

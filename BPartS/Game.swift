@@ -170,45 +170,137 @@ class Game
 		}
 	}
 	
-	func aiAction()
+	private func validTargetsForSpecial(special:Special) -> [Creature]
 	{
-		//TODO: a more sophisticated AI
-		//choosing to use specials
-		//ideally it should be capable of aiming buff and healing specials
-		//choosing WHICH weapon to use (and not using any weapons if it has none!)
-		//etc
-		
-		//pick a random weapon for now
-		let w = activeCreature.validWeapons
-		activeCreature.pickEngagement(w.randomElement!)
-		
 		var targets = [Creature]()
+		
 		for player in players
 		{
-			if !player.dead
+			if player.canBeTargetedWith(special, by: activeCreature)
 			{
 				targets.append(player)
 			}
 		}
-		
-		if targets.count == 0
+		for enemy in enemies
 		{
-			//TODO: if all players are dead, that means the battle SHOULD be over
-			assertionFailure()
+			if enemy.canBeTargetedWith(special, by: activeCreature)
+			{
+				targets.append(enemy)
+			}
 		}
-		
-		chooseAttack(targets.randomElement!)
+		return targets
 	}
 	
-	func chooseAttack(target:Creature)
+	private func aiTrySpecial()->Bool
 	{
-		if attackAnimStateSet == nil && !target.dead
+		let specials = activeCreature.validSpecials
+		var validSpecials = [Special]()
+		for special in specials
 		{
+			if validTargetsForSpecial(special).count > 0
+			{
+				validSpecials.append(special)
+			}
+		}
+		if let pick = validSpecials.randomElement
+		{
+			activeCreature.pickAttack(pick)
+			let targets = validTargetsForSpecial(pick)
+			chooseAttack(targets.randomElement!)
+			return true
+		}
+		return false
+	}
+	
+	private func aiTryEngagement()->Bool
+	{
+		if let pick = activeCreature.validWeapons.randomElement
+		{
+			activeCreature.pickEngagement(pick)
+			
+			var targets = [Creature]()
+			for player in players
+			{
+				if !player.dead
+				{
+					targets.append(player)
+				}
+			}
+			
+			if targets.count == 0
+			{
+				//TODO: if all players are dead, that means the battle SHOULD be over
+				assertionFailure()
+			}
+			
+			chooseAttack(targets.randomElement!)
+			return true
+		}
+		return false
+	}
+	
+	func aiAction()
+	{
+		let specialFirst = arc4random_uniform(100) < 30
+		
+		if specialFirst
+		{
+			if !aiTrySpecial()
+			{
+				if !aiTryEngagement()
+				{
+					//skip turn
+					actionOver()
+				}
+			}
+		}
+		else
+		{
+			if !aiTryEngagement()
+			{
+				if !aiTrySpecial()
+				{
+					//skip turn
+					actionOver()
+				}
+			}
+		}
+	}
+	
+	func chooseAttack(target:Creature) -> Bool
+	{
+		if attackAnimStateSet == nil
+		{
+			if let attack = activeCreature.activeAttack
+			{
+				canCounter = false
+				if !target.canBeTargetedWith(attack, by: activeCreature)
+				{
+					return false
+				}
+			}
+			else if let weapon = activeCreature.activeWeapon
+			{
+				canCounter = true
+				//TODO: check if you have enough ammo, and return false if you don't
+				
+				if target.player == activeCreature.player || target.dead
+				{
+					//no, you can't shoot your allies, nor can you shoot corpses
+					return false
+				}
+			}
+			else
+			{
+				assertionFailure()
+			}
+			
 			attackTarget = target
-			canCounter = true //TODO: only set to false if it's not an engagement
 			
 			setAASS()
+			return true
 		}
+		return false
 	}
 	
 	private func setAASS()

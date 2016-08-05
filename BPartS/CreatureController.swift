@@ -771,38 +771,42 @@ class CreatureController
 			}
 		}
 		
-		if possibleHits.count > 0
+		if possibleHits.count == 0
 		{
-			if let weaponLimb = weaponLimb
+			//just get their torso, if they have no targetable limbs at all
+			possibleHits.append(toController.limbs["torso"]!)
+		}
+		
+		
+		if let weaponLimb = weaponLimb
+		{
+			//find the muzzle position on it
+			if let muzzleX = weapon.muzzleX, let muzzleY = weapon.muzzleY, let effectColor = weapon.effectColor
 			{
-				//find the muzzle position on it
-				if let muzzleX = weapon.muzzleX, let muzzleY = weapon.muzzleY, let effectColor = weapon.effectColor
-				{
-					//find which limb you hit
-					let pick = possibleHits.randomElement!
-					
-					//translate the point into the weapon limb's coordinate space
-					let muzzlePoint = weaponLimb.transformPoint(CGPoint(x: CGFloat(muzzleX - weaponLimb.centerX) + weaponLimb.spriteNode.position.x, y: CGFloat(muzzleY - weaponLimb.centerY) + weaponLimb.spriteNode.position.y))
-					
-					//find the center of the limb you hit
-					let hitRect = pick.hitRect
-					let hitPoint = CGPoint(x: pick.hitRect.midX, y: pick.hitRect.midY)
-					
-					//translate both points to the parent coordinate space
-					let muzzlePointFinal = flipNode.convertPoint(muzzlePoint, toNode: creatureNode.parent!)
-					let hitPointFinal = toController.flipNode.convertPoint(hitPoint, toNode: toController.creatureNode.parent!)
-					
-					//make the path
-					let path = CGPathCreateMutable()
-					CGPathMoveToPoint(path, nil, muzzlePointFinal.x, muzzlePointFinal.y)
-					CGPathAddLineToPoint(path, nil, hitPointFinal.x, hitPointFinal.y)
-					
-					let line = SKShapeNode(path: path)
-					line.strokeColor = effectColor
-					return line
-				}
-				return nil
+				//find which limb you hit
+				let pick = possibleHits.randomElement!
+				
+				//translate the point into the weapon limb's coordinate space
+				let muzzlePoint = weaponLimb.transformPoint(CGPoint(x: CGFloat(muzzleX - weaponLimb.centerX) + weaponLimb.spriteNode.position.x, y: CGFloat(muzzleY - weaponLimb.centerY) + weaponLimb.spriteNode.position.y))
+				
+				//find the center of the limb you hit
+				let hitRect = pick.hitRect
+				let hitPoint = CGPoint(x: hitRect.midX, y: hitRect.midY)
+				
+				//translate both points to the parent coordinate space
+				let muzzlePointFinal = flipNode.convertPoint(muzzlePoint, toNode: creatureNode.parent!)
+				let hitPointFinal = toController.flipNode.convertPoint(hitPoint, toNode: toController.creatureNode.parent!)
+				
+				//make the path
+				let path = CGPathCreateMutable()
+				CGPathMoveToPoint(path, nil, muzzlePointFinal.x, muzzlePointFinal.y)
+				CGPathAddLineToPoint(path, nil, hitPointFinal.x, hitPointFinal.y)
+				
+				let line = SKShapeNode(path: path)
+				line.strokeColor = effectColor
+				return line
 			}
+			return nil
 		}
 		
 		assertionFailure()

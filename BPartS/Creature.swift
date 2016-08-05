@@ -30,6 +30,36 @@ struct AttackAnimState
 	let pow:Bool
 }
 
+class Special
+{
+	let type:String
+	
+	init(type:String)
+	{
+		self.type = type
+	}
+	
+	var animation:String?
+	{
+		return DataStore.getString("Specials", type, "animation")
+	}
+	
+	var damage:Int
+	{
+		return DataStore.getInt("Specials", type, "damage") ?? 0
+	}
+	
+	var accuracyBonus:Int
+	{
+		return DataStore.getInt("Specials", type, "accuracy bonus")!
+	}
+	
+	var hitLimb:String?
+	{
+		return DataStore.getString("Specials", type, "hit limb")
+	}
+}
+
 class Weapon
 {
 	let type:String
@@ -174,8 +204,10 @@ let baseDefendChance = 50
 class Creature
 {
 	//identity
+	let player:Bool
 	let race:String
 	var limbs = [String : CreatureLimb]()
+	var specials = [Special]()
 	
 	//variables
 	var health:Int
@@ -188,7 +220,7 @@ class Creature
 	var endurance:Int
 	
 	//attack variables
-	var activeAttack:String?
+	var activeAttack:Special?
 	var activeWeapon:Weapon?
 	var shotNumber:Int = 0
 	var shotHit:Bool = false
@@ -224,8 +256,9 @@ class Creature
 		return dC
 	}
 	
-	init(race:String)
+	init(race:String, player:Bool)
 	{
+		self.player = player
 		self.race = race
 		self.health = 0
 		self.action = false
@@ -260,6 +293,7 @@ class Creature
 		limbs["left arm"]?.weapon = Weapon(type: "knife", level: 1)
 		limbs["upper left arm"]?.weapon = Weapon(type: "knife", level: 1)
 		limbs["lower left arm"]?.weapon = Weapon(type: "knuckle", level: 1)
+		specials.append(Special(type: "lightning drive"))
 		
 		//fill up health
 		self.health = maxHealth
@@ -298,7 +332,7 @@ class Creature
 		action = true
 	}
 	
-	func pickAttack(attack:String)
+	func pickAttack(attack:Special)
 	{
 		action = false
 		activeAttack = attack
@@ -325,10 +359,9 @@ class Creature
 		
 		if let activeAttack = activeAttack
 		{
-			//TODO: get the actual data values for the special attack
-			let baseDamage = 100
-			let hitLimb = "torso"
-			let accuracyBonus = 0
+			let baseDamage = activeAttack.damage
+			let hitLimb = activeAttack.hitLimb
+			let accuracyBonus = activeAttack.accuracyBonus
 			
 			let damage = Int(CGFloat(baseDamage) * (1 + biggerLevelFactor * CGFloat(intellect - baseStat)))
 			return target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, initialHit: shotNumber == 1)
@@ -355,6 +388,86 @@ class Creature
 		return (0, limbs.first!.1)
 	}
 	
+	func canBeTargetedWith(special:Special, by:Creature) -> Bool
+	{
+		if false //TODO: if this is a self-targeting special
+		{
+			if !(by === self)
+			{
+				return false
+			}
+		}
+		else if false //TODO: if this is an ally-targeting attack
+		{
+			if player != by.player
+			{
+				return false
+			}
+		}
+		else
+		{
+			if player == by.player
+			{
+				return false
+			}
+		}
+		
+		//TODO: maybe healing abilities should be able to target dead people?
+		//can't target dead people
+		if self.dead
+		{
+			return false
+		}
+		
+		
+		if let animation = special.animation
+		{
+			let frames = DataStore.getArray("Animations", animation, "frames") as! [[String : AnyObject]]
+			let states = DataStore.getString("Races", race, "states")!
+			for frame in frames
+			{
+				if let myFrame = frame["their frame"] as? String
+				{
+					if DataStore.getDictionary("BodyStates", states, myFrame) == nil
+					{
+						//you don't have that body state!
+						return false
+					}
+				}
+			}
+		}
+		return true
+	}
+	
+	var validSpecials:[Special]
+	{
+		var s = [Special]()
+		for special in specials
+		{
+			//do you have the body parts required to use this special?
+			var valid = true
+			if let animation = special.animation
+			{
+				let requiredLimbs = DataStore.getArray("Animations", animation, "required limbs") as! [String]
+				for limb in requiredLimbs
+				{
+					if self.limbs[limb] == nil || self.limbs[limb]!.broken
+					{
+						valid = false
+						break
+					}
+				}
+				
+			}
+			
+			if valid
+			{
+				s.append(special)
+			}
+		}
+		return s
+	}
+	
 	var validWeapons:[Weapon]
 	{
 		var w = [Weapon]()
@@ -371,7 +484,7 @@ class Creature
 		return w
 	}
 	
-	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String, initialHit:Bool) -> (Int, CreatureLimb)
+	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String?, initialHit:Bool) -> (Int, CreatureLimb)
 	{
 		//the entire attack either hits or misses, just to make the animations tidier
 		let defended:Bool
@@ -387,59 +500,62 @@ class Creature
 		}
 		
 		//take strain
-		var limbsCanHit = [CreatureLimb]()
-		var limbsCouldHit = [CreatureLimb]()
-		for limb in limbs.values
-		{
-			if limb.type == hitLimb
-			{
-				if !limb.broken
-				{
-					limbsCanHit.append(limb)
-				}
-				limbsCouldHit.append(limb)
-			}
-		}
-		
 		var critical:Bool = false
-		var hitLimb:CreatureLimb = limbs["torso"]!
-		if limbsCanHit.count == 0 && limbsCouldHit.count > 0
+		var displayLimb:CreatureLimb = limbs["torso"]!
+		if let hitLimb = hitLimb
 		{
-			//it's a critical hit!
-			//"target" a totally random limb that you could have hit, and do double damage
-			//no, you don't get critical hits by shooting a body part the enemy never had to begin with
-			hitLimb = limbsCouldHit.randomElement!
-			critical = true
-		}
-		if limbsCanHit.count > 0 && initialHit	//inflictStain is so that multi-hit attacks don't inflict multiple strain
-		{
-			let pick = limbsCanHit.randomElement!
-			hitLimb = pick
-			
-			//apply strain to that limb
-			pick.strain += 1
-			
-			if pick.broken
+			var limbsCanHit = [CreatureLimb]()
+			var limbsCouldHit = [CreatureLimb]()
+			for limb in limbs.values
 			{
-				//some armors turn into other armors when broken, instead of just turning into nil
-				if let armor = pick.armor, let breaksInto = DataStore.getString("Armors", armor, "breaks into")
+				if limb.type == hitLimb
 				{
-					pick.armor = breaksInto
-				}
-				else
-				{
-					pick.armor = nil
-				}
-				
-				//raise the limb's strain to 9999 to ensure it will still be broken when replaced (in case the broken state is better I guess?)
-				pick.strain = 9999
-				
-				//check to see if your active weapon's hand was destroyed
-				if activeWeapon != nil
-				{
-					if !weaponInValidLimb(activeWeapon!)
+					if !limb.broken
 					{
-						pickActiveWeapon()
+						limbsCanHit.append(limb)
+					}
+					limbsCouldHit.append(limb)
+				}
+			}
+			
+			if limbsCanHit.count == 0 && limbsCouldHit.count > 0
+			{
+				//it's a critical hit!
+				//"target" a totally random limb that you could have hit, and do double damage
+				//no, you don't get critical hits by shooting a body part the enemy never had to begin with
+				displayLimb = limbsCouldHit.randomElement!
+				critical = true
+			}
+			if limbsCanHit.count > 0 && initialHit	//inflictStain is so that multi-hit attacks don't inflict multiple strain
+			{
+				let pick = limbsCanHit.randomElement!
+				displayLimb = pick
+				
+				//apply strain to that limb
+				pick.strain += 1
+				
+				if pick.broken
+				{
+					//some armors turn into other armors when broken, instead of just turning into nil
+					if let armor = pick.armor, let breaksInto = DataStore.getString("Armors", armor, "breaks into")
+					{
+						pick.armor = breaksInto
+					}
+					else
+					{
+						pick.armor = nil
+					}
+					
+					//raise the limb's strain to 9999 to ensure it will still be broken when replaced (in case the broken state is better I guess?)
+					pick.strain = 9999
+					
+					//check to see if your active weapon's hand was destroyed
+					if activeWeapon != nil
+					{
+						if !weaponInValidLimb(activeWeapon!)
+						{
+							pickActiveWeapon()
+						}
 					}
 				}
 			}
@@ -465,7 +581,7 @@ class Creature
 		//just in case, adjust health to max health, because if a limb is broken your max health might be different not
 		health = min(maxHealth, health)
 		
-		return (displayDamage, hitLimb)
+		return (displayDamage, displayLimb)
 	}
 	
 	private func weaponInValidLimb(weapon:Weapon) -> Bool
@@ -492,7 +608,14 @@ class Creature
 		var anim:String
 		if let activeAttack = activeAttack
 		{
-			anim = "" //TODO: get the animation for that attack
+			if let animation = activeAttack.animation
+			{
+				anim = animation
+			}
+			else
+			{
+				return nil
+			}
 		}
 		else if let activeWeapon = activeWeapon
 		{
