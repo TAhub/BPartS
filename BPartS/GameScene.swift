@@ -14,6 +14,22 @@ let selectDistance:CGFloat = 75
 let textDistance:CGFloat = 150
 let textTime:Double = 0.75
 
+class UILabelNode:SKLabelNode
+{
+	var weapon:Weapon?
+	//TODO: attack
+	
+	init(text:String)
+	{
+		super.init()
+		self.text = text
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+}
+
 class GameScene: SKScene, GameDelegate
 {
 	private var lastTime:NSTimeInterval?
@@ -21,6 +37,7 @@ class GameScene: SKScene, GameDelegate
 	var game:Game!
 	var lastPow:Int = 0
 	var flipNode:SKNode!
+	var attackSelectNode:SKNode?
 	
 	private func controllerFor(creature:Creature) -> CreatureController
 	{
@@ -36,6 +53,13 @@ class GameScene: SKScene, GameDelegate
 	}
 	override func update(currentTime: NSTimeInterval)
 	{
+		//should you regenerate the attack select node?
+		if attackSelectNode == nil && game.playersActive && game.attackAnimStateSet == nil
+		{
+			generateAttackSelect()
+		}
+		
+		
 		if let lastTime = lastTime
 		{
 			let elapsed = CGFloat(currentTime - lastTime)
@@ -104,8 +128,24 @@ class GameScene: SKScene, GameDelegate
 			return
 		}
 		
-		
 		let touch = touches.first!
+		
+		let buttonPosition = touch.locationInNode(self)
+		if let node = self.nodeAtPoint(buttonPosition) as? UILabelNode, let attackSelectNode = attackSelectNode
+		{
+			//is it a direct child of attackSelectNode?
+			if node.parent === attackSelectNode
+			{
+				print("Selected \(node.text!)")
+				if let weapon = node.weapon
+				{
+					game.activeCreature.pickEngagement(weapon)
+					generateAttackSelect()
+				}
+				return
+			}
+		}
+		
 		let location = touch.locationInNode(flipNode)
 		
 		//find the closest enemy
@@ -129,6 +169,49 @@ class GameScene: SKScene, GameDelegate
 		{
 			print("Targeted a \(closestPlayer ? "player" : "enemy")!")
 			game.chooseAttack(closest)
+			
+			//remove the attack select node
+			attackSelectNode?.removeFromParent()
+			attackSelectNode = nil
+		}
+	}
+	
+	private func generateAttackSelect()
+	{
+		//remove the attack select node if it exists
+		self.attackSelectNode?.removeFromParent()
+		self.attackSelectNode = nil
+		
+		let attackSelectNode = SKNode()
+		self.attackSelectNode = attackSelectNode
+		self.addChild(attackSelectNode)
+		
+		
+		let startHeight:CGFloat = 420
+		
+		var heightAt:CGFloat = 0
+		func addNode(text: String, weapon:Weapon?)
+		{
+			let node = UILabelNode(text: text)
+			attackSelectNode.addChild(node)
+			node.position = CGPoint(x: node.frame.size.width / 2, y: heightAt - node.frame.size.height / 2)
+			heightAt -= node.frame.size.height
+			
+			var selected:Bool = false
+			if let weapon = weapon
+			{
+				node.weapon = weapon
+				selected = game.activeCreature.activeWeapon != nil && weapon === game.activeCreature.activeWeapon!
+			}
+			
+			node.fontColor = selected ? UIColor.whiteColor() : UIColor.lightGrayColor()
+		}
+		
+		heightAt = startHeight
+		addNode("WEAPONS", weapon: nil)
+		for weapon in game.activeCreature.validWeapons
+		{
+			addNode(weapon.battleName, weapon: weapon)
 		}
 	}
 	

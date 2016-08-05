@@ -138,6 +138,16 @@ class Game
 		if activeCreature.dead || !activeCreature.action
 		{
 			actionOver()
+			return
+		}
+		
+		if playersActive
+		{
+			//select a weapon in the beginning
+			if let activeWeapon = activeCreature.activeWeapon
+			{
+				activeCreature.pickEngagement(activeWeapon)
+			}
 		}
 	}
 	
@@ -168,6 +178,11 @@ class Game
 		//choosing WHICH weapon to use (and not using any weapons if it has none!)
 		//etc
 		
+		//pick a random weapon for now
+		let w = activeCreature.validWeapons
+		let pick = w[Int(arc4random_uniform(UInt32(w.count)))]
+		activeCreature.pickEngagement(pick)
+		
 		var targets = [Creature]()
 		for player in players
 		{
@@ -183,20 +198,15 @@ class Game
 			assertionFailure()
 		}
 		
-		let pick = targets[Int(arc4random_uniform(UInt32(players.count)))]
+		let pickTwo = targets[Int(arc4random_uniform(UInt32(players.count)))]
 		
-		chooseAttack(pick)
+		chooseAttack(pickTwo)
 	}
 	
 	func chooseAttack(target:Creature)
 	{
 		if attackAnimStateSet == nil && !target.dead
 		{
-			//TODO: tell the player what the active attack is, instead of just picking something at random
-			
-			let w = activeCreature.validWeapons
-			let pick = w[Int(arc4random_uniform(UInt32(w.count)))]
-			activeCreature.pickEngagement(pick)
 			attackTarget = target
 			canCounter = true //TODO: only set to false if it's not an engagement
 			
