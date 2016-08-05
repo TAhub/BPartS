@@ -58,12 +58,26 @@ class Special
 	{
 		return DataStore.getInt("Specials", type, "damage") ?? 0
 	}
-	
+	var numShots:Int
+	{
+		return DataStore.getInt("Specials", type, "shots")!
+	}
+	var stun:Bool
+	{
+		return DataStore.getBool("Specials", type, "stun")
+	}
+	var healthCost:Int?
+	{
+		return DataStore.getInt("Specials", type, "health cost")
+	}
+	var doubleHealthCostVsHulks:Bool
+	{
+		return DataStore.getBool("Specials", type, "double health cost vs hulks")
+	}
 	var accuracyBonus:Int
 	{
 		return DataStore.getInt("Specials", type, "accuracy bonus")!
 	}
-	
 	var hitLimb:String?
 	{
 		return DataStore.getString("Specials", type, "hit limb")
@@ -308,6 +322,8 @@ class Creature
 		limbs["upper left arm"]?.weapon = Weapon(type: "knife", level: 1)
 		limbs["lower left arm"]?.weapon = Weapon(type: "knuckle", level: 1)
 		specials.append(Special(type: "lightning drive"))
+		specials.append(Special(type: "flame drive"))
+		specials.append(Special(type: "grapple"))
 		
 		//fill up health
 		self.health = maxHealth
@@ -373,11 +389,31 @@ class Creature
 		
 		if let activeAttack = activeAttack
 		{
+			//pay costs
+			if let healthCost = activeAttack.healthCost
+			{
+				var finalCost = healthCost * maxHealth / 100
+				if activeAttack.doubleHealthCostVsHulks && false //TODO: if they're a hulk
+				{
+					finalCost *= 2
+				}
+				health = max(0, health - finalCost)
+			}
+			
+			
+			//special effects
+			if activeAttack.stun
+			{
+				target.action = false
+			}
+			
+			
 			let baseDamage = activeAttack.damage
 			let hitLimb = activeAttack.hitLimb
 			let accuracyBonus = activeAttack.accuracyBonus
+			let numShots = activeAttack.numShots
 			
-			let damage = Int(CGFloat(baseDamage) * (1 + biggerLevelFactor * CGFloat(intellect - baseStat)))
+			let damage = Int(CGFloat(baseDamage) * (1 + biggerLevelFactor * CGFloat(intellect - baseStat))) / numShots
 			return target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, initialHit: shotNumber == 1)
 		}
 		else if let activeWeapon = activeWeapon

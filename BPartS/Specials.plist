@@ -18,6 +18,7 @@
 		<key>damage</key> <integer>50</integer>
 		<key>accuracy bonus</key> <integer>25</integer>
 		<key>shots</key> <integer>1</integer>
+		<!-- costs -->
 		<!-- animation data -->
 		<key>animation</key> <string>one drive</string>
 		<key>effect from morph limb</key> <string>left hand</string>
@@ -33,10 +34,27 @@
 		<key>damage</key> <integer>55</integer>
 		<key>accuracy bonus</key> <integer>25</integer>
 		<key>shots</key> <integer>3</integer>
+		<!-- costs -->
 		<!-- animation data -->
 		<key>animation</key> <string>three drive</string>
 		<key>effect from morph limb</key> <string>left hand</string>
 		<key>effect color</key> <string>red</string>
+	</dict>
+	
+	<!-- a special that uses up the enemy's action, and does a little damage; it costs health though -->
+	<!-- use your four arms to grab the hell out of them -->
+	<key>grapple</key>
+	<dict>
+		<!-- stats -->
+		<key>stun</key> <true/>
+		<key>damage</key> <integer>20</integer>
+		<key>accuracy bonus</key> <integer>100</integer>
+		<key>shots</key> <integer>1</integer>
+		<!-- costs -->
+		<key>health cost</key> <integer>17</integer>
+		<key>double health cost vs hulks</key> <true/>
+		<!-- animation data -->
+		<key>animation</key> <string>grapple</string>
 	</dict>
 </dict>
 </plist>

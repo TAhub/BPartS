@@ -130,6 +130,7 @@ class BodyLimb
 	let connectY:Int
 	let creatureLimb:CreatureLimb?
 	let weaponLimb:Bool
+	var invisible:Bool
 	
 	//animation variables
 	var rotateFrom:CGFloat = 0
@@ -166,7 +167,7 @@ class BodyLimb
 		connectX = intWithName("connect x")!
 		connectY = intWithName("connect y")!
 		
-		var invisible:Bool = true
+		invisible = true
 		if weaponLimb
 		{
 			if !(creatureLimb?.broken ?? true)
@@ -551,15 +552,16 @@ class CreatureController
 		
 		if lastBS != nil
 		{
-			animationLength = length
+			animationLength = length // * 10
 			animationProgress = 0
 		}
-		holdLength = hold
+		holdLength = hold // * 10
 		holdProgress = 0
 		
 		//reset flags
 		stopUndulation = false
 		vibrate = false
+		var hideWeapons = false
 		
 		//set up the animation variables
 		for limb in limbs.values
@@ -597,12 +599,22 @@ class CreatureController
 			{
 			case "stop undulation": stopUndulation = true
 			case "vibrate": vibrate = true
+			case "hide weapons": hideWeapons = true
 			case "base pose": break
 			default:
 				if let limb = limbs[limbName]
 				{
 					limb.rotateTo = CGFloat(M_PI) * CGFloat(degreeNumber.floatValue) / 180
 				}
+			}
+		}
+		
+		//hide weapons based on the hideWeapon variable
+		for limb in limbs.values
+		{
+			if limb.weaponLimb && !limb.invisible
+			{
+				limb.spriteNode.hidden = hideWeapons
 			}
 		}
 		
@@ -754,7 +766,7 @@ class CreatureController
 		var possibleHits = [BodyLimb]()
 		for limb in toController.limbs.values
 		{
-			if !limb.weaponLimb && !limb.spriteNode.hidden && limb.creatureLimb != nil && limb.creatureLimb! === toLimb
+			if !limb.weaponLimb && !limb.invisible && limb.creatureLimb != nil && limb.creatureLimb! === toLimb
 			{
 				possibleHits.append(limb)
 			}

@@ -17,9 +17,43 @@
 	
 	<!-- specials -->
 	
+	<key>grapple</key>
+	<dict>
+		<key>required limbs</key>
+		<array>
+			<string>upper left arm</string>
+			<string>lower left arm</string>
+			<string>upper right arm</string>
+			<string>lower right arm</string>
+		</array>
+		<key>frames</key>
+		<array>
+			<dict>
+				<key>my frame</key> <string>grapple</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.3</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>grapple grab</string>
+				<key>enter time</key> <real>0.1</real>
+				<key>hold time</key> <real>0.125</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>grapple grab</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.15</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>grapple grab</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.15</real>
+			</dict>
+		</array>
+	</dict>
+	
 	<!-- "drive" specials require both arms to use -->
-	<!-- TODO: make these "drive" animations look like you are pressing a button on a wrist-computer on the left hand -->
-	<!-- TODO: so that when I add the engineer's multitool arm, it will be pressing a button on that arm -->
 	<key>one drive</key>
 	<dict>
 		<key>required limbs</key>
@@ -30,19 +64,24 @@
 		<key>frames</key>
 		<array>
 			<dict>
-				<key>my frame</key> <string>left gun</string>
+				<key>my frame</key> <string>drive</string>
 				<key>enter time</key> <real>0.15</real>
 				<key>hold time</key> <real>0.3</real>
 			</dict>
 			<dict>
-				<key>my frame</key> <string>left gun shoot</string>
+				<key>my frame</key> <string>drive press</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.05</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>drive press</string>
 				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.05</real>
 				<key>hold time</key> <real>0.125</real>
 				<key>pow</key> <true/>
 			</dict>
 			<dict>
-				<key>my frame</key> <string>left gun</string>
+				<key>my frame</key> <string>drive</string>
 				<key>enter time</key> <real>0.05</real>
 				<key>hold time</key> <real>0.1</real>
 			</dict>
@@ -58,38 +97,58 @@
 		<key>frames</key>
 		<array>
 			<dict>
-				<key>my frame</key> <string>left gun</string>
+				<key>my frame</key> <string>drive</string>
 				<key>enter time</key> <real>0.15</real>
 				<key>hold time</key> <real>0.3</real>
 			</dict>
 			<dict>
-				<key>my frame</key> <string>left gun shoot</string>
+				<key>my frame</key> <string>drive press</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.05</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>drive press</string>
 				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.05</real>
 				<key>hold time</key> <real>0.125</real>
 				<key>pow</key> <true/>
 			</dict>
 			<dict>
-				<key>my frame</key> <string>left gun shoot</string>
-				<key>their frame</key> <string>flinch</string>
-				<key>enter time</key> <real>0.05</real>
-				<key>hold time</key> <real>0.125</real>
-				<key>pow</key> <true/>
-			</dict>
-			<dict>
-				<key>my frame</key> <string>left gun</string>
+				<key>my frame</key> <string>drive</string>
 				<key>enter time</key> <real>0.05</real>
 				<key>hold time</key> <real>0.1</real>
 			</dict>
 			<dict>
-				<key>my frame</key> <string>left gun shoot</string>
+				<key>my frame</key> <string>drive press</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.05</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>drive press</string>
 				<key>their frame</key> <string>flinch</string>
 				<key>enter time</key> <real>0.05</real>
 				<key>hold time</key> <real>0.125</real>
 				<key>pow</key> <true/>
 			</dict>
 			<dict>
-				<key>my frame</key> <string>left gun</string>
+				<key>my frame</key> <string>drive</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.1</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>drive press</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.05</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>drive press</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.05</real>
+				<key>hold time</key> <real>0.125</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>drive</string>
 				<key>enter time</key> <real>0.05</real>
 				<key>hold time</key> <real>0.1</real>
 			</dict>

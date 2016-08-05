@@ -526,5 +526,7 @@
 			</dict>
 		</dict>
 	</dict>
+	
+	<!-- TODO: "multitool" arm; unique arm for engineers, equivalent to light robo, but it has a wrist-computer on the left forearm; no unequip, breaks into itself -->
 </dict>
 </plist>

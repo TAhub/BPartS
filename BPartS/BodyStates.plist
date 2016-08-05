@@ -72,6 +72,30 @@
 			<!-- angles -->
 		</dict>
 		
+		<key>drive</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<key>hide weapons</key> <integer>0</integer>
+			<!-- angles -->
+			<key>left arm</key> <integer>-45</integer>
+			<key>left forearm</key> <integer>-45</integer>
+			<key>right arm</key> <integer>-180</integer>
+			<key>right forearm</key> <integer>140</integer>
+		</dict>
+		
+		<key>drive press</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<key>hide weapons</key> <integer>0</integer>
+			<!-- angles -->
+			<key>left arm</key> <integer>-45</integer>
+			<key>left forearm</key> <integer>-50</integer>
+			<key>right arm</key> <integer>-170</integer>
+			<key>right forearm</key> <integer>160</integer>
+		</dict>
+		
 		<key>left neutral</key>
 		<dict>
 			<!-- flags -->
@@ -475,6 +499,38 @@
 			<!-- angles -->
 			<key>lower right arm</key> <integer>-80</integer>
 			<key>lower right forearm</key> <integer>-50</integer>
+		</dict>
+		
+		<key>grapple</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<key>hide weapons</key> <integer>0</integer>
+			<!-- angles -->
+			<key>upper left arm</key> <integer>130</integer>
+			<key>upper left forearm</key> <integer>140</integer>
+			<key>lower left arm</key> <integer>50</integer>
+			<key>lower left forearm</key> <integer>230</integer>
+			<key>upper right arm</key> <integer>130</integer>
+			<key>upper right forearm</key> <integer>140</integer>
+			<key>lower right arm</key> <integer>50</integer>
+			<key>lower right forearm</key> <integer>230</integer>
+		</dict>
+		
+		<key>grapple grab</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<key>hide weapons</key> <integer>0</integer>
+			<!-- angles -->
+			<key>upper left arm</key> <integer>-150</integer>
+			<key>upper left forearm</key> <integer>90</integer>
+			<key>lower left arm</key> <integer>-30</integer>
+			<key>lower left forearm</key> <integer>-90</integer>
+			<key>upper right arm</key> <integer>-150</integer>
+			<key>upper right forearm</key> <integer>90</integer>
+			<key>lower right arm</key> <integer>-30</integer>
+			<key>lower right forearm</key> <integer>-90</integer>
 		</dict>
 		
 		<key>upper right gun</key>
