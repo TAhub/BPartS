@@ -748,19 +748,8 @@ class CreatureController
 		return CGRect(x: minX, y: minY, width: maxX-minX, height: maxY-minY)
 	}
 	
-	func makeEffectForWeapon(weapon:Weapon, toController:CreatureController, toLimb:CreatureLimb) -> SKShapeNode?
+	private func makeEffect(muzzleX muzzleX:Int, muzzleY:Int, effectColor:UIColor, limb:BodyLimb, toController:CreatureController, toLimb:CreatureLimb) -> SKShapeNode?
 	{
-		//find out which body-part holds that weapon
-		var weaponLimb:BodyLimb?
-		for limb in limbs.values
-		{
-			if limb.weaponLimb && limb.creatureLimb != nil && limb.creatureLimb!.weapon != nil && limb.creatureLimb!.weapon! === weapon
-			{
-				weaponLimb = limb
-				break
-			}
-		}
-		
 		//find non-invisible, non-weapon body parts on the target to hit
 		var possibleHits = [BodyLimb]()
 		for limb in toController.limbs.values
@@ -777,34 +766,57 @@ class CreatureController
 			possibleHits.append(toController.limbs["torso"]!)
 		}
 		
+		//find which limb you hit
+		let pick = possibleHits.randomElement!
+		
+		//translate the point into the weapon limb's coordinate space
+		let muzzlePoint = limb.transformPoint(CGPoint(x: CGFloat(muzzleX - limb.centerX) + limb.spriteNode.position.x, y: CGFloat(muzzleY - limb.centerY) + limb.spriteNode.position.y))
+		
+		//find the center of the limb you hit
+		let hitRect = pick.hitRect
+		let hitPoint = CGPoint(x: hitRect.midX, y: hitRect.midY)
+		
+		//translate both points to the parent coordinate space
+		let muzzlePointFinal = flipNode.convertPoint(muzzlePoint, toNode: creatureNode.parent!)
+		let hitPointFinal = toController.flipNode.convertPoint(hitPoint, toNode: toController.creatureNode.parent!)
+		
+		//make the path
+		let path = CGPathCreateMutable()
+		CGPathMoveToPoint(path, nil, muzzlePointFinal.x, muzzlePointFinal.y)
+		CGPathAddLineToPoint(path, nil, hitPointFinal.x, hitPointFinal.y)
+		
+		let line = SKShapeNode(path: path)
+		line.strokeColor = effectColor
+		return line
+	}
+	
+	func makeEffectForSpecial(special:Special, toController:CreatureController, toLimb:CreatureLimb) -> SKShapeNode?
+	{
+		if let limbName = special.effectFromMorphLimb, let limb = limbs[limbName], let effectColor = special.effectColor
+		{
+			return makeEffect(muzzleX: limb.centerX, muzzleY: limb.centerY, effectColor: effectColor, limb: limb, toController: toController, toLimb: toLimb)
+		}
+		return nil
+	}
+	
+	func makeEffectForWeapon(weapon:Weapon, toController:CreatureController, toLimb:CreatureLimb) -> SKShapeNode?
+	{
+		//find out which body-part holds that weapon
+		var weaponLimb:BodyLimb?
+		for limb in limbs.values
+		{
+			if limb.weaponLimb && limb.creatureLimb != nil && limb.creatureLimb!.weapon != nil && limb.creatureLimb!.weapon! === weapon
+			{
+				weaponLimb = limb
+				break
+			}
+		}
 		
 		if let weaponLimb = weaponLimb
 		{
-			//find the muzzle position on it
 			if let muzzleX = weapon.muzzleX, let muzzleY = weapon.muzzleY, let effectColor = weapon.effectColor
 			{
-				//find which limb you hit
-				let pick = possibleHits.randomElement!
-				
-				//translate the point into the weapon limb's coordinate space
-				let muzzlePoint = weaponLimb.transformPoint(CGPoint(x: CGFloat(muzzleX - weaponLimb.centerX) + weaponLimb.spriteNode.position.x, y: CGFloat(muzzleY - weaponLimb.centerY) + weaponLimb.spriteNode.position.y))
-				
-				//find the center of the limb you hit
-				let hitRect = pick.hitRect
-				let hitPoint = CGPoint(x: hitRect.midX, y: hitRect.midY)
-				
-				//translate both points to the parent coordinate space
-				let muzzlePointFinal = flipNode.convertPoint(muzzlePoint, toNode: creatureNode.parent!)
-				let hitPointFinal = toController.flipNode.convertPoint(hitPoint, toNode: toController.creatureNode.parent!)
-				
-				//make the path
-				let path = CGPathCreateMutable()
-				CGPathMoveToPoint(path, nil, muzzlePointFinal.x, muzzlePointFinal.y)
-				CGPathAddLineToPoint(path, nil, hitPointFinal.x, hitPointFinal.y)
-				
-				let line = SKShapeNode(path: path)
-				line.strokeColor = effectColor
-				return line
+				return makeEffect(muzzleX: muzzleX, muzzleY: muzzleY, effectColor: effectColor, limb: weaponLimb, toController: toController, toLimb: toLimb)
 			}
 			return nil
 		}

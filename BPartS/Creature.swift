@@ -39,11 +39,21 @@ class Special
 		self.type = type
 	}
 	
+	//animation values
 	var animation:String?
 	{
 		return DataStore.getString("Specials", type, "animation")
 	}
+	var effectFromMorphLimb:String?
+	{
+		return DataStore.getString("Specials", type, "effect from morph limb")
+	}
+	var effectColor:UIColor?
+	{
+		return DataStore.getColor("Specials", type, "effect color")
+	}
 	
+	//stat values
 	var damage:Int
 	{
 		return DataStore.getInt("Specials", type, "damage") ?? 0
@@ -82,6 +92,8 @@ class Weapon
 		//this should indicate the level; like "Orric & Sons SMG mk III" or whatever
 		return type
 	}
+	
+	//stat values
 	var damage:Int
 	{
 		return DataStore.getInt("Weapons", type, "damage")!
@@ -98,22 +110,6 @@ class Weapon
 	{
 		return DataStore.getString("Weapons", type, "type")!
 	}
-	var animation:String
-	{
-		return DataStore.getString("Weapons", type, "animation")!
-	}
-	var muzzleX:Int?
-	{
-		return DataStore.getInt("Weapons", type, "muzzle x")
-	}
-	var muzzleY:Int?
-	{
-		return DataStore.getInt("Weapons", type, "muzzle y")
-	}
-	var effectColor:UIColor?
-	{
-		return DataStore.getColor("Weapons", type, "effect color")
-	}
 	var melee:Bool
 	{
 		switch(targetType)
@@ -123,10 +119,6 @@ class Weapon
 			return false
 		default: return true
 		}
-	}
-	var sprite:String
-	{
-		return DataStore.getString("Weapons", type, "sprite")!
 	}
 	var hitLimb:String
 	{
@@ -146,6 +138,28 @@ class Weapon
 		//TODO: return a reasonable amount of weapon stat for this weapon, based on its level
 		//for now I'm just assuming it's half the level
 		return level / 2
+	}
+	
+	//animation values
+	var sprite:String
+	{
+		return DataStore.getString("Weapons", type, "sprite")!
+	}
+	var animation:String
+	{
+		return DataStore.getString("Weapons", type, "animation")!
+	}
+	var muzzleX:Int?
+	{
+		return DataStore.getInt("Weapons", type, "muzzle x")
+	}
+	var muzzleY:Int?
+	{
+		return DataStore.getInt("Weapons", type, "muzzle y")
+	}
+	var effectColor:UIColor?
+	{
+		return DataStore.getColor("Weapons", type, "effect color")
 	}
 }
 

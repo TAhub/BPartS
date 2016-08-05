@@ -271,20 +271,22 @@ class GameScene: SKScene, GameDelegate
 		}
 		
 		//make bullet effect
+		var effect:SKShapeNode?
 		if let special = game.activeCreature.activeAttack
 		{
-			//TODO: make special effect
+			effect = attackerController.makeEffectForSpecial(special, toController: targetController, toLimb: hitLimb)
 		}
 		else if let weapon = game.activeCreature.activeWeapon
 		{
-			if let weaponEffect = attackerController.makeEffectForWeapon(weapon, toController: targetController, toLimb: hitLimb)
+			effect = attackerController.makeEffectForWeapon(weapon, toController: targetController, toLimb: hitLimb)
+		}
+		if let effect = effect
+		{
+			let effectFadeAnim = SKAction.fadeAlphaTo(0.5, duration: effectTime)
+			flipNode.addChild(effect)
+			effect.runAction(effectFadeAnim)
 			{
-				let weaponEffectFadeAnim = SKAction.fadeAlphaTo(0.5, duration: effectTime)
-				flipNode.addChild(weaponEffect)
-				weaponEffect.runAction(weaponEffectFadeAnim)
-				{
-					weaponEffect.removeFromParent()
-				}
+				effect.removeFromParent()
 			}
 		}
 	}

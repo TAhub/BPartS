@@ -10,6 +10,7 @@
 <plist version="1.0">
 <dict>
 	<!-- a special that strikes the enemy at the highest point (IE head) -->
+	<!-- reprogram your multitool to shoot lightning! -->
 	<key>lightning drive</key>
 	<dict>
 		<!-- stats -->
@@ -19,9 +20,12 @@
 		<key>shots</key> <integer>1</integer>
 		<!-- animation data -->
 		<key>animation</key> <string>one drive</string>
+		<key>effect from morph limb</key> <string>left hand</string>
+		<key>effect color</key> <string>yellow</string>
 	</dict>
 	
 	<!-- a special that strikes the enemy at the torso -->
+	<!-- reprogram your multitool to shoot flames! -->
 	<key>flame drive</key>
 	<dict>
 		<!-- stats -->
@@ -31,6 +35,8 @@
 		<key>shots</key> <integer>3</integer>
 		<!-- animation data -->
 		<key>animation</key> <string>three drive</string>
+		<key>effect from morph limb</key> <string>left hand</string>
+		<key>effect color</key> <string>red</string>
 	</dict>
 </dict>
 </plist>

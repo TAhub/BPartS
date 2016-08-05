@@ -18,6 +18,8 @@
 	<!-- specials -->
 	
 	<!-- "drive" specials require both arms to use -->
+	<!-- TODO: make these "drive" animations look like you are pressing a button on a wrist-computer on the left hand -->
+	<!-- TODO: so that when I add the engineer's multitool arm, it will be pressing a button on that arm -->
 	<key>one drive</key>
 	<dict>
 		<key>required limbs</key>
@@ -46,7 +48,6 @@
 			</dict>
 		</array>
 	</dict>
-	
 	<key>three drive</key>
 	<dict>
 		<key>required limbs</key>
