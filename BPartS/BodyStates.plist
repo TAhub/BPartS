@@ -62,20 +62,7 @@
 			<!-- flags -->
 			<key>stop undulation</key> <integer>0</integer>
 			<!-- angles -->
-			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>-90</integer>
-			<key>left arm</key> <integer>0</integer>
-			<key>left forearm</key> <integer>0</integer>
-			<key>left hand</key> <integer>0</integer>
-			<key>right arm</key> <integer>0</integer>
-			<key>right forearm</key> <integer>0</integer>
-			<key>right hand</key> <integer>0</integer>
-			<key>left thigh</key> <integer>0</integer>
-			<key>left calf</key> <integer>0</integer>
-			<key>left foot</key> <integer>0</integer>
-			<key>right thigh</key> <integer>0</integer>
-			<key>right calf</key> <integer>0</integer>
-			<key>right foot</key> <integer>0</integer>
 		</dict>
 		
 		<key>neutral</key>
@@ -378,9 +365,350 @@
 		</dict>
 	</dict>
 	
-	<!-- TODO: grappler body states
-		I can base these off human states, just copying some arm data
-		-->
+	
+    <key>grappler</key>
+	<dict>
+		<!-- base poses -->
+		
+		<!-- combat base pose -->
+		<key>base pose 0</key>
+		<dict>
+			<!-- flags -->
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>upper left arm</key> <integer>10</integer>
+			<key>upper left forearm</key> <integer>-5</integer>
+			<key>upper left hand</key> <integer>0</integer>
+			<key>lower left arm</key> <integer>20</integer>
+			<key>lower left forearm</key> <integer>-5</integer>
+			<key>lower left hand</key> <integer>0</integer>
+			<key>upper right arm</key> <integer>-10</integer>
+			<key>upper right forearm</key> <integer>5</integer>
+			<key>upper right hand</key> <integer>0</integer>
+			<key>lower right arm</key> <integer>-20</integer>
+			<key>lower right forearm</key> <integer>5</integer>
+			<key>lower right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>45</integer>
+			<key>left calf</key> <integer>-25</integer>
+			<key>left foot</key> <integer>-20</integer>
+			<key>right thigh</key> <integer>-45</integer>
+			<key>right calf</key> <integer>25</integer>
+			<key>right foot</key> <integer>20</integer>
+		</dict>
+		
+		<!-- neutral base pose -->
+		<key>base pose 1</key>
+		<dict>
+			<!-- flags -->
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>upper left arm</key> <integer>10</integer>
+			<key>upper left forearm</key> <integer>-15</integer>
+			<key>upper left hand</key> <integer>0</integer>
+			<key>lower left arm</key> <integer>20</integer>
+			<key>lower left forearm</key> <integer>-15</integer>
+			<key>lower left hand</key> <integer>0</integer>
+			<key>upper right arm</key> <integer>-10</integer>
+			<key>upper right forearm</key> <integer>-15</integer>
+			<key>upper right hand</key> <integer>0</integer>
+			<key>lower right arm</key> <integer>-20</integer>
+			<key>lower right forearm</key> <integer>-15</integer>
+			<key>lower right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>15</integer>
+			<key>left calf</key> <integer>-5</integer>
+			<key>left foot</key> <integer>-10</integer>
+			<key>right thigh</key> <integer>-15</integer>
+			<key>right calf</key> <integer>5</integer>
+			<key>right foot</key> <integer>10</integer>
+		</dict>
+		
+		<!-- finalized poses -->
+		
+		<key>disabled</key>
+		<dict>
+			<!-- flags -->
+			<key>stop undulation</key> <integer>0</integer>
+			<!-- angles -->
+			<key>torso</key> <integer>-90</integer>
+		</dict>
+		
+		<key>neutral</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>1</integer>
+			<!-- angles -->
+		</dict>
+		
+		<key>upper left neutral</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>1</integer>
+			<!-- angles -->
+			<key>upper left arm</key> <integer>80</integer>
+			<key>upper left forearm</key> <integer>50</integer>
+		</dict>
+		
+		<key>lower left neutral</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>1</integer>
+			<!-- angles -->
+			<key>lower left arm</key> <integer>80</integer>
+			<key>lower left forearm</key> <integer>50</integer>
+		</dict>
+		
+		<key>upper right neutral</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>1</integer>
+			<!-- angles -->
+			<key>upper right arm</key> <integer>-80</integer>
+			<key>upper right forearm</key> <integer>-50</integer>
+		</dict>
+		
+		<key>lower right neutral</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>1</integer>
+			<!-- angles -->
+			<key>lower right arm</key> <integer>-80</integer>
+			<key>lower right forearm</key> <integer>-50</integer>
+		</dict>
+		
+		<key>upper right gun</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>upper right arm</key> <integer>-90</integer>
+			<key>upper right forearm</key> <integer>0</integer>
+		</dict>
+		
+		<key>lower right gun</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>lower right arm</key> <integer>-90</integer>
+			<key>lower right forearm</key> <integer>0</integer>
+		</dict>
+		
+		<key>upper right gun shoot</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>upper right arm</key> <integer>-90</integer>
+			<key>upper right forearm</key> <integer>-15</integer>
+		</dict>
+		
+		<key>lower right gun shoot</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>lower right arm</key> <integer>-90</integer>
+			<key>lower right forearm</key> <integer>-15</integer>
+		</dict>
+		
+		<key>upper left gun</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>upper left arm</key> <integer>-90</integer>
+			<key>upper left forearm</key> <integer>0</integer>
+		</dict>
+		
+		<key>lower left gun</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>lower left arm</key> <integer>-90</integer>
+			<key>lower left forearm</key> <integer>0</integer>
+		</dict>
+		
+		<key>upper left gun shoot</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>upper left arm</key> <integer>-90</integer>
+			<key>upper left forearm</key> <integer>-15</integer>
+		</dict>
+		
+		<key>lower left gun shoot</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>lower left arm</key> <integer>-90</integer>
+			<key>lower left forearm</key> <integer>-15</integer>
+		</dict>
+		
+		<key>upper left punch</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>upper left arm</key> <integer>80</integer>
+			<key>upper left forearm</key> <integer>-180</integer>
+			<key>upper left hand</key> <integer>0</integer>
+			<key>upper right arm</key> <integer>-75</integer>
+			<key>upper right forearm</key> <integer>0</integer>
+			<key>upper right hand</key> <integer>-20</integer>
+		</dict>
+		
+		<key>lower left punch</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>lower left arm</key> <integer>80</integer>
+			<key>lower left forearm</key> <integer>-180</integer>
+			<key>lower left hand</key> <integer>0</integer>
+			<key>lower right arm</key> <integer>-75</integer>
+			<key>lower right forearm</key> <integer>0</integer>
+			<key>lower right hand</key> <integer>-20</integer>
+		</dict>
+		
+		<key>upper left punch throw</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>upper left arm</key> <integer>-90</integer>
+			<key>upper left forearm</key> <integer>0</integer>
+			<key>upper left hand</key> <integer>0</integer>
+			<key>upper right arm</key> <integer>-45</integer>
+			<key>upper right forearm</key> <integer>-90</integer>
+			<key>upper right hand</key> <integer>0</integer>
+		</dict>
+		
+		<key>lower left punch throw</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>lower left arm</key> <integer>-90</integer>
+			<key>lower left forearm</key> <integer>0</integer>
+			<key>lower left hand</key> <integer>0</integer>
+			<key>lower right arm</key> <integer>-45</integer>
+			<key>lower right forearm</key> <integer>-90</integer>
+			<key>lower right hand</key> <integer>0</integer>
+		</dict>
+		
+		<key>upper right punch</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>upper left arm</key> <integer>-75</integer>
+			<key>upper left forearm</key> <integer>0</integer>
+			<key>upper left hand</key> <integer>-20</integer>
+			<key>upper right arm</key> <integer>80</integer>
+			<key>upper right forearm</key> <integer>-180</integer>
+			<key>upper right hand</key> <integer>0</integer>
+		</dict>
+		
+		<key>lower right punch</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>lower left arm</key> <integer>-75</integer>
+			<key>lower left forearm</key> <integer>0</integer>
+			<key>lower left hand</key> <integer>-20</integer>
+			<key>lower right arm</key> <integer>80</integer>
+			<key>lower right forearm</key> <integer>-180</integer>
+			<key>lower right hand</key> <integer>0</integer>
+		</dict>
+		
+		<key>upper right punch throw</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>upper left arm</key> <integer>-45</integer>
+			<key>upper left forearm</key> <integer>-90</integer>
+			<key>upper left hand</key> <integer>0</integer>
+			<key>upper right arm</key> <integer>-90</integer>
+			<key>upper right forearm</key> <integer>0</integer>
+			<key>upper right hand</key> <integer>0</integer>
+		</dict>
+		
+		<key>lower right punch throw</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>lower left arm</key> <integer>-45</integer>
+			<key>lower left forearm</key> <integer>-90</integer>
+			<key>lower left hand</key> <integer>0</integer>
+			<key>lower right arm</key> <integer>-90</integer>
+			<key>lower right forearm</key> <integer>0</integer>
+			<key>lower right hand</key> <integer>0</integer>
+		</dict>
+		
+		<key>defend</key>
+		<dict>
+			<!-- flags -->
+			<key>stop undulation</key> <integer>0</integer>
+			<key>vibrate</key> <integer>0</integer>
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>-5</integer>
+			<key>upper left arm</key> <integer>-75</integer>
+			<key>upper left forearm</key> <integer>-90</integer>
+			<key>upper left hand</key> <integer>0</integer>
+			<key>lower left arm</key> <integer>-85</integer>
+			<key>lower left forearm</key> <integer>-90</integer>
+			<key>lower left hand</key> <integer>0</integer>
+			<key>upper right arm</key> <integer>-85</integer>
+			<key>upper right forearm</key> <integer>-90</integer>
+			<key>upper right hand</key> <integer>0</integer>
+			<key>lower right arm</key> <integer>-95</integer>
+			<key>lower right forearm</key> <integer>-90</integer>
+			<key>lower right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>50</integer>
+			<key>left calf</key> <integer>-5</integer>
+			<key>left foot</key> <integer>-40</integer>
+			<key>right thigh</key> <integer>-35</integer>
+			<key>right calf</key> <integer>0</integer>
+			<key>right foot</key> <integer>45</integer>
+		</dict>
+		
+		<key>flinch</key>
+		<dict>
+			<!-- flags -->
+			<key>stop undulation</key> <integer>0</integer>
+			<key>vibrate</key> <integer>0</integer>
+			<!-- angles -->
+			<key>head</key> <integer>30</integer>
+			<key>torso</key> <integer>-15</integer>
+			<key>upper left arm</key> <integer>25</integer>
+			<key>upper left forearm</key> <integer>-30</integer>
+			<key>upper left hand</key> <integer>0</integer>
+			<key>lower left arm</key> <integer>35</integer>
+			<key>lower left forearm</key> <integer>-30</integer>
+			<key>lower left hand</key> <integer>0</integer>
+			<key>upper right arm</key> <integer>-55</integer>
+			<key>upper right forearm</key> <integer>-10</integer>
+			<key>upper right hand</key> <integer>0</integer>
+			<key>lower right arm</key> <integer>-65</integer>
+			<key>lower right forearm</key> <integer>-10</integer>
+			<key>lower right hand</key> <integer>0</integer>
+			<key>left thigh</key> <integer>20</integer>
+			<key>left calf</key> <integer>0</integer>
+			<key>left foot</key> <integer>-20</integer>
+			<key>right thigh</key> <integer>-20</integer>
+			<key>right calf</key> <integer>0</integer>
+			<key>right foot</key> <integer>-15</integer>
+		</dict>
+	</dict>
 	
 	<!-- TODO: robot body states
 		I can base these off of human states, just remove the leg data

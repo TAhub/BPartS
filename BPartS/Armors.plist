@@ -35,6 +35,14 @@
 					<key>color name</key> <string>clothing</string>
 				</dict>
 			</dict>
+			<key>grappler</key>
+			<dict>
+				<key>torso armor</key>
+				<dict>
+					<key>sprite name</key> <string>leotard_torso_m</string>
+					<key>color name</key> <string>clothing</string>
+				</dict>
+			</dict>
 			<key>human female</key>
 			<dict>
 				<key>torso armor</key>
@@ -72,6 +80,14 @@
 				<key>front hair</key>
 				<dict>
 					<key>invisible</key> <string></string>
+				</dict>
+			</dict>
+			<key>grappler</key>
+			<dict>
+				<key>head armor</key>
+				<dict>
+					<key>sprite name</key> <string>helmet</string>
+					<key>color name</key> <string>armor</string>
 				</dict>
 			</dict>
 			<key>human female</key>
@@ -116,6 +132,18 @@
 					<key>invisible</key> <string></string>
 				</dict>
 				<key>head</key>
+				<dict>
+					<key>invisible</key> <string></string>
+				</dict>
+			</dict>
+			<key>grappler</key>
+			<dict>
+				<key>head armor</key>
+				<dict>
+					<key>sprite name</key> <string>fullhelmet</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>eye</key>
 				<dict>
 					<key>invisible</key> <string></string>
 				</dict>
@@ -222,6 +250,24 @@
 					<key>color name</key> <string>armor</string>
 				</dict>
 			</dict>
+			<key>grappler</key>
+			<dict>
+				<key>thigh</key>
+				<dict>
+					<key>sprite name</key> <string>human_leg_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>calf</key>
+				<dict>
+					<key>sprite name</key> <string>human_leg_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>foot</key>
+				<dict>
+					<key>sprite name</key> <string>human_foot</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
 			<key>human female</key>
 			<dict>
 				<key>thigh</key>
@@ -267,6 +313,18 @@
 				<dict>
 				</dict>
 			</dict>
+			<key>grappler</key>
+			<dict>
+				<key>thigh</key>
+				<dict>
+				</dict>
+				<key>calf</key>
+				<dict>
+				</dict>
+				<key>foot</key>
+				<dict>
+				</dict>
+			</dict>
 			<key>human female</key>
 			<dict>
 				<key>thigh</key>
@@ -294,6 +352,24 @@
 		<key>appearance by morph</key>
 		<dict>
 			<key>human male</key>
+			<dict>
+				<key>arm</key>
+				<dict>
+					<key>sprite name</key> <string>lightrobo_arm_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>forearm</key>
+				<dict>
+					<key>sprite name</key> <string>lightrobo_arm_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>hand</key>
+				<dict>
+					<key>sprite name</key> <string>human_hand</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
+			<key>grappler</key>
 			<dict>
 				<key>arm</key>
 				<dict>
@@ -361,6 +437,24 @@
 					<key>color name</key> <string>armor</string>
 				</dict>
 			</dict>
+			<key>grappler</key>
+			<dict>
+				<key>arm</key>
+				<dict>
+					<key>sprite name</key> <string>human_arm_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>forearm</key>
+				<dict>
+					<key>sprite name</key> <string>human_arm_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>hand</key>
+				<dict>
+					<key>sprite name</key> <string>human_hand</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
 			<key>human female</key>
 			<dict>
 				<key>arm</key>
@@ -395,6 +489,18 @@
 		<key>appearance by morph</key>
 		<dict>
 			<key>human male</key>
+			<dict>
+				<key>arm</key>
+				<dict>
+				</dict>
+				<key>forearm</key>
+				<dict>
+				</dict>
+				<key>hand</key>
+				<dict>
+				</dict>
+			</dict>
+			<key>grappler</key>
 			<dict>
 				<key>arm</key>
 				<dict>

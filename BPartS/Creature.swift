@@ -219,14 +219,22 @@ class Creature
 		}
 		
 		//stick some temp armor on
-		limbs["torso"]!.armor = "uniform"
-		limbs["right arm"]!.armor = "light robot arm"
-		limbs["left arm"]!.armor = "natural arm"
-		limbs["right leg"]!.armor = "natural leg"
-		limbs["left leg"]!.armor = "heavy robot leg"
 		limbs["head"]!.armor = "helmet"
-		limbs["right arm"]!.weapon = Weapon(type: "smg", level: 1)
-		limbs["left arm"]!.weapon = Weapon(type: "knuckle", level: 1)
+		limbs["torso"]!.armor = "uniform"
+		limbs["right arm"]?.armor = "light robot arm"
+		limbs["upper right arm"]?.armor = "light robot arm"
+		limbs["lower right arm"]?.armor = "light robot arm"
+		limbs["left arm"]?.armor = "natural arm"
+		limbs["upper left arm"]?.armor = "natural arm"
+		limbs["lower left arm"]?.armor = "natural arm"
+		limbs["right leg"]?.armor = "natural leg"
+		limbs["left leg"]?.armor = "heavy robot leg"
+		limbs["right arm"]?.weapon = Weapon(type: "smg", level: 1)
+		limbs["upper right arm"]?.weapon = Weapon(type: "smg", level: 1)
+		limbs["lower right arm"]?.weapon = Weapon(type: "revolver", level: 1)
+		limbs["left arm"]?.weapon = Weapon(type: "knife", level: 1)
+		limbs["upper left arm"]?.weapon = Weapon(type: "knife", level: 1)
+		limbs["lower left arm"]?.weapon = Weapon(type: "knuckle", level: 1)
 		
 		//fill up health
 		self.health = maxHealth

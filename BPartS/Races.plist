@@ -84,5 +84,89 @@
 			</dict>
 		</array>
 	</dict>
+	
+    <key>grappler</key>
+	<dict>
+		<!-- limb data -->
+		<key>limbs</key>
+		<dict>
+			<key>upper left arm</key>
+			<dict>
+				<key>type</key> <string>arm</string>
+				<key>max strain</key> <integer>1</integer>
+				<key>prefix</key> <string>upper left</string>
+			</dict>
+			<key>lower left arm</key>
+			<dict>
+				<key>type</key> <string>arm</string>
+				<key>max strain</key> <integer>1</integer>
+				<key>prefix</key> <string>lower left</string>
+			</dict>
+			<key>upper right arm</key>
+			<dict>
+				<key>type</key> <string>arm</string>
+				<key>max strain</key> <integer>1</integer>
+				<key>prefix</key> <string>upper right</string>
+			</dict>
+			<key>lower right arm</key>
+			<dict>
+				<key>type</key> <string>arm</string>
+				<key>max strain</key> <integer>1</integer>
+				<key>prefix</key> <string>lower right</string>
+			</dict>
+			<key>left leg</key>
+			<dict>
+				<key>type</key> <string>leg</string>
+				<key>max strain</key> <integer>2</integer>
+				<key>prefix</key> <string>left</string>
+			</dict>
+			<key>right leg</key>
+			<dict>
+				<key>type</key> <string>leg</string>
+				<key>max strain</key> <integer>2</integer>
+				<key>prefix</key> <string>right</string>
+			</dict>
+			<key>head</key>
+			<dict>
+				<key>type</key> <string>head</string>
+				<key>max strain</key> <integer>2</integer>
+			</dict>
+			<key>torso</key>
+			<dict>
+				<key>type</key> <string>torso</string>
+				<key>max strain</key> <integer>4</integer>
+			</dict>
+		</dict>
+		<!-- graphical data -->
+		<key>states</key> <string>grappler</string>
+		<key>morphs</key>
+		<array>
+			<string>grappler</string>
+		</array>
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>skin light</string>
+				<key>eye</key> <string>lead</string>
+				<key>armor</key> <string>blue cloth</string>
+				<key>clothing</key> <string>wool</string>
+				<key>weapon</key> <string>steel</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>skin swarthy</string>
+				<key>eye</key> <string>lead</string>
+				<key>armor</key> <string>blue cloth</string>
+				<key>clothing</key> <string>wool</string>
+				<key>weapon</key> <string>steel</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>skin dark</string>
+				<key>eye</key> <string>lead</string>
+				<key>armor</key> <string>blue cloth</string>
+				<key>clothing</key> <string>wool</string>
+				<key>weapon</key> <string>steel</string>
+			</dict>
+		</array>
+	</dict>
 </dict>
 </plist>

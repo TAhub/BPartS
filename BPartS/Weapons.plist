@@ -81,13 +81,28 @@
 	<dict>
 		<!-- stats -->
 		<key>type</key> <string>high</string>
-		<key>damage</key> <integer>50</integer>
-		<key>accuracy bonus</key> <integer>0</integer>
+		<key>damage</key> <integer>45</integer>
+		<key>accuracy bonus</key> <integer>5</integer>
 		<key>shots</key> <integer>2</integer>
 		<!-- TODO: ammo cost, etc -->
 		<!-- animation data -->
 		<key>animation</key> <string>two punch</string>
 		<key>sprite</key> <string>knuckle</string>
+		<!-- name data -->
+		<!-- TODO: name generation data -->
+	</dict>
+	
+	<key>knife</key>
+	<dict>
+		<!-- stats -->
+		<key>type</key> <string>high</string>
+		<key>damage</key> <integer>50</integer>
+		<key>accuracy bonus</key> <integer>0</integer>
+		<key>shots</key> <integer>1</integer>
+		<!-- TODO: ammo cost, etc -->
+		<!-- animation data -->
+		<key>animation</key> <string>one punch</string>
+		<key>sprite</key> <string>knife</string>
 		<!-- name data -->
 		<!-- TODO: name generation data -->
 	</dict>

@@ -40,6 +40,36 @@
 		</array>
 	</dict>
 	
+	<!-- these punch animations have two "throw" frames per punch so that the pow happens once the throw is complete -->
+    <key>one punch</key>
+	<dict>
+		<!-- TOOD: required limbs -->
+		<key>frames</key>
+		<array>
+			<dict>
+				<key>my frame</key> <string>* punch</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.15</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* punch throw</string>
+				<key>enter time</key> <real>0.075</real>
+				<key>hold time</key> <real>0</real>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* punch throw</string>
+				<key>their frame</key> <string>flinch</string>
+				<key>enter time</key> <real>0.075</real>
+				<key>hold time</key> <real>0.175</real>
+				<key>pow</key> <true/>
+			</dict>
+			<dict>
+				<key>my frame</key> <string>* punch</string>
+				<key>enter time</key> <real>0.15</real>
+				<key>hold time</key> <real>0.1</real>
+			</dict>
+		</array>
+	</dict>
     <key>two punch</key>
 	<dict>
 		<!-- TOOD: required limbs -->

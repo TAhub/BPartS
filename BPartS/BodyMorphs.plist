@@ -681,10 +681,410 @@
 		</array>
 	</dict>
 	
-	<!-- TODO: grappler body morph
-		base it on humans, using entirely human parts
-		but copying the arms, etc
-		-->
+    <key>grappler</key>
+	<dict>
+		<key>undulations</key>
+		<dict>
+			<key>leg undulation</key>
+			<dict>
+				<key>wavelength</key> <integer>200</integer>
+				<key>phase</key> <integer>50</integer>
+				<key>magnitude</key> <integer>50</integer>
+			</dict>
+			<key>arm undulation</key>
+			<dict>
+				<key>wavelength</key> <integer>200</integer>
+				<key>phase</key> <integer>0</integer>
+				<key>magnitude</key> <integer>50</integer>
+			</dict>
+			<key>head undulation</key>
+			<dict>
+				<key>wavelength</key> <integer>350</integer>
+				<key>phase</key> <integer>0</integer>
+				<key>magnitude</key> <integer>75</integer>
+			</dict>
+		</dict>
+		<key>limbs</key>
+		<array>
+			<!-- right leg -->
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>right thigh</string>
+				<key>parent</key> <string>torso</string>
+				<key>sprite name</key> <string>human_leg_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>right leg</string>
+				<key>center x</key> <integer>4</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>14</integer>
+				<key>connect y</key> <integer>25</integer>
+				<key>undulation</key> <string>leg undulation</string>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>right calf</string>
+				<key>parent</key> <string>right thigh</string>
+				<key>sprite name</key> <string>human_leg_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>right leg</string>
+				<key>center x</key> <integer>4</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>4</integer>
+				<key>connect y</key> <integer>16</integer>
+				<key>undulation</key> <string>leg undulation</string>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>right foot</string>
+				<key>parent</key> <string>right calf</string>
+				<key>sprite name</key> <string>human_foot</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>right leg</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>4</integer>
+				<key>connect y</key> <integer>16</integer>
+				<key>undulation</key> <string>leg undulation</string>
+			</dict>
+			
+			<!-- lower right arm -->
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>lower right arm</string>
+				<key>parent</key> <string>torso</string>
+				<key>sprite name</key> <string>human_arm_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>lower right arm</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>16</integer>
+				<key>connect y</key> <integer>4</integer>
+				<key>undulation</key> <string>arm undulation</string>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>lower right forearm</string>
+				<key>parent</key> <string>lower right arm</string>
+				<key>sprite name</key> <string>human_arm_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>lower right arm</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>15</integer>
+				<key>undulation</key> <string>arm undulation</string>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>lower right hand</string>
+				<key>parent</key> <string>lower right forearm</string>
+				<key>sprite name</key> <string>human_hand</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>lower right arm</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>15</integer>
+			</dict>
+			<dict>
+				<key>weapon limb</key> <true/>
+				<key>name</key> <string>lower right weapon</string>
+				<key>parent</key> <string>lower right hand</string>
+				<key>sprite name</key> <string>knuckle</string>
+				<key>color name</key> <string>weapon</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>lower right arm</string>
+				<key>center x</key> <integer>9</integer>
+				<key>center y</key> <integer>18</integer>
+				<key>connect x</key> <integer>2</integer>
+				<key>connect y</key> <integer>14</integer>
+			</dict>
+			
+			<!-- upper right arm -->
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>upper right arm</string>
+				<key>parent</key> <string>torso</string>
+				<key>sprite name</key> <string>human_arm_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>upper right arm</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>15</integer>
+				<key>connect y</key> <integer>7</integer>
+				<key>undulation</key> <string>arm undulation</string>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>upper right forearm</string>
+				<key>parent</key> <string>upper right arm</string>
+				<key>sprite name</key> <string>human_arm_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>upper right arm</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>15</integer>
+				<key>undulation</key> <string>arm undulation</string>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>upper right hand</string>
+				<key>parent</key> <string>upper right forearm</string>
+				<key>sprite name</key> <string>human_hand</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>upper right arm</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>15</integer>
+			</dict>
+			<dict>
+				<key>weapon limb</key> <true/>
+				<key>name</key> <string>upper right weapon</string>
+				<key>parent</key> <string>upper right hand</string>
+				<key>sprite name</key> <string>knuckle</string>
+				<key>color name</key> <string>weapon</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>upper right arm</string>
+				<key>center x</key> <integer>9</integer>
+				<key>center y</key> <integer>18</integer>
+				<key>connect x</key> <integer>2</integer>
+				<key>connect y</key> <integer>14</integer>
+			</dict>
+			
+			<!-- torso -->
+			<dict>
+				<key>name</key> <string>torso</string>
+				<key>sprite name</key> <string>human_torso_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>torso</string>
+				<key>center x</key> <integer>9</integer>
+				<key>center y</key> <integer>26</integer>
+				<key>connect x</key> <integer>0</integer>
+				<key>connect y</key> <integer>0</integer>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>torso armor</string>
+				<key>parent</key> <string>torso</string>
+				<key>sprite name</key> <string>human_torso_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>torso</string>
+				<key>center x</key> <integer>9</integer>
+				<key>center y</key> <integer>26</integer>
+				<key>connect x</key> <integer>9</integer>
+				<key>connect y</key> <integer>26</integer>
+			</dict>
+			
+			<!-- head -->
+			<dict>
+				<key>name</key> <string>head</string>
+				<key>parent</key> <string>torso</string>
+				<key>sprite name</key> <string>human_head</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>head</string>
+				<key>center x</key> <integer>8</integer>
+				<key>center y</key> <integer>17</integer>
+				<key>connect x</key> <integer>9</integer>
+				<key>connect y</key> <integer>1</integer>
+				<key>undulation</key> <string>head undulation</string>
+			</dict>
+			<dict>
+				<key>name</key> <string>eye</string>
+				<key>parent</key> <string>head</string>
+				<key>sprite name</key> <string>grappler_eye</string>
+				<key>color name</key> <string>eye</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>head</string>
+				<key>center x</key> <integer>0</integer>
+				<key>center y</key> <integer>0</integer>
+				<key>connect x</key> <integer>6</integer>
+				<key>connect y</key> <integer>8</integer>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>head armor</string>
+				<key>parent</key> <string>head</string>
+				<key>sprite name</key> <string>human_head</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>head</string>
+				<key>center x</key> <integer>11</integer>
+				<key>center y</key> <integer>20</integer>
+				<key>connect x</key> <integer>8</integer>
+				<key>connect y</key> <integer>17</integer>
+			</dict>
+			
+			<!-- left leg -->
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>left thigh</string>
+				<key>parent</key> <string>torso</string>
+				<key>sprite name</key> <string>human_leg_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>left leg</string>
+				<key>center x</key> <integer>4</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>25</integer>
+				<key>undulation</key> <string>leg undulation</string>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>left calf</string>
+				<key>parent</key> <string>left thigh</string>
+				<key>sprite name</key> <string>human_leg_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>left leg</string>
+				<key>center x</key> <integer>4</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>4</integer>
+				<key>connect y</key> <integer>16</integer>
+				<key>undulation</key> <string>leg undulation</string>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>left foot</string>
+				<key>parent</key> <string>left calf</string>
+				<key>sprite name</key> <string>human_foot</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>left leg</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>4</integer>
+				<key>connect y</key> <integer>16</integer>
+				<key>undulation</key> <string>leg undulation</string>
+			</dict>
+			
+			<!-- lower left arm -->
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>lower left arm</string>
+				<key>parent</key> <string>torso</string>
+				<key>sprite name</key> <string>human_arm_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>lower left arm</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>2</integer>
+				<key>connect y</key> <integer>4</integer>
+				<key>undulation</key> <string>arm undulation</string>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>lower left forearm</string>
+				<key>parent</key> <string>lower left arm</string>
+				<key>sprite name</key> <string>human_arm_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>lower left arm</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>15</integer>
+				<key>undulation</key> <string>arm undulation</string>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>lower left hand</string>
+				<key>parent</key> <string>lower left forearm</string>
+				<key>sprite name</key> <string>human_hand</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>lower left arm</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>15</integer>
+			</dict>
+			<dict>
+				<key>weapon limb</key> <true/>
+				<key>name</key> <string>lower left weapon</string>
+				<key>parent</key> <string>lower left hand</string>
+				<key>sprite name</key> <string>knuckle</string>
+				<key>color name</key> <string>weapon</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>lower left arm</string>
+				<key>center x</key> <integer>9</integer>
+				<key>center y</key> <integer>18</integer>
+				<key>connect x</key> <integer>2</integer>
+				<key>connect y</key> <integer>14</integer>
+			</dict>
+			
+			<!-- upper left arm -->
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>upper left arm</string>
+				<key>parent</key> <string>torso</string>
+				<key>sprite name</key> <string>human_arm_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>upper left arm</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>7</integer>
+				<key>undulation</key> <string>arm undulation</string>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>upper left forearm</string>
+				<key>parent</key> <string>upper left arm</string>
+				<key>sprite name</key> <string>human_arm_m</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>back body</string>
+				<key>limb tag</key> <string>upper left arm</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>15</integer>
+				<key>undulation</key> <string>arm undulation</string>
+			</dict>
+			<dict>
+				<key>invisible unless replaced</key> <true/>
+				<key>name</key> <string>upper left hand</string>
+				<key>parent</key> <string>upper left forearm</string>
+				<key>sprite name</key> <string>human_hand</string>
+				<key>color name</key> <string>skin</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>upper left arm</string>
+				<key>center x</key> <integer>3</integer>
+				<key>center y</key> <integer>1</integer>
+				<key>connect x</key> <integer>3</integer>
+				<key>connect y</key> <integer>15</integer>
+			</dict>
+			<dict>
+				<key>weapon limb</key> <true/>
+				<key>name</key> <string>upper left weapon</string>
+				<key>parent</key> <string>upper left hand</string>
+				<key>sprite name</key> <string>knuckle</string>
+				<key>color name</key> <string>weapon</string>
+				<key>blend name</key> <string>fore body</string>
+				<key>limb tag</key> <string>upper left arm</string>
+				<key>center x</key> <integer>9</integer>
+				<key>center y</key> <integer>18</integer>
+				<key>connect x</key> <integer>2</integer>
+				<key>connect y</key> <integer>14</integer>
+			</dict>
+		</array>
+	</dict>
 	
 	<!-- TODO: robot body morph
 		honestly this can just be the human body morph, but tank treads instead of legs

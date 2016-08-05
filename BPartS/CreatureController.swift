@@ -278,7 +278,7 @@ class CreatureController
 	{
 		//TODO: get the appropriate morph for them, not just the first one
 		let morphs = DataStore.getArray("Races", creature.race, "morphs") as! [String]
-		return morphs[1]
+		return morphs[0]
 	}
 	var states:String
 	{
