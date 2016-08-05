@@ -680,5 +680,15 @@
 			</dict>
 		</array>
 	</dict>
+	
+	<!-- TODO: grappler body morph
+		base it on humans, using entirely human parts
+		but copying the arms, etc
+		-->
+	
+	<!-- TODO: robot body morph
+		honestly this can just be the human body morph, but tank treads instead of legs
+		I should call the tread a "tread leg" though, for the prefix system to work right
+		-->
 </dict>
 </plist>

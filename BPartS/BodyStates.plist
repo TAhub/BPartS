@@ -421,5 +421,14 @@
 			<key>right foot</key> <integer>0</integer>
 		</dict>
 	</dict>
+	
+	<!-- TODO: grappler body states
+		I can base these off human states, just copying some arm data
+		-->
+	
+	<!-- TODO: robot body states
+		I can base these off of human states, just remove the leg data
+		(though maybe making the tread and body tilt when moving so the body on top sways back and forth might be cute)
+		-->
 </dict>
 </plist>
