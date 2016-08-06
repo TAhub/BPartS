@@ -310,12 +310,12 @@ class Creature
 		}
 		
 		//stick some temp armor on
-		limbs["head"]!.armor = "helmet"
-		limbs["torso"]!.armor = "uniform"
-		limbs["right arm"]?.armor = "light robot arm"
+//		limbs["head"]!.armor = "helmet"
+		limbs["torso"]!.armor = "light armor"
+		limbs["right arm"]?.armor = "natural arm"
 		limbs["upper right arm"]?.armor = "light robot arm"
 		limbs["lower right arm"]?.armor = "light robot arm"
-		limbs["left arm"]?.armor = "natural arm"
+		limbs["left arm"]?.armor = "multitool arm"
 		limbs["upper left arm"]?.armor = "natural arm"
 		limbs["lower left arm"]?.armor = "natural arm"
 		limbs["right leg"]?.armor = "natural leg"

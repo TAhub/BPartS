@@ -21,10 +21,10 @@
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>left arm</key> <integer>15</integer>
-			<key>left forearm</key> <integer>-5</integer>
+			<key>left ulna</key> <integer>-5</integer>
 			<key>left hand</key> <integer>0</integer>
 			<key>right arm</key> <integer>-15</integer>
-			<key>right forearm</key> <integer>5</integer>
+			<key>right ulna</key> <integer>5</integer>
 			<key>right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>45</integer>
 			<key>left calf</key> <integer>-25</integer>
@@ -42,10 +42,10 @@
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>left arm</key> <integer>15</integer>
-			<key>left forearm</key> <integer>-15</integer>
+			<key>left ulna</key> <integer>-15</integer>
 			<key>left hand</key> <integer>0</integer>
 			<key>right arm</key> <integer>-15</integer>
-			<key>right forearm</key> <integer>-15</integer>
+			<key>right ulna</key> <integer>-15</integer>
 			<key>right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>15</integer>
 			<key>left calf</key> <integer>-5</integer>
@@ -63,10 +63,10 @@
 			<key>head</key> <integer>5</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>left arm</key> <integer>15</integer>
-			<key>left forearm</key> <integer>-20</integer>
+			<key>left ulna</key> <integer>-20</integer>
 			<key>left hand</key> <integer>0</integer>
 			<key>right arm</key> <integer>-15</integer>
-			<key>right forearm</key> <integer>20</integer>
+			<key>right ulna</key> <integer>20</integer>
 			<key>right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>15</integer>
 			<key>left calf</key> <integer>-20</integer>
@@ -84,10 +84,10 @@
 			<key>head</key> <integer>-5</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>left arm</key> <integer>45</integer>
-			<key>left forearm</key> <integer>-75</integer>
+			<key>left ulna</key> <integer>-75</integer>
 			<key>left hand</key> <integer>45</integer>
 			<key>right arm</key> <integer>-45</integer>
-			<key>right forearm</key> <integer>75</integer>
+			<key>right ulna</key> <integer>75</integer>
 			<key>right hand</key> <integer>-45</integer>
 			<key>left thigh</key> <integer>0</integer>
 			<key>left calf</key> <integer>0</integer>
@@ -121,9 +121,9 @@
 			<key>hide weapons</key> <integer>0</integer>
 			<!-- angles -->
 			<key>left arm</key> <integer>-45</integer>
-			<key>left forearm</key> <integer>-45</integer>
+			<key>left ulna</key> <integer>-45</integer>
 			<key>right arm</key> <integer>-180</integer>
-			<key>right forearm</key> <integer>140</integer>
+			<key>right ulna</key> <integer>140</integer>
 		</dict>
 		
 		<key>drive press</key>
@@ -133,9 +133,9 @@
 			<key>hide weapons</key> <integer>0</integer>
 			<!-- angles -->
 			<key>left arm</key> <integer>-45</integer>
-			<key>left forearm</key> <integer>-50</integer>
+			<key>left ulna</key> <integer>-50</integer>
 			<key>right arm</key> <integer>-170</integer>
-			<key>right forearm</key> <integer>160</integer>
+			<key>right ulna</key> <integer>160</integer>
 		</dict>
 		
 		<key>left neutral</key>
@@ -144,7 +144,7 @@
 			<key>base pose</key> <integer>-1</integer>
 			<!-- angles -->
 			<key>left arm</key> <integer>80</integer>
-			<key>left forearm</key> <integer>50</integer>
+			<key>left ulna</key> <integer>50</integer>
 		</dict>
 		
 		<key>right neutral</key>
@@ -153,7 +153,7 @@
 			<key>base pose</key> <integer>-1</integer>
 			<!-- angles -->
 			<key>right arm</key> <integer>-80</integer>
-			<key>right forearm</key> <integer>-50</integer>
+			<key>right ulna</key> <integer>-50</integer>
 		</dict>
 		
 		<key>right gun</key>
@@ -162,7 +162,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>right arm</key> <integer>-90</integer>
-			<key>right forearm</key> <integer>0</integer>
+			<key>right ulna</key> <integer>0</integer>
 		</dict>
 		
 		<key>right gun shoot</key>
@@ -171,7 +171,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>right arm</key> <integer>-90</integer>
-			<key>right forearm</key> <integer>-15</integer>
+			<key>right ulna</key> <integer>-15</integer>
 		</dict>
 		
 		<key>left gun</key>
@@ -180,7 +180,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>left arm</key> <integer>-90</integer>
-			<key>left forearm</key> <integer>0</integer>
+			<key>left ulna</key> <integer>0</integer>
 		</dict>
 		
 		<key>left gun shoot</key>
@@ -189,7 +189,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>left arm</key> <integer>-90</integer>
-			<key>left forearm</key> <integer>-15</integer>
+			<key>left ulna</key> <integer>-15</integer>
 		</dict>
 		
 		<key>left punch</key>
@@ -198,10 +198,10 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>left arm</key> <integer>80</integer>
-			<key>left forearm</key> <integer>-180</integer>
+			<key>left ulna</key> <integer>-180</integer>
 			<key>left hand</key> <integer>0</integer>
 			<key>right arm</key> <integer>-75</integer>
-			<key>right forearm</key> <integer>0</integer>
+			<key>right ulna</key> <integer>0</integer>
 			<key>right hand</key> <integer>-20</integer>
 		</dict>
 		
@@ -211,10 +211,10 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>left arm</key> <integer>-90</integer>
-			<key>left forearm</key> <integer>0</integer>
+			<key>left ulna</key> <integer>0</integer>
 			<key>left hand</key> <integer>0</integer>
 			<key>right arm</key> <integer>-45</integer>
-			<key>right forearm</key> <integer>-90</integer>
+			<key>right ulna</key> <integer>-90</integer>
 			<key>right hand</key> <integer>0</integer>
 		</dict>
 		
@@ -224,10 +224,10 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>left arm</key> <integer>-75</integer>
-			<key>left forearm</key> <integer>0</integer>
+			<key>left ulna</key> <integer>0</integer>
 			<key>left hand</key> <integer>-20</integer>
 			<key>right arm</key> <integer>80</integer>
-			<key>right forearm</key> <integer>-180</integer>
+			<key>right ulna</key> <integer>-180</integer>
 			<key>right hand</key> <integer>0</integer>
 		</dict>
 		
@@ -237,10 +237,10 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>left arm</key> <integer>-45</integer>
-			<key>left forearm</key> <integer>-90</integer>
+			<key>left ulna</key> <integer>-90</integer>
 			<key>left hand</key> <integer>0</integer>
 			<key>right arm</key> <integer>-90</integer>
-			<key>right forearm</key> <integer>0</integer>
+			<key>right ulna</key> <integer>0</integer>
 			<key>right hand</key> <integer>0</integer>
 		</dict>
 		
@@ -253,10 +253,10 @@
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>-5</integer>
 			<key>left arm</key> <integer>-80</integer>
-			<key>left forearm</key> <integer>-90</integer>
+			<key>left ulna</key> <integer>-90</integer>
 			<key>left hand</key> <integer>0</integer>
 			<key>right arm</key> <integer>-90</integer>
-			<key>right forearm</key> <integer>-90</integer>
+			<key>right ulna</key> <integer>-90</integer>
 			<key>right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>50</integer>
 			<key>left calf</key> <integer>-5</integer>
@@ -275,10 +275,10 @@
 			<key>head</key> <integer>30</integer>
 			<key>torso</key> <integer>-15</integer>
 			<key>left arm</key> <integer>30</integer>
-			<key>left forearm</key> <integer>-30</integer>
+			<key>left ulna</key> <integer>-30</integer>
 			<key>left hand</key> <integer>0</integer>
 			<key>right arm</key> <integer>-60</integer>
-			<key>right forearm</key> <integer>-10</integer>
+			<key>right ulna</key> <integer>-10</integer>
 			<key>right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>20</integer>
 			<key>left calf</key> <integer>0</integer>
@@ -298,10 +298,10 @@
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>left arm</key> <integer>90</integer>
-			<key>left forearm</key> <integer>0</integer>
+			<key>left ulna</key> <integer>0</integer>
 			<key>left hand</key> <integer>0</integer>
 			<key>right arm</key> <integer>-90</integer>
-			<key>right forearm</key> <integer>0</integer>
+			<key>right ulna</key> <integer>0</integer>
 			<key>right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>45</integer>
 			<key>left calf</key> <integer>0</integer>
@@ -320,10 +320,10 @@
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>left arm</key> <integer>50</integer>
-			<key>left forearm</key> <integer>-5</integer>
+			<key>left ulna</key> <integer>-5</integer>
 			<key>left hand</key> <integer>0</integer>
 			<key>right arm</key> <integer>-50</integer>
-			<key>right forearm</key> <integer>5</integer>
+			<key>right ulna</key> <integer>5</integer>
 			<key>right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>-75</integer>
 			<key>left calf</key> <integer>0</integer>
@@ -341,10 +341,10 @@
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>left arm</key> <integer>90</integer>
-			<key>left forearm</key> <integer>0</integer>
+			<key>left ulna</key> <integer>0</integer>
 			<key>left hand</key> <integer>0</integer>
 			<key>right arm</key> <integer>-90</integer>
-			<key>right forearm</key> <integer>0</integer>
+			<key>right ulna</key> <integer>0</integer>
 			<key>right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>45</integer>
 			<key>left calf</key> <integer>-25</integer>
@@ -362,10 +362,10 @@
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>left arm</key> <integer>170</integer>
-			<key>left forearm</key> <integer>0</integer>
+			<key>left ulna</key> <integer>0</integer>
 			<key>left hand</key> <integer>100</integer>
 			<key>right arm</key> <integer>-170</integer>
-			<key>right forearm</key> <integer>0</integer>
+			<key>right ulna</key> <integer>0</integer>
 			<key>right hand</key> <integer>80</integer>
 			<key>left thigh</key> <integer>0</integer>
 			<key>left calf</key> <integer>0</integer>
@@ -383,10 +383,10 @@
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>left arm</key> <integer>100</integer>
-			<key>left forearm</key> <integer>30</integer>
+			<key>left ulna</key> <integer>30</integer>
 			<key>left hand</key> <integer>-25</integer>
 			<key>right arm</key> <integer>-70</integer>
-			<key>right forearm</key> <integer>-30</integer>
+			<key>right ulna</key> <integer>-30</integer>
 			<key>right hand</key> <integer>-30</integer>
 			<key>left thigh</key> <integer>55</integer>
 			<key>left calf</key> <integer>0</integer>
@@ -404,10 +404,10 @@
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>45</integer>
 			<key>left arm</key> <integer>0</integer>
-			<key>left forearm</key> <integer>0</integer>
+			<key>left ulna</key> <integer>0</integer>
 			<key>left hand</key> <integer>0</integer>
 			<key>right arm</key> <integer>0</integer>
-			<key>right forearm</key> <integer>0</integer>
+			<key>right ulna</key> <integer>0</integer>
 			<key>right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>-45</integer>
 			<key>left calf</key> <integer>0</integer>
@@ -444,16 +444,16 @@
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>upper left arm</key> <integer>10</integer>
-			<key>upper left forearm</key> <integer>-5</integer>
+			<key>upper left ulna</key> <integer>-5</integer>
 			<key>upper left hand</key> <integer>0</integer>
 			<key>lower left arm</key> <integer>20</integer>
-			<key>lower left forearm</key> <integer>-5</integer>
+			<key>lower left ulna</key> <integer>-5</integer>
 			<key>lower left hand</key> <integer>0</integer>
 			<key>upper right arm</key> <integer>-10</integer>
-			<key>upper right forearm</key> <integer>5</integer>
+			<key>upper right ulna</key> <integer>5</integer>
 			<key>upper right hand</key> <integer>0</integer>
 			<key>lower right arm</key> <integer>-20</integer>
-			<key>lower right forearm</key> <integer>5</integer>
+			<key>lower right ulna</key> <integer>5</integer>
 			<key>lower right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>55</integer>
 			<key>left calf</key> <integer>-30</integer>
@@ -471,16 +471,16 @@
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>0</integer>
 			<key>upper left arm</key> <integer>10</integer>
-			<key>upper left forearm</key> <integer>-15</integer>
+			<key>upper left ulna</key> <integer>-15</integer>
 			<key>upper left hand</key> <integer>0</integer>
 			<key>lower left arm</key> <integer>20</integer>
-			<key>lower left forearm</key> <integer>-15</integer>
+			<key>lower left ulna</key> <integer>-15</integer>
 			<key>lower left hand</key> <integer>0</integer>
 			<key>upper right arm</key> <integer>-10</integer>
-			<key>upper right forearm</key> <integer>-15</integer>
+			<key>upper right ulna</key> <integer>-15</integer>
 			<key>upper right hand</key> <integer>0</integer>
 			<key>lower right arm</key> <integer>-20</integer>
-			<key>lower right forearm</key> <integer>-15</integer>
+			<key>lower right ulna</key> <integer>-15</integer>
 			<key>lower right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>15</integer>
 			<key>left calf</key> <integer>-5</integer>
@@ -498,16 +498,16 @@
 			<key>head</key> <integer>-10</integer>
 			<key>torso</key> <integer>20</integer>
 			<key>upper left arm</key> <integer>120</integer>
-			<key>upper left forearm</key> <integer>-15</integer>
+			<key>upper left ulna</key> <integer>-15</integer>
 			<key>upper left hand</key> <integer>0</integer>
 			<key>lower left arm</key> <integer>30</integer>
-			<key>lower left forearm</key> <integer>30</integer>
+			<key>lower left ulna</key> <integer>30</integer>
 			<key>lower left hand</key> <integer>0</integer>
 			<key>upper right arm</key> <integer>-120</integer>
-			<key>upper right forearm</key> <integer>-15</integer>
+			<key>upper right ulna</key> <integer>-15</integer>
 			<key>upper right hand</key> <integer>0</integer>
 			<key>lower right arm</key> <integer>-30</integer>
-			<key>lower right forearm</key> <integer>-30</integer>
+			<key>lower right ulna</key> <integer>-30</integer>
 			<key>lower right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>15</integer>
 			<key>left calf</key> <integer>-15</integer>
@@ -540,7 +540,7 @@
 			<key>base pose</key> <integer>-1</integer>
 			<!-- angles -->
 			<key>upper left arm</key> <integer>90</integer>
-			<key>upper left forearm</key> <integer>0</integer>
+			<key>upper left ulna</key> <integer>0</integer>
 		</dict>
 		
 		<key>lower left neutral</key>
@@ -549,7 +549,7 @@
 			<key>base pose</key> <integer>-1</integer>
 			<!-- angles -->
 			<key>lower left arm</key> <integer>90</integer>
-			<key>lower left forearm</key> <integer>0</integer>
+			<key>lower left ulna</key> <integer>0</integer>
 		</dict>
 		
 		<key>upper right neutral</key>
@@ -558,7 +558,7 @@
 			<key>base pose</key> <integer>-1</integer>
 			<!-- angles -->
 			<key>upper right arm</key> <integer>-90</integer>
-			<key>upper right forearm</key> <integer>0</integer>
+			<key>upper right ulna</key> <integer>0</integer>
 		</dict>
 		
 		<key>lower right neutral</key>
@@ -567,7 +567,7 @@
 			<key>base pose</key> <integer>-1</integer>
 			<!-- angles -->
 			<key>lower right arm</key> <integer>-90</integer>
-			<key>lower right forearm</key> <integer>0</integer>
+			<key>lower right ulna</key> <integer>0</integer>
 		</dict>
 		
 		<key>grapple</key>
@@ -577,13 +577,13 @@
 			<key>hide weapons</key> <integer>0</integer>
 			<!-- angles -->
 			<key>upper left arm</key> <integer>130</integer>
-			<key>upper left forearm</key> <integer>140</integer>
+			<key>upper left ulna</key> <integer>140</integer>
 			<key>lower left arm</key> <integer>50</integer>
-			<key>lower left forearm</key> <integer>230</integer>
+			<key>lower left ulna</key> <integer>230</integer>
 			<key>upper right arm</key> <integer>130</integer>
-			<key>upper right forearm</key> <integer>140</integer>
+			<key>upper right ulna</key> <integer>140</integer>
 			<key>lower right arm</key> <integer>50</integer>
-			<key>lower right forearm</key> <integer>230</integer>
+			<key>lower right ulna</key> <integer>230</integer>
 		</dict>
 		
 		<key>grapple grab</key>
@@ -593,13 +593,13 @@
 			<key>hide weapons</key> <integer>0</integer>
 			<!-- angles -->
 			<key>upper left arm</key> <integer>-150</integer>
-			<key>upper left forearm</key> <integer>90</integer>
+			<key>upper left ulna</key> <integer>90</integer>
 			<key>lower left arm</key> <integer>-30</integer>
-			<key>lower left forearm</key> <integer>-90</integer>
+			<key>lower left ulna</key> <integer>-90</integer>
 			<key>upper right arm</key> <integer>-150</integer>
-			<key>upper right forearm</key> <integer>90</integer>
+			<key>upper right ulna</key> <integer>90</integer>
 			<key>lower right arm</key> <integer>-30</integer>
-			<key>lower right forearm</key> <integer>-90</integer>
+			<key>lower right ulna</key> <integer>-90</integer>
 		</dict>
 		
 		<key>upper right gun</key>
@@ -608,7 +608,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>upper right arm</key> <integer>-90</integer>
-			<key>upper right forearm</key> <integer>0</integer>
+			<key>upper right ulna</key> <integer>0</integer>
 		</dict>
 		
 		<key>lower right gun</key>
@@ -617,7 +617,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>lower right arm</key> <integer>-90</integer>
-			<key>lower right forearm</key> <integer>0</integer>
+			<key>lower right ulna</key> <integer>0</integer>
 		</dict>
 		
 		<key>upper right gun shoot</key>
@@ -626,7 +626,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>upper right arm</key> <integer>-90</integer>
-			<key>upper right forearm</key> <integer>-15</integer>
+			<key>upper right ulna</key> <integer>-15</integer>
 		</dict>
 		
 		<key>lower right gun shoot</key>
@@ -635,7 +635,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>lower right arm</key> <integer>-90</integer>
-			<key>lower right forearm</key> <integer>-15</integer>
+			<key>lower right ulna</key> <integer>-15</integer>
 		</dict>
 		
 		<key>upper left gun</key>
@@ -644,7 +644,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>upper left arm</key> <integer>-90</integer>
-			<key>upper left forearm</key> <integer>0</integer>
+			<key>upper left ulna</key> <integer>0</integer>
 		</dict>
 		
 		<key>lower left gun</key>
@@ -653,7 +653,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>lower left arm</key> <integer>-90</integer>
-			<key>lower left forearm</key> <integer>0</integer>
+			<key>lower left ulna</key> <integer>0</integer>
 		</dict>
 		
 		<key>upper left gun shoot</key>
@@ -662,7 +662,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>upper left arm</key> <integer>-90</integer>
-			<key>upper left forearm</key> <integer>-15</integer>
+			<key>upper left ulna</key> <integer>-15</integer>
 		</dict>
 		
 		<key>lower left gun shoot</key>
@@ -671,7 +671,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>lower left arm</key> <integer>-90</integer>
-			<key>lower left forearm</key> <integer>-15</integer>
+			<key>lower left ulna</key> <integer>-15</integer>
 		</dict>
 		
 		<key>upper left punch</key>
@@ -680,10 +680,10 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>upper left arm</key> <integer>80</integer>
-			<key>upper left forearm</key> <integer>-180</integer>
+			<key>upper left ulna</key> <integer>-180</integer>
 			<key>upper left hand</key> <integer>0</integer>
 			<key>upper right arm</key> <integer>-75</integer>
-			<key>upper right forearm</key> <integer>0</integer>
+			<key>upper right ulna</key> <integer>0</integer>
 			<key>upper right hand</key> <integer>-20</integer>
 		</dict>
 		
@@ -693,10 +693,10 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>lower left arm</key> <integer>80</integer>
-			<key>lower left forearm</key> <integer>-180</integer>
+			<key>lower left ulna</key> <integer>-180</integer>
 			<key>lower left hand</key> <integer>0</integer>
 			<key>lower right arm</key> <integer>-75</integer>
-			<key>lower right forearm</key> <integer>0</integer>
+			<key>lower right ulna</key> <integer>0</integer>
 			<key>lower right hand</key> <integer>-20</integer>
 		</dict>
 		
@@ -706,10 +706,10 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>upper left arm</key> <integer>-90</integer>
-			<key>upper left forearm</key> <integer>0</integer>
+			<key>upper left ulna</key> <integer>0</integer>
 			<key>upper left hand</key> <integer>0</integer>
 			<key>upper right arm</key> <integer>-45</integer>
-			<key>upper right forearm</key> <integer>-90</integer>
+			<key>upper right ulna</key> <integer>-90</integer>
 			<key>upper right hand</key> <integer>0</integer>
 		</dict>
 		
@@ -719,10 +719,10 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>lower left arm</key> <integer>-90</integer>
-			<key>lower left forearm</key> <integer>0</integer>
+			<key>lower left ulna</key> <integer>0</integer>
 			<key>lower left hand</key> <integer>0</integer>
 			<key>lower right arm</key> <integer>-45</integer>
-			<key>lower right forearm</key> <integer>-90</integer>
+			<key>lower right ulna</key> <integer>-90</integer>
 			<key>lower right hand</key> <integer>0</integer>
 		</dict>
 		
@@ -732,10 +732,10 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>upper left arm</key> <integer>-75</integer>
-			<key>upper left forearm</key> <integer>0</integer>
+			<key>upper left ulna</key> <integer>0</integer>
 			<key>upper left hand</key> <integer>-20</integer>
 			<key>upper right arm</key> <integer>80</integer>
-			<key>upper right forearm</key> <integer>-180</integer>
+			<key>upper right ulna</key> <integer>-180</integer>
 			<key>upper right hand</key> <integer>0</integer>
 		</dict>
 		
@@ -745,10 +745,10 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>lower left arm</key> <integer>-75</integer>
-			<key>lower left forearm</key> <integer>0</integer>
+			<key>lower left ulna</key> <integer>0</integer>
 			<key>lower left hand</key> <integer>-20</integer>
 			<key>lower right arm</key> <integer>80</integer>
-			<key>lower right forearm</key> <integer>-180</integer>
+			<key>lower right ulna</key> <integer>-180</integer>
 			<key>lower right hand</key> <integer>0</integer>
 		</dict>
 		
@@ -758,10 +758,10 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>upper left arm</key> <integer>-45</integer>
-			<key>upper left forearm</key> <integer>-90</integer>
+			<key>upper left ulna</key> <integer>-90</integer>
 			<key>upper left hand</key> <integer>0</integer>
 			<key>upper right arm</key> <integer>-90</integer>
-			<key>upper right forearm</key> <integer>0</integer>
+			<key>upper right ulna</key> <integer>0</integer>
 			<key>upper right hand</key> <integer>0</integer>
 		</dict>
 		
@@ -771,10 +771,10 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>lower left arm</key> <integer>-45</integer>
-			<key>lower left forearm</key> <integer>-90</integer>
+			<key>lower left ulna</key> <integer>-90</integer>
 			<key>lower left hand</key> <integer>0</integer>
 			<key>lower right arm</key> <integer>-90</integer>
-			<key>lower right forearm</key> <integer>0</integer>
+			<key>lower right ulna</key> <integer>0</integer>
 			<key>lower right hand</key> <integer>0</integer>
 		</dict>
 		
@@ -787,16 +787,16 @@
 			<key>head</key> <integer>0</integer>
 			<key>torso</key> <integer>-5</integer>
 			<key>upper left arm</key> <integer>-75</integer>
-			<key>upper left forearm</key> <integer>-90</integer>
+			<key>upper left ulna</key> <integer>-90</integer>
 			<key>upper left hand</key> <integer>0</integer>
 			<key>lower left arm</key> <integer>-85</integer>
-			<key>lower left forearm</key> <integer>-90</integer>
+			<key>lower left ulna</key> <integer>-90</integer>
 			<key>lower left hand</key> <integer>0</integer>
 			<key>upper right arm</key> <integer>-85</integer>
-			<key>upper right forearm</key> <integer>-90</integer>
+			<key>upper right ulna</key> <integer>-90</integer>
 			<key>upper right hand</key> <integer>0</integer>
 			<key>lower right arm</key> <integer>-95</integer>
-			<key>lower right forearm</key> <integer>-90</integer>
+			<key>lower right ulna</key> <integer>-90</integer>
 			<key>lower right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>50</integer>
 			<key>left calf</key> <integer>-5</integer>
@@ -815,16 +815,16 @@
 			<key>head</key> <integer>30</integer>
 			<key>torso</key> <integer>-15</integer>
 			<key>upper left arm</key> <integer>25</integer>
-			<key>upper left forearm</key> <integer>-30</integer>
+			<key>upper left ulna</key> <integer>-30</integer>
 			<key>upper left hand</key> <integer>0</integer>
 			<key>lower left arm</key> <integer>35</integer>
-			<key>lower left forearm</key> <integer>-30</integer>
+			<key>lower left ulna</key> <integer>-30</integer>
 			<key>lower left hand</key> <integer>0</integer>
 			<key>upper right arm</key> <integer>-55</integer>
-			<key>upper right forearm</key> <integer>-10</integer>
+			<key>upper right ulna</key> <integer>-10</integer>
 			<key>upper right hand</key> <integer>0</integer>
 			<key>lower right arm</key> <integer>-65</integer>
-			<key>lower right forearm</key> <integer>-10</integer>
+			<key>lower right ulna</key> <integer>-10</integer>
 			<key>lower right hand</key> <integer>0</integer>
 			<key>left thigh</key> <integer>20</integer>
 			<key>left calf</key> <integer>0</integer>

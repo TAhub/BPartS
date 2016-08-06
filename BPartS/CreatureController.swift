@@ -120,7 +120,7 @@ class BodyLimb
 	let name:String
 	let parentName:String?
 	weak var parent:BodyLimb?
-	let undulationName:String?
+	var undulationName:String?
 	weak var undulation:Undulation?
 	let spriteNode:SKSpriteNode
 	let limbTag:String?
@@ -199,6 +199,12 @@ class BodyLimb
 						{
 							if partAppearance["invisible"] == nil
 							{
+								//disable undulation of the armor says to
+								if partAppearance["disable undulation"] != nil
+								{
+									undulationName = ""
+								}
+								
 								spriteName = partAppearance["sprite name"] ?? spriteName
 								colorName = partAppearance["color name"] ?? colorName
 								invisible = false
@@ -216,6 +222,7 @@ class BodyLimb
 		
 		//set sprite node data
 		spriteNode = SKSpriteNode(imageNamed: spriteName)
+		spriteNode.texture!.filteringMode = .Nearest //disable anti-aliasing
 		spriteNode.anchorPoint = CGPoint(x: CGFloat(centerX) / spriteNode.size.width, y: CGFloat(centerY) / spriteNode.size.height)
 		spriteNode.colorBlendFactor = 1
 		

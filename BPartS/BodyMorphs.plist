@@ -110,7 +110,7 @@
 			</dict>
 			<dict>
 				<key>invisible unless replaced</key> <true/>
-				<key>name</key> <string>right forearm</string>
+				<key>name</key> <string>right ulna</string>
 				<key>parent</key> <string>right arm</string>
 				<key>sprite name</key> <string>human_arm_m</string>
 				<key>color name</key> <string>skin</string>
@@ -125,7 +125,7 @@
 			<dict>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right hand</string>
-				<key>parent</key> <string>right forearm</string>
+				<key>parent</key> <string>right ulna</string>
 				<key>sprite name</key> <string>human_hand</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
@@ -288,7 +288,7 @@
 			</dict>
 			<dict>
 				<key>invisible unless replaced</key> <true/>
-				<key>name</key> <string>left forearm</string>
+				<key>name</key> <string>left ulna</string>
 				<key>parent</key> <string>left arm</string>
 				<key>sprite name</key> <string>human_arm_m</string>
 				<key>color name</key> <string>skin</string>
@@ -303,7 +303,7 @@
 			<dict>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left hand</string>
-				<key>parent</key> <string>left forearm</string>
+				<key>parent</key> <string>left ulna</string>
 				<key>sprite name</key> <string>human_hand</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
@@ -436,7 +436,7 @@
 			</dict>
 			<dict>
 				<key>invisible unless replaced</key> <true/>
-				<key>name</key> <string>right forearm</string>
+				<key>name</key> <string>right ulna</string>
 				<key>parent</key> <string>right arm</string>
 				<key>sprite name</key> <string>human_arm_f</string>
 				<key>color name</key> <string>skin</string>
@@ -451,7 +451,7 @@
 			<dict>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right hand</string>
-				<key>parent</key> <string>right forearm</string>
+				<key>parent</key> <string>right ulna</string>
 				<key>sprite name</key> <string>human_hand</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
@@ -640,7 +640,7 @@
 			</dict>
 			<dict>
 				<key>invisible unless replaced</key> <true/>
-				<key>name</key> <string>left forearm</string>
+				<key>name</key> <string>left ulna</string>
 				<key>parent</key> <string>left arm</string>
 				<key>sprite name</key> <string>human_arm_f</string>
 				<key>color name</key> <string>skin</string>
@@ -655,7 +655,7 @@
 			<dict>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left hand</string>
-				<key>parent</key> <string>left forearm</string>
+				<key>parent</key> <string>left ulna</string>
 				<key>sprite name</key> <string>human_hand</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
@@ -767,7 +767,7 @@
 			</dict>
 			<dict>
 				<key>invisible unless replaced</key> <true/>
-				<key>name</key> <string>lower right forearm</string>
+				<key>name</key> <string>lower right ulna</string>
 				<key>parent</key> <string>lower right arm</string>
 				<key>sprite name</key> <string>human_arm_m</string>
 				<key>color name</key> <string>skin</string>
@@ -782,7 +782,7 @@
 			<dict>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>lower right hand</string>
-				<key>parent</key> <string>lower right forearm</string>
+				<key>parent</key> <string>lower right ulna</string>
 				<key>sprite name</key> <string>human_hand</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
@@ -823,7 +823,7 @@
 			</dict>
 			<dict>
 				<key>invisible unless replaced</key> <true/>
-				<key>name</key> <string>upper right forearm</string>
+				<key>name</key> <string>upper right ulna</string>
 				<key>parent</key> <string>upper right arm</string>
 				<key>sprite name</key> <string>human_arm_m</string>
 				<key>color name</key> <string>skin</string>
@@ -838,7 +838,7 @@
 			<dict>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>upper right hand</string>
-				<key>parent</key> <string>upper right forearm</string>
+				<key>parent</key> <string>upper right ulna</string>
 				<key>sprite name</key> <string>human_hand</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
@@ -989,7 +989,7 @@
 			</dict>
 			<dict>
 				<key>invisible unless replaced</key> <true/>
-				<key>name</key> <string>lower left forearm</string>
+				<key>name</key> <string>lower left ulna</string>
 				<key>parent</key> <string>lower left arm</string>
 				<key>sprite name</key> <string>human_arm_m</string>
 				<key>color name</key> <string>skin</string>
@@ -1004,7 +1004,7 @@
 			<dict>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>lower left hand</string>
-				<key>parent</key> <string>lower left forearm</string>
+				<key>parent</key> <string>lower left ulna</string>
 				<key>sprite name</key> <string>human_hand</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>
@@ -1045,7 +1045,7 @@
 			</dict>
 			<dict>
 				<key>invisible unless replaced</key> <true/>
-				<key>name</key> <string>upper left forearm</string>
+				<key>name</key> <string>upper left ulna</string>
 				<key>parent</key> <string>upper left arm</string>
 				<key>sprite name</key> <string>human_arm_m</string>
 				<key>color name</key> <string>skin</string>
@@ -1060,7 +1060,7 @@
 			<dict>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>upper left hand</string>
-				<key>parent</key> <string>upper left forearm</string>
+				<key>parent</key> <string>upper left ulna</string>
 				<key>sprite name</key> <string>human_hand</string>
 				<key>color name</key> <string>skin</string>
 				<key>blend name</key> <string>fore body</string>

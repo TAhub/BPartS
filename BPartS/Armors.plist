@@ -15,11 +15,53 @@
 		dunno if this is fair; it'll require more testing
 	-->
 	
+	<key>shorts</key>
+	<dict>
+		<!-- identity -->
+		<key>slot</key> <string>torso</string>
+		<!-- stats -->
+		<key>bonus strain</key> <integer>0</integer>
+		<key>bonus health</key> <integer>0</integer>
+		<key>bonus defend</key> <integer>0</integer>
+		<!-- graphical data -->
+		<key>appearance by morph</key>
+		<dict>
+			<key>human male</key>
+			<dict>
+				<key>torso armor</key>
+				<dict>
+					<key>sprite name</key> <string>shorts_torso_m</string>
+					<key>color name</key> <string>clothing</string>
+				</dict>
+			</dict>
+			<key>grappler</key>
+			<dict>
+				<key>torso armor</key>
+				<dict>
+					<key>sprite name</key> <string>shorts_torso_m</string>
+					<key>color name</key> <string>clothing</string>
+				</dict>
+			</dict>
+			<key>human female</key>
+			<dict>
+				<key>torso armor</key>
+				<dict>
+					<key>sprite name</key> <string>shorts_torso_f</string>
+					<key>color name</key> <string>clothing</string>
+				</dict>
+				<key>chest armor</key>
+				<dict>
+					<key>sprite name</key> <string>shorts_chest_f</string>
+					<key>color name</key> <string>clothing</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+	
 	<key>uniform</key>
 	<dict>
 		<!-- identity -->
 		<key>slot</key> <string>torso</string>
-		<!-- <key>breaks into</key> <string>uniform</string> -->
 		<!-- stats -->
 		<key>bonus strain</key> <integer>0</integer>
 		<key>bonus health</key> <integer>0</integer>
@@ -54,6 +96,93 @@
 				<dict>
 					<key>sprite name</key> <string>leotard_chest_f</string>
 					<key>color name</key> <string>clothing</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+	
+	<key>light armor</key>
+	<dict>
+		<!-- identity -->
+		<key>slot</key> <string>torso</string>
+		<!-- stats -->
+		<key>bonus strain</key> <integer>1</integer>
+		<key>bonus health</key> <integer>0</integer>
+		<key>bonus defend</key> <integer>-5</integer>
+		<!-- graphical data -->
+		<key>appearance by morph</key>
+		<dict>
+			<key>human male</key>
+			<dict>
+				<key>torso armor</key>
+				<dict>
+					<key>sprite name</key> <string>lightarmor_torso_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
+			<key>grappler</key>
+			<dict>
+				<key>torso armor</key>
+				<dict>
+					<key>sprite name</key> <string>lightarmor_torso_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
+			<key>human female</key>
+			<dict>
+				<key>torso armor</key>
+				<dict>
+					<key>sprite name</key> <string>lightarmor_torso_f</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>chest armor</key>
+				<dict>
+					<key>sprite name</key> <string>human_chest_f</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+	
+	<key>heavy armor</key>
+	<dict>
+		<!-- identity -->
+		<key>slot</key> <string>torso</string>
+		<!-- stats -->
+		<key>bonus strain</key> <integer>2</integer>
+		<key>bonus health</key> <integer>5</integer>
+		<key>bonus defend</key> <integer>-10</integer>
+		<!-- graphical data -->
+		<key>appearance by morph</key>
+		<dict>
+			<key>human male</key>
+			<dict>
+				<key>torso armor</key>
+				<dict>
+					<key>sprite name</key> <string>heavyarmor_torso_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
+			<key>grappler</key>
+			<dict>
+				<key>torso armor</key>
+				<dict>
+					<key>sprite name</key> <string>heavyarmor_torso_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
+			<key>human female</key>
+			<dict>
+				<key>torso armor</key>
+				<dict>
+					<key>sprite name</key> <string>heavyarmor_torso_f</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>chest armor</key>
+				<dict>
+					<key>sprite name</key> <string>heavyarmor_chest_f</string>
+					<key>color name</key> <string>armor</string>
+					<key>disable undulation</key> <string></string>
 				</dict>
 			</dict>
 		</dict>
@@ -358,7 +487,7 @@
 					<key>sprite name</key> <string>lightrobo_arm_m</string>
 					<key>color name</key> <string>armor</string>
 				</dict>
-				<key>forearm</key>
+				<key>ulna</key>
 				<dict>
 					<key>sprite name</key> <string>lightrobo_arm_m</string>
 					<key>color name</key> <string>armor</string>
@@ -376,7 +505,7 @@
 					<key>sprite name</key> <string>lightrobo_arm_m</string>
 					<key>color name</key> <string>armor</string>
 				</dict>
-				<key>forearm</key>
+				<key>ulna</key>
 				<dict>
 					<key>sprite name</key> <string>lightrobo_arm_m</string>
 					<key>color name</key> <string>armor</string>
@@ -394,7 +523,7 @@
 					<key>sprite name</key> <string>lightrobo_arm_f</string>
 					<key>color name</key> <string>armor</string>
 				</dict>
-				<key>forearm</key>
+				<key>ulna</key>
 				<dict>
 					<key>sprite name</key> <string>lightrobo_arm_f</string>
 					<key>color name</key> <string>armor</string>
@@ -402,6 +531,58 @@
 				<key>hand</key>
 				<dict>
 					<key>sprite name</key> <string>human_hand</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+	
+	<key>multitool arm</key>
+	<dict>
+		<!-- identity -->
+		<key>slot</key> <string>arm</string>
+		<key>breaks into</key> <string>multitool arm</string>
+		<!-- TODO: no un-equip -->
+		<!-- stats -->
+		<key>bonus strain</key> <integer>0</integer>
+		<key>bonus health</key> <integer>0</integer>
+		<key>bonus defend</key> <integer>0</integer>
+		<!-- graphical data -->
+		<key>appearance by morph</key>
+		<dict>
+			<key>human male</key>
+			<dict>
+				<key>arm</key>
+				<dict>
+					<key>sprite name</key> <string>lightrobo_arm_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>ulna</key>
+				<dict>
+					<key>sprite name</key> <string>engineer_arm_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>hand</key>
+				<dict>
+					<key>sprite name</key> <string>engineer_hand</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
+			<key>human female</key>
+			<dict>
+				<key>arm</key>
+				<dict>
+					<key>sprite name</key> <string>lightrobo_arm_f</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>ulna</key>
+				<dict>
+					<key>sprite name</key> <string>engineer_arm_f</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>hand</key>
+				<dict>
+					<key>sprite name</key> <string>engineer_hand</string>
 					<key>color name</key> <string>armor</string>
 				</dict>
 			</dict>
@@ -426,7 +607,7 @@
 					<key>sprite name</key> <string>human_arm_m</string>
 					<key>color name</key> <string>armor</string>
 				</dict>
-				<key>forearm</key>
+				<key>ulna</key>
 				<dict>
 					<key>sprite name</key> <string>human_arm_m</string>
 					<key>color name</key> <string>armor</string>
@@ -444,7 +625,7 @@
 					<key>sprite name</key> <string>human_arm_m</string>
 					<key>color name</key> <string>armor</string>
 				</dict>
-				<key>forearm</key>
+				<key>ulna</key>
 				<dict>
 					<key>sprite name</key> <string>human_arm_m</string>
 					<key>color name</key> <string>armor</string>
@@ -462,7 +643,7 @@
 					<key>sprite name</key> <string>human_arm_f</string>
 					<key>color name</key> <string>armor</string>
 				</dict>
-				<key>forearm</key>
+				<key>ulna</key>
 				<dict>
 					<key>sprite name</key> <string>human_arm_f</string>
 					<key>color name</key> <string>armor</string>
@@ -493,7 +674,7 @@
 				<key>arm</key>
 				<dict>
 				</dict>
-				<key>forearm</key>
+				<key>ulna</key>
 				<dict>
 				</dict>
 				<key>hand</key>
@@ -505,7 +686,7 @@
 				<key>arm</key>
 				<dict>
 				</dict>
-				<key>forearm</key>
+				<key>ulna</key>
 				<dict>
 				</dict>
 				<key>hand</key>
@@ -517,7 +698,7 @@
 				<key>arm</key>
 				<dict>
 				</dict>
-				<key>forearm</key>
+				<key>ulna</key>
 				<dict>
 				</dict>
 				<key>hand</key>
@@ -526,7 +707,5 @@
 			</dict>
 		</dict>
 	</dict>
-	
-	<!-- TODO: "multitool" arm; unique arm for engineers, equivalent to light robo, but it has a wrist-computer on the left forearm; no unequip, breaks into itself -->
 </dict>
 </plist>
