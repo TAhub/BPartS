@@ -237,6 +237,10 @@ class Creature
 	var limbs = [String : CreatureLimb]()
 	var specials = [Special]()
 	
+	//appearance data
+	let morph:String
+	let personality:Int
+	
 	//variables
 	var health:Int
 	var action:Bool
@@ -324,6 +328,12 @@ class Creature
 		specials.append(Special(type: "lightning drive"))
 		specials.append(Special(type: "flame drive"))
 		specials.append(Special(type: "grapple"))
+		
+		//pick morph and personality
+		let morphs = DataStore.getArray("Races", race, "morphs") as! [String]
+		morph = morphs.randomElement!
+		let personalities = DataStore.getArray("Races", race, "personalities") as! [NSNumber]
+		personality = Int(personalities.randomElement!.intValue)
 		
 		//fill up health
 		self.health = maxHealth

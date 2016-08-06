@@ -56,6 +56,12 @@
 			<string>human male</string>
 			<string>human female</string>
 		</array>
+		<key>personalities</key>
+		<array>
+			<integer>3</integer>
+			<integer>2</integer>
+			<integer>1</integer>
+		</array>
 		<key>colorations</key>
 		<array>
 			<dict>
@@ -142,6 +148,11 @@
 		<key>morphs</key>
 		<array>
 			<string>grappler</string>
+		</array>
+		<key>personalities</key>
+		<array>
+			<integer>1</integer>
+			<integer>2</integer>
 		</array>
 		<key>colorations</key>
 		<array>

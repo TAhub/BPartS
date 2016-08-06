@@ -762,7 +762,7 @@
 				<key>center x</key> <integer>3</integer>
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>16</integer>
-				<key>connect y</key> <integer>4</integer>
+				<key>connect y</key> <integer>7</integer>
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
@@ -818,7 +818,7 @@
 				<key>center x</key> <integer>3</integer>
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>15</integer>
-				<key>connect y</key> <integer>7</integer>
+				<key>connect y</key> <integer>4</integer>
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
@@ -984,7 +984,7 @@
 				<key>center x</key> <integer>3</integer>
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>2</integer>
-				<key>connect y</key> <integer>4</integer>
+				<key>connect y</key> <integer>7</integer>
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
@@ -1040,7 +1040,7 @@
 				<key>center x</key> <integer>3</integer>
 				<key>center y</key> <integer>1</integer>
 				<key>connect x</key> <integer>3</integer>
-				<key>connect y</key> <integer>7</integer>
+				<key>connect y</key> <integer>4</integer>
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>

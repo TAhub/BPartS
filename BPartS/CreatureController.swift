@@ -297,13 +297,15 @@ class CreatureController
 	private var auraNode:SKShapeNode!
 	var morph:String
 	{
-		//TODO: get the appropriate morph for them, not just the first one
-		let morphs = DataStore.getArray("Races", creature.race, "morphs") as! [String]
-		return morphs[0]
+		return creature.morph
 	}
 	var states:String
 	{
 		return DataStore.getString("Races", creature.race, "states")!
+	}
+	var personality:Int
+	{
+		return creature.personality
 	}
 	
 	private var limbs = [String : BodyLimb]()
@@ -576,11 +578,14 @@ class CreatureController
 		if let baseStateNumber = state["base pose"]
 		{
 			//retrieve the base state
-			let baseStateInt = Int(baseStateNumber.intValue)
+			var baseStateInt = Int(baseStateNumber.intValue)
 			
-			//TODO: you should be able to specify a base state of "-1"
-			//this is the "personality" value, which will redirect you to a different base state per person
-			//so some people might stand in different ways, and hold their arms at rest in different ways, etc
+			if baseStateInt == -1
+			{
+				//use their personality value
+				baseStateInt = personality
+			}
+			
 			
 			let baseState = DataStore.getDictionary("BodyStates", states, "base pose \(baseStateInt)") as! [String : NSNumber]
 			
