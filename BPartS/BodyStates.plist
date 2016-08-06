@@ -907,6 +907,8 @@
 			<!-- flags -->
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
+			<key>right arm</key> <integer>-90</integer>
+			<key>right ulna</key> <integer>0</integer>
 		</dict>
 		
 		<key>right gun shoot</key>
@@ -914,6 +916,7 @@
 			<!-- flags -->
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
+			<key>right arm</key> <integer>-90</integer>
 			<key>right ulna</key> <integer>-15</integer>
 		</dict>
 		
@@ -923,6 +926,7 @@
 			<key>base pose</key> <integer>0</integer>
 			<!-- angles -->
 			<key>left arm</key> <integer>-90</integer>
+			<key>left ulna</key> <integer>0</integer>
 		</dict>
 		
 		<key>left gun shoot</key>

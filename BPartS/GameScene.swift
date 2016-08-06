@@ -249,25 +249,28 @@ class GameScene: SKScene, GameDelegate
 	}
 	
 	//MARK: delegate actions
-	func attackAnim(number:Int, hitLimb:CreatureLimb)
+	func attackAnim(number:Int?, hitLimb:CreatureLimb)
 	{
 		let attackerController = controllerFor(game.activeCreature)
 		let targetController = controllerFor(game.attackTarget)
 		
-		lastPow = number
+		lastPow = number ?? 0
 		
-		//display damage number
-		let tNode = SKLabelNode(text: "\(number)")
-		
-		let position = flipNode.convertPoint(targetController.creatureNode.position, toNode: self)
-		tNode.position = CGPoint(x: position.x, y: position.y)
-		self.addChild(tNode)
-		
-		let moveAnim = SKAction.moveTo(CGPoint(x: position.x, y: position.y + textDistance), duration: textTime)
-		let fadeAnim = SKAction.fadeAlphaTo(0.1, duration: textTime)
-		tNode.runAction(SKAction.group([moveAnim, fadeAnim]))
+		if let number = number
 		{
-			tNode.removeFromParent()
+			//display damage number
+			let tNode = SKLabelNode(text: "\(abs(number))")
+			tNode.fontColor = number >= 0 ? UIColor.whiteColor() : UIColor.greenColor()
+			let position = flipNode.convertPoint(targetController.creatureNode.position, toNode: self)
+			tNode.position = CGPoint(x: position.x, y: position.y)
+			self.addChild(tNode)
+			
+			let moveAnim = SKAction.moveTo(CGPoint(x: position.x, y: position.y + textDistance), duration: textTime)
+			let fadeAnim = SKAction.fadeAlphaTo(0.1, duration: textTime)
+			tNode.runAction(SKAction.group([moveAnim, fadeAnim]))
+			{
+				tNode.removeFromParent()
+			}
 		}
 		
 		//make bullet effect

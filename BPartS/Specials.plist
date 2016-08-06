@@ -15,10 +15,11 @@
 	<dict>
 		<!-- stats -->
 		<key>hit limb</key> <string>head</string>
-		<key>damage</key> <integer>50</integer>
+		<key>damage</key> <integer>60</integer>
 		<key>accuracy bonus</key> <integer>25</integer>
 		<key>shots</key> <integer>1</integer>
 		<!-- costs -->
+		<key>energy cost</key> <integer>1</integer>
 		<!-- animation data -->
 		<key>animation</key> <string>one drive</string>
 		<key>effect from morph limb</key> <string>left hand</string>
@@ -31,10 +32,11 @@
 	<dict>
 		<!-- stats -->
 		<key>hit limb</key> <string>torso</string>
-		<key>damage</key> <integer>55</integer>
+		<key>damage</key> <integer>65</integer>
 		<key>accuracy bonus</key> <integer>25</integer>
 		<key>shots</key> <integer>3</integer>
 		<!-- costs -->
+		<key>energy cost</key> <integer>1</integer>
 		<!-- animation data -->
 		<key>animation</key> <string>three drive</string>
 		<key>effect from morph limb</key> <string>left hand</string>
@@ -42,20 +44,53 @@
 	</dict>
 	
 	<!-- a special that strikes the enemy at the torso -->
-	<!-- reprogram your multitool to shoot flames! -->
+	<!-- shoot lasers from your eyes! -->
 	<key>eye laser</key>
 	<dict>
 		<!-- stats -->
 		<key>hit limb</key> <string>torso</string>
-		<key>damage</key> <integer>50</integer>
-		<key>accuracy bonus</key> <integer>100</integer>
+		<key>damage</key> <integer>55</integer>
+		<key>accuracy bonus</key> <integer>999</integer>
 		<key>shots</key> <integer>5</integer>
 		<!-- costs -->
+		<key>energy cost</key> <integer>1</integer>
 		<!-- animation data -->
-		<key>animation</key> <string>one drive</string> <!-- TODO: eye laser anim, with 5 shots in rapid succession -->
+		<!-- <key>animation</key> <string>manual gun shoot</string> --> <!-- TODO: eye laser anim, with 5 shots in rapid succession -->
 		<key>effect from morph limb</key> <string>eye</string>
 		<key>effect color</key> <string>red</string>
 	</dict>
+	
+	<!-- force an enemy to target you, and you to target them, until the end of the battle -->
+	<!-- declare a showdown -->
+	<key>showdown</key>
+	<dict>
+		<!-- stats -->
+		<key>taunt</key> <true/>
+		<key>damage</key> <integer>0</integer>
+		<key>accuracy bonus</key> <integer>999</integer>
+		<key>shots</key> <integer>1</integer>
+		<!-- costs -->
+		<key>taunt self</key> <true/>
+		<!-- animation data -->
+		<key>animation</key> <string>one drive</string> <!-- TODO: taunt anim; maybe you point your hand at them? -->
+	</dict>
+	
+	<!-- a special that heals an ally -->
+	<!-- passionately kiss the ally -->
+	<key>kiss</key>
+	<dict>
+		<!-- stats -->
+		<key>target allies</key> <true/>
+		<key>damage</key> <integer>-125</integer>
+		<key>accuracy bonus</key> <integer>999</integer>
+		<key>shots</key> <integer>1</integer>
+		<!-- costs -->
+		<key>energy cost</key> <integer>1</integer>
+		<!-- animation data -->
+		<key>animation</key> <string>one drive</string> <!-- TODO: kiss anim -->
+	</dict>
+	
+	
 	
 	<!-- a special that uses up the enemy's action, and does a little damage; it costs health though -->
 	<!-- use your four arms to grab the hell out of them -->

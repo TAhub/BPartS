@@ -48,7 +48,7 @@
 		<key>endurance</key> <integer>19</integer>
 		<key>energy</key> <integer>4</integer>
 		<!-- equipment -->
-		<key>starting special</key> <string>lightning drive</string>
+		<key>starting special</key> <string>kiss</string>
 		<key>armors</key>
 		<dict>
 			<key>torso</key> <string>light armor</string>
@@ -74,7 +74,7 @@
 		<key>endurance</key> <integer>22</integer>
 		<key>energy</key> <integer>4</integer>
 		<!-- equipment -->
-		<key>starting special</key> <string>flame drive</string>
+		<key>starting special</key> <string>showdown</string>
 		<key>armors</key>
 		<dict>
 			<key>torso</key> <string>light armor</string>
@@ -144,7 +144,6 @@
 		<key>weapons</key>
 		<dict>
 			<key>right arm</key> <string>laser pistol</string>
-			<key>left arm</key> <string>knife</string>
 		</dict>
 	</dict>
 </dict>

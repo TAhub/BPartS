@@ -10,7 +10,7 @@ import UIKit
 
 protocol GameDelegate
 {
-	func attackAnim(number:Int, hitLimb:CreatureLimb)
+	func attackAnim(number:Int?, hitLimb:CreatureLimb)
 }
 
 class Game
@@ -269,7 +269,7 @@ class Game
 	
 	func chooseAttack(target:Creature) -> Bool
 	{
-		if attackAnimStateSet == nil
+		if attackAnimStateSet == nil && target.tauntCheck(activeCreature)
 		{
 			if let attack = activeCreature.activeAttack
 			{

@@ -53,6 +53,24 @@ class Special
 		return DataStore.getColor("Specials", type, "effect color")
 	}
 	
+	//cost values
+	var healthCost:Int?
+	{
+		return DataStore.getInt("Specials", type, "health cost")
+	}
+	var energyCost:Int?
+	{
+		return DataStore.getInt("Specials", type, "energy cost")
+	}
+	var doubleHealthCostVsHulks:Bool
+	{
+		return DataStore.getBool("Specials", type, "double health cost vs hulks")
+	}
+	var tauntSelf:Bool
+	{
+		return DataStore.getBool("Specials", type, "taunt self")
+	}
+	
 	//stat values
 	var damage:Int
 	{
@@ -66,13 +84,9 @@ class Special
 	{
 		return DataStore.getBool("Specials", type, "stun")
 	}
-	var healthCost:Int?
+	var taunt:Bool
 	{
-		return DataStore.getInt("Specials", type, "health cost")
-	}
-	var doubleHealthCostVsHulks:Bool
-	{
-		return DataStore.getBool("Specials", type, "double health cost vs hulks")
+		return DataStore.getBool("Specials", type, "taunt")
 	}
 	var accuracyBonus:Int
 	{
@@ -81,6 +95,14 @@ class Special
 	var hitLimb:String?
 	{
 		return DataStore.getString("Specials", type, "hit limb")
+	}
+	var targetsAllies:Bool
+	{
+		return DataStore.getBool("Specials", type, "target allies")
+	}
+	var targetsSelf:Bool
+	{
+		return DataStore.getBool("Specials", type, "targets self")
 	}
 }
 
@@ -247,6 +269,10 @@ class Creature
 	//variables
 	var health:Int
 	var action:Bool
+	var energy:Int
+	
+	//statuses
+	weak var tauntedBy:Creature?
 	
 	//stats
 	var strength:Int
@@ -261,6 +287,10 @@ class Creature
 	var shotHit:Bool = false
 	
 	//derived
+	var maxEnergy:Int
+	{
+		return DataStore.getInt("CreatureTypes", creatureType, "energy")!
+	}
 	var maxHealth:Int
 	{
 		//you only get health bonuses from non-broken limbs
@@ -297,6 +327,7 @@ class Creature
 		self.player = player
 		self.race = DataStore.getString("CreatureTypes", creatureType, "race")!
 		self.health = 0
+		self.energy = 0
 		self.action = false
 		
 		//load stats
@@ -341,6 +372,7 @@ class Creature
 		
 		//fill up health
 		self.health = maxHealth
+		self.energy = maxEnergy
 		
 		//pick an initial active weapon
 		pickActiveWeapon()
@@ -368,12 +400,20 @@ class Creature
 	func startTurn()
 	{
 		//TODO: apply DOT from broken limbs, poison, whatever
+		
+		//taunts are canceled if the person you are taunted by is dead
+		if tauntedBy != nil && tauntedBy!.dead
+		{
+			tauntedBy = nil
+		}
 	}
 	
 	func endTurn()
 	{
 		//fill up your action, so that it can potentially be lost due to engagements
 		action = true
+		
+		//clear all hostile one-round effects
 	}
 	
 	func pickAttack(attack:Special)
@@ -397,7 +437,7 @@ class Creature
 		return activeWeapon != nil && !dead
 	}
 	
-	func executeAttack(target:Creature) -> (Int, CreatureLimb)
+	func executeAttack(target:Creature) -> (Int?, CreatureLimb)
 	{
 		shotNumber += 1
 		
@@ -413,12 +453,24 @@ class Creature
 				}
 				health = max(0, health - finalCost)
 			}
+			if let energyCost = activeAttack.energyCost
+			{
+				energy = max(0, energy - energyCost)
+			}
+			if activeAttack.tauntSelf
+			{
+				tauntedBy = target
+			}
 			
 			
 			//special effects
 			if activeAttack.stun
 			{
 				target.action = false
+			}
+			if activeAttack.taunt
+			{
+				target.tauntedBy = self
 			}
 			
 			
@@ -428,7 +480,16 @@ class Creature
 			let numShots = activeAttack.numShots
 			
 			let damage = Int(CGFloat(baseDamage) * (1 + biggerLevelFactor * CGFloat(intellect - baseStat))) / numShots
-			return target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, initialHit: shotNumber == 1)
+			if damage < 0
+			{
+				//it's a healing ability, so just do it here
+				target.health = min(target.health - damage, target.maxHealth)
+				return (damage, target.limbs["torso"]!)
+			}
+			else
+			{
+				return target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, initialHit: shotNumber == 1)
+			}
 		}
 		else if let activeWeapon = activeWeapon
 		{
@@ -452,16 +513,28 @@ class Creature
 		return (0, limbs.first!.1)
 	}
 	
+	func tauntCheck(by:Creature) -> Bool
+	{
+		if let tauntedBy = by.tauntedBy
+		{
+			if !(tauntedBy === self)
+			{
+				return false
+			}
+		}
+		return true
+	}
+	
 	func canBeTargetedWith(special:Special, by:Creature) -> Bool
 	{
-		if false //TODO: if this is a self-targeting special
+		if special.targetsSelf
 		{
 			if !(by === self)
 			{
 				return false
 			}
 		}
-		else if false //TODO: if this is an ally-targeting attack
+		else if special.targetsAllies
 		{
 			if player != by.player
 			{
@@ -476,7 +549,7 @@ class Creature
 			}
 		}
 		
-		//TODO: maybe healing abilities should be able to target dead people?
+		//TODO: maybe healing abilities should be able to target dead people? eh, maybe not
 		//can't target dead people
 		if self.dead
 		{
@@ -508,25 +581,30 @@ class Creature
 		var s = [Special]()
 		for special in specials
 		{
-			//do you have the body parts required to use this special?
-			var valid = true
-			if let animation = special.animation
+			//can you pay the costs?
+			let canPayEnergy = special.energyCost == nil || special.energyCost! <= energy
+			let canPayTaunt = !special.tauntSelf || tauntedBy == nil
+			if canPayEnergy && canPayTaunt
 			{
-				let requiredLimbs = DataStore.getArray("Animations", animation, "required limbs") as! [String]
-				for limb in requiredLimbs
+				//do you have the body parts required to use this special?
+				var valid = true
+				if let animation = special.animation
 				{
-					if self.limbs[limb] == nil || self.limbs[limb]!.broken
+					let requiredLimbs = DataStore.getArray("Animations", animation, "required limbs") as! [String]
+					for limb in requiredLimbs
 					{
-						valid = false
-						break
+						if self.limbs[limb] == nil || self.limbs[limb]!.broken
+						{
+							valid = false
+							break
+						}
 					}
 				}
 				
-			}
-			
-			if valid
-			{
-				s.append(special)
+				if valid
+				{
+					s.append(special)
+				}
 			}
 		}
 		return s
@@ -548,7 +626,7 @@ class Creature
 		return w
 	}
 	
-	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String?, initialHit:Bool) -> (Int, CreatureLimb)
+	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String?, initialHit:Bool) -> (Int?, CreatureLimb)
 	{
 		//the entire attack either hits or misses, just to make the animations tidier
 		let defended:Bool
@@ -645,7 +723,7 @@ class Creature
 		//just in case, adjust health to max health, because if a limb is broken your max health might be different not
 		health = min(maxHealth, health)
 		
-		return (displayDamage, displayLimb)
+		return (baseDamage == 0 ? nil : displayDamage, displayLimb)
 	}
 	
 	private func weaponInValidLimb(weapon:Weapon) -> Bool
