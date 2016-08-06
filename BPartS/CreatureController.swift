@@ -372,7 +372,7 @@ class CreatureController
 		
 		//TODO: load the appropriate coloration array
 		let colorations = DataStore.getArray("Races", creature.race, "colorations") as! [[String : String]]
-		let coloration = colorations[0]
+		let coloration = colorations[creature.coloration]
 		
 		//first, read all of the limb data into memory
 		let limbArray = DataStore.getArray("BodyMorphs", morph, "limbs") as! [[String : NSObject]]

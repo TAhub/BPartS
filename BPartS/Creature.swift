@@ -240,6 +240,7 @@ class Creature
 	//appearance data
 	let morph:String
 	let personality:Int
+	let coloration:Int
 	
 	//variables
 	var health:Int
@@ -334,6 +335,8 @@ class Creature
 		morph = morphs.randomElement!
 		let personalities = DataStore.getArray("Races", race, "personalities") as! [NSNumber]
 		personality = Int(personalities.randomElement!.intValue)
+		let colorations = DataStore.getArray("Races", race, "colorations")!.count
+		coloration = Int(arc4random_uniform(UInt32(colorations)))
 		
 		//fill up health
 		self.health = maxHealth

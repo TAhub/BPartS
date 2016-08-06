@@ -37,16 +37,12 @@ class ViewController: UIViewController {
 		scene.flipNode.addChild(shape)
 		
 		
-		//make UI
-		//TODO: make UI
-		
-		
 		//make the game
 		let game = Game()
 		game.players.append(Creature(race: "grappler", player: true))
 		game.players.append(Creature(race: "human", player: true))
 		game.players.append(Creature(race: "human", player: true))
-//		game.enemies.append(Creature(race: "grappler", player: false))
+		game.enemies.append(Creature(race: "grappler", player: false))
 		game.enemies.append(Creature(race: "human", player: false))
 		game.enemies.append(Creature(race: "human", player: false))
 		scene.game = game
