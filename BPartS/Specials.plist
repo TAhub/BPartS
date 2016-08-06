@@ -41,6 +41,22 @@
 		<key>effect color</key> <string>red</string>
 	</dict>
 	
+	<!-- a special that strikes the enemy at the torso -->
+	<!-- reprogram your multitool to shoot flames! -->
+	<key>eye laser</key>
+	<dict>
+		<!-- stats -->
+		<key>hit limb</key> <string>torso</string>
+		<key>damage</key> <integer>50</integer>
+		<key>accuracy bonus</key> <integer>100</integer>
+		<key>shots</key> <integer>5</integer>
+		<!-- costs -->
+		<!-- animation data -->
+		<key>animation</key> <string>one drive</string> <!-- TODO: eye laser anim, with 5 shots in rapid succession -->
+		<key>effect from morph limb</key> <string>eye</string>
+		<key>effect color</key> <string>red</string>
+	</dict>
+	
 	<!-- a special that uses up the enemy's action, and does a little damage; it costs health though -->
 	<!-- use your four arms to grab the hell out of them -->
 	<key>grapple</key>

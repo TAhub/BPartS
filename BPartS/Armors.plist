@@ -537,58 +537,6 @@
 		</dict>
 	</dict>
 	
-	<key>multitool arm</key>
-	<dict>
-		<!-- identity -->
-		<key>slot</key> <string>arm</string>
-		<key>breaks into</key> <string>multitool arm</string>
-		<!-- TODO: no un-equip -->
-		<!-- stats -->
-		<key>bonus strain</key> <integer>0</integer>
-		<key>bonus health</key> <integer>0</integer>
-		<key>bonus defend</key> <integer>0</integer>
-		<!-- graphical data -->
-		<key>appearance by morph</key>
-		<dict>
-			<key>human male</key>
-			<dict>
-				<key>arm</key>
-				<dict>
-					<key>sprite name</key> <string>lightrobo_arm_m</string>
-					<key>color name</key> <string>armor</string>
-				</dict>
-				<key>ulna</key>
-				<dict>
-					<key>sprite name</key> <string>engineer_arm_m</string>
-					<key>color name</key> <string>armor</string>
-				</dict>
-				<key>hand</key>
-				<dict>
-					<key>sprite name</key> <string>engineer_hand</string>
-					<key>color name</key> <string>armor</string>
-				</dict>
-			</dict>
-			<key>human female</key>
-			<dict>
-				<key>arm</key>
-				<dict>
-					<key>sprite name</key> <string>lightrobo_arm_f</string>
-					<key>color name</key> <string>armor</string>
-				</dict>
-				<key>ulna</key>
-				<dict>
-					<key>sprite name</key> <string>engineer_arm_f</string>
-					<key>color name</key> <string>armor</string>
-				</dict>
-				<key>hand</key>
-				<dict>
-					<key>sprite name</key> <string>engineer_hand</string>
-					<key>color name</key> <string>armor</string>
-				</dict>
-			</dict>
-		</dict>
-	</dict>
-	
 	<key>heavy robot arm</key>
 	<dict>
 		<!-- identity -->
@@ -705,6 +653,127 @@
 				<dict>
 				</dict>
 			</dict>
+		</dict>
+	</dict>
+	
+	
+	<!-- unique armor -->
+	
+	<key>multitool arm</key>
+	<dict>
+		<!-- identity -->
+		<key>slot</key> <string>arm</string>
+		<key>breaks into</key> <string>multitool arm</string>
+		<!-- TODO: no un-equip -->
+		<!-- stats -->
+		<key>bonus strain</key> <integer>0</integer>
+		<key>bonus health</key> <integer>0</integer>
+		<key>bonus defend</key> <integer>0</integer>
+		<!-- graphical data -->
+		<key>appearance by morph</key>
+		<dict>
+			<key>human male</key>
+			<dict>
+				<key>arm</key>
+				<dict>
+					<key>sprite name</key> <string>lightrobo_arm_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>ulna</key>
+				<dict>
+					<key>sprite name</key> <string>engineer_arm_m</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>hand</key>
+				<dict>
+					<key>sprite name</key> <string>engineer_hand</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
+			<key>human female</key>
+			<dict>
+				<key>arm</key>
+				<dict>
+					<key>sprite name</key> <string>lightrobo_arm_f</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>ulna</key>
+				<dict>
+					<key>sprite name</key> <string>engineer_arm_f</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+				<key>hand</key>
+				<dict>
+					<key>sprite name</key> <string>engineer_hand</string>
+					<key>color name</key> <string>armor</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+	
+	<!-- robot built-in armor -->
+	
+	<key>robot torso</key>
+	<dict>
+		<!-- identity -->
+		<key>slot</key> <string>torso</string>
+		<key>breaks into</key> <string>robot torso</string>
+		<!-- TODO: no un-equip -->
+		<!-- stats -->
+		<key>bonus strain</key> <integer>2</integer>
+		<key>bonus health</key> <integer>5</integer>
+		<key>bonus defend</key> <integer>-10</integer>
+		<!-- graphical data -->
+		<key>appearance by morph</key>
+		<dict>
+		</dict>
+	</dict>
+	
+	<key>robot arm</key>
+	<dict>
+		<!-- identity -->
+		<key>slot</key> <string>arm</string>
+		<key>breaks into</key> <string>robot arm</string>
+		<!-- TODO: no un-equip -->
+		<!-- stats -->
+		<key>bonus strain</key> <integer>2</integer>
+		<key>bonus health</key> <integer>5</integer>
+		<key>bonus defend</key> <integer>-10</integer>
+		<!-- graphical data -->
+		<key>appearance by morph</key>
+		<dict>
+		</dict>
+	</dict>
+	
+	<key>robot treads</key>
+	<dict>
+		<!-- identity -->
+		<key>slot</key> <string>leg</string>
+		<key>breaks into</key> <string>robot treads</string>
+		<!-- TODO: no un-equip -->
+		<!-- stats -->
+		<key>bonus strain</key> <integer>2</integer>
+		<key>bonus health</key> <integer>5</integer>
+		<key>bonus defend</key> <integer>-10</integer>
+		<!-- graphical data -->
+		<key>appearance by morph</key>
+		<dict>
+		</dict>
+	</dict>
+	
+	<key>robot head</key>
+	<dict>
+		<!-- identity -->
+		<key>slot</key> <string>head</string>
+		<key>breaks into</key> <string>robot head</string>
+		<!-- TODO: no un-equip -->
+		<!-- stats -->
+		<key>bonus strain</key> <integer>2</integer>
+		<key>bonus health</key> <integer>5</integer>
+		<key>bonus defend</key> <integer>-10</integer>
+		<!-- graphical data -->
+		<key>appearance by morph</key>
+		<dict>
 		</dict>
 	</dict>
 </dict>

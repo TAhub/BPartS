@@ -179,5 +179,61 @@
 			</dict>
 		</array>
 	</dict>
+	
+    <key>robot</key>
+	<dict>
+		<!-- limb data -->
+		<key>limbs</key>
+		<dict>
+			<key>tread leg</key>
+			<dict>
+				<key>type</key> <string>leg</string>
+				<key>max strain</key> <integer>4</integer>
+				<key>prefix</key> <string>tread</string>
+			</dict>
+			<key>left arm</key>
+			<dict>
+				<key>type</key> <string>arm</string>
+				<key>max strain</key> <integer>2</integer>
+				<key>prefix</key> <string>left</string>
+			</dict>
+			<key>right arm</key>
+			<dict>
+				<key>type</key> <string>arm</string>
+				<key>max strain</key> <integer>2</integer>
+				<key>prefix</key> <string>right</string>
+			</dict>
+			<key>head</key>
+			<dict>
+				<key>type</key> <string>head</string>
+				<key>max strain</key> <integer>2</integer>
+			</dict>
+			<key>torso</key>
+			<dict>
+				<key>type</key> <string>torso</string>
+				<key>max strain</key> <integer>4</integer>
+			</dict>
+		</dict>
+		<!-- graphical data -->
+		<key>states</key> <string>robot</string>
+		<key>morphs</key>
+		<array>
+			<string>robot</string>
+		</array>
+		<key>personalities</key>
+		<array>
+			<integer>1</integer>
+		</array>
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>steel</string>
+				<key>eye</key> <string>white</string>
+				<key>armor</key> <string>blue cloth</string>
+				<key>clothing</key> <string>wool</string>
+				<key>weapon</key> <string>steel</string>
+			</dict>
+		</array>
+	</dict>
 </dict>
 </plist>

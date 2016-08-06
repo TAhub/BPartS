@@ -223,8 +223,9 @@ class CreatureLimb
 	}
 }
 
-let levelFactor:CGFloat = 0.1
-let biggerLevelFactor:CGFloat = 0.15 //roughly 1.5x level factor
+let baseMaxHealth:CGFloat = 350
+let levelFactor:CGFloat = 0.034
+let biggerLevelFactor:CGFloat = 0.05 //roughly 1.5x level factor
 let baseStat = 20
 let maxDefendChance = 90
 let baseDefendChance = 50
@@ -232,6 +233,7 @@ let baseDefendChance = 50
 class Creature
 {
 	//identity
+	let creatureType:String
 	let player:Bool
 	let race:String
 	var limbs = [String : CreatureLimb]()
@@ -273,7 +275,7 @@ class Creature
 				}
 			}
 		}
-		return Int(400 * (1 + biggerLevelFactor * CGFloat(endurance - baseStat))) * limbBonus / 100
+		return Int(baseMaxHealth * (1 + biggerLevelFactor * CGFloat(endurance - baseStat))) * limbBonus / 100
 	}
 	var defendChance:Int
 	{
@@ -289,18 +291,19 @@ class Creature
 		return dC
 	}
 	
-	init(race:String, player:Bool)
+	init(creatureType:String, player:Bool)
 	{
+		self.creatureType = creatureType
 		self.player = player
-		self.race = race
+		self.race = DataStore.getString("CreatureTypes", creatureType, "race")!
 		self.health = 0
 		self.action = false
 		
 		//load stats
-		strength = baseStat
-		perception = baseStat
-		intellect = baseStat
-		endurance = baseStat
+		strength = DataStore.getInt("CreatureTypes", creatureType, "strength")!
+		perception = DataStore.getInt("CreatureTypes", creatureType, "perception")!
+		intellect = DataStore.getInt("CreatureTypes", creatureType, "intellect")!
+		endurance = DataStore.getInt("CreatureTypes", creatureType, "endurance")!
 		
 		//load limbs
 		let limbDicts = DataStore.getDictionary("Races", race, "limbs") as! [String : [String : AnyObject]]
@@ -309,26 +312,24 @@ class Creature
 			limbs[name] = (CreatureLimb(name: name, limbDict: limbDict))
 		}
 		
-		//stick some temp armor on
-//		limbs["head"]!.armor = "helmet"
-		limbs["torso"]!.armor = "light armor"
-		limbs["right arm"]?.armor = "natural arm"
-		limbs["upper right arm"]?.armor = "light robot arm"
-		limbs["lower right arm"]?.armor = "light robot arm"
-		limbs["left arm"]?.armor = "multitool arm"
-		limbs["upper left arm"]?.armor = "natural arm"
-		limbs["lower left arm"]?.armor = "natural arm"
-		limbs["right leg"]?.armor = "natural leg"
-		limbs["left leg"]?.armor = "heavy robot leg"
-		limbs["right arm"]?.weapon = Weapon(type: "laser pistol", level: 1)
-		limbs["upper right arm"]?.weapon = Weapon(type: "smg", level: 1)
-		limbs["lower right arm"]?.weapon = Weapon(type: "revolver", level: 1)
-		limbs["left arm"]?.weapon = Weapon(type: "knife", level: 1)
-		limbs["upper left arm"]?.weapon = Weapon(type: "knife", level: 1)
-		limbs["lower left arm"]?.weapon = Weapon(type: "knuckle", level: 1)
-		specials.append(Special(type: "lightning drive"))
-		specials.append(Special(type: "flame drive"))
-		specials.append(Special(type: "grapple"))
+		//load equipment
+		let armors = DataStore.getDictionary("CreatureTypes", creatureType, "armors") as! [String : String]
+		for (limb, armor) in armors
+		{
+			limbs[limb]!.armor = armor
+		}
+		
+		let weapons = DataStore.getDictionary("CreatureTypes", creatureType, "weapons") as! [String : String]
+		for (limb, weapon) in weapons
+		{
+			//TODO: weapons should be leveled to the creature type, not just level 1
+			limbs[limb]!.weapon = Weapon(type: weapon, level: 1)
+		}
+		
+		if let startingSpecial = DataStore.getString("CreatureTypes", creatureType, "starting special")
+		{
+			specials.append(Special(type: startingSpecial))
+		}
 		
 		//pick morph and personality
 		let morphs = DataStore.getArray("Races", race, "morphs") as! [String]

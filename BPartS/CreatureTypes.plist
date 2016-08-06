@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   CreatureTypes.plist
+   BPartS
+
+   Created by Theodore Abshire on 8/6/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	
+	<!-- player starting classes -->
+    <key>engineer</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>human</string>
+		<!-- stats -->
+		<key>strength</key> <integer>19</integer>
+		<key>perception</key> <integer>19</integer>
+		<key>intellect</key> <integer>24</integer>
+		<key>endurance</key> <integer>16</integer>
+		<key>energy</key> <integer>5</integer>
+		<!-- equipment -->
+		<key>starting special</key> <string>lightning drive</string>
+		<key>armors</key>
+		<dict>
+			<key>torso</key> <string>uniform</string>
+			<key>left arm</key> <string>multitool arm</string>
+			<key>right arm</key> <string>natural arm</string>
+			<key>left leg</key> <string>natural leg</string>
+			<key>right leg</key> <string>light robot leg</string>
+		</dict>
+		<key>weapons</key>
+		<dict>
+			<key>left arm</key> <string>laser pistol</string>
+		</dict>
+	</dict>
+	
+    <key>rogue</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>human</string>
+		<!-- stats -->
+		<key>strength</key> <integer>17</integer>
+		<key>perception</key> <integer>24</integer>
+		<key>intellect</key> <integer>21</integer>
+		<key>endurance</key> <integer>19</integer>
+		<key>energy</key> <integer>4</integer>
+		<!-- equipment -->
+		<key>starting special</key> <string>lightning drive</string>
+		<key>armors</key>
+		<dict>
+			<key>torso</key> <string>light armor</string>
+			<key>left arm</key> <string>natural arm</string>
+			<key>right arm</key> <string>natural arm</string>
+			<key>left leg</key> <string>natural leg</string>
+			<key>right leg</key> <string>natural leg</string>
+		</dict>
+		<key>weapons</key>
+		<dict>
+			<key>right arm</key> <string>rapid blaster</string>
+		</dict>
+	</dict>
+	
+    <key>drifter</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>human</string>
+		<!-- stats -->
+		<key>strength</key> <integer>24</integer>
+		<key>perception</key> <integer>18</integer>
+		<key>intellect</key> <integer>17</integer>
+		<key>endurance</key> <integer>22</integer>
+		<key>energy</key> <integer>4</integer>
+		<!-- equipment -->
+		<key>starting special</key> <string>flame drive</string>
+		<key>armors</key>
+		<dict>
+			<key>torso</key> <string>light armor</string>
+			<key>left arm</key> <string>natural arm</string>
+			<key>right arm</key> <string>heavy robot arm</string>
+			<key>left leg</key> <string>natural leg</string>
+			<key>right leg</key> <string>natural leg</string>
+		</dict>
+		<key>weapons</key>
+		<dict>
+			<key>left arm</key> <string>revolver</string>
+			<key>right arm</key> <string>knife</string>
+		</dict>
+	</dict>
+	
+    <key>grappler</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>grappler</string>
+		<!-- stats -->
+		<key>strength</key> <integer>17</integer>
+		<key>perception</key> <integer>16</integer>
+		<key>intellect</key> <integer>10</integer>
+		<key>endurance</key> <integer>17</integer>
+		<key>energy</key> <integer>0</integer>
+		<!-- equipment -->
+		<key>starting special</key> <string>grapple</string>
+		<key>armors</key>
+		<dict>
+			<key>torso</key> <string>light armor</string>
+			<key>upper left arm</key> <string>natural arm</string>
+			<key>lower left arm</key> <string>natural arm</string>
+			<key>upper right arm</key> <string>natural arm</string>
+			<key>lower right arm</key> <string>natural arm</string>
+			<key>left leg</key> <string>natural leg</string>
+			<key>right leg</key> <string>natural leg</string>
+		</dict>
+		<key>weapons</key>
+		<dict>
+			<key>upper left arm</key> <string>revolver</string>
+			<key>lower left arm</key> <string>smg</string>
+			<key>upper right arm</key> <string>knife</string>
+			<key>lower right arm</key> <string>knuckle</string>
+		</dict>
+	</dict>
+	
+    <key>robot</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>robot</string>
+		<!-- stats -->
+		<key>strength</key> <integer>16</integer>
+		<key>perception</key> <integer>22</integer>
+		<key>intellect</key> <integer>18</integer>
+		<key>endurance</key> <integer>24</integer>
+		<key>energy</key> <integer>5</integer>
+		<!-- equipment -->
+		<key>starting special</key> <string>eye laser</string>
+		<key>armors</key>
+		<dict>
+			<key>head</key> <string>robot head</string>
+			<key>torso</key> <string>robot torso</string>
+			<key>left arm</key> <string>robot arm</string>
+			<key>right arm</key> <string>robot arm</string>
+			<key>tread leg</key> <string>robot treads</string>
+		</dict>
+		<key>weapons</key>
+		<dict>
+			<key>right arm</key> <string>laser pistol</string>
+			<key>left arm</key> <string>knife</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

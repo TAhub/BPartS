@@ -835,9 +835,188 @@
 		</dict>
 	</dict>
 	
-	<!-- TODO: robot body states
-		I can base these off of human states, just remove the leg data
-		(though maybe making the tread and body tilt when moving so the body on top sways back and forth might be cute)
-		-->
+    <key>robot</key>
+	<dict>
+		<!-- base poses -->
+		
+		<!-- combat base pose -->
+		<key>base pose 0</key>
+		<dict>
+			<!-- flags -->
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>left arm</key> <integer>90</integer>
+			<key>left ulna</key> <integer>0</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>90</integer>
+			<key>right ulna</key> <integer>0</integer>
+			<key>right hand</key> <integer>0</integer>
+		</dict>
+		
+		<!-- ordinary neutral base pose -->
+		<key>base pose 1</key>
+		<dict>
+			<!-- flags -->
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>0</integer>
+			<key>left arm</key> <integer>90</integer>
+			<key>left ulna</key> <integer>0</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-90</integer>
+			<key>right ulna</key> <integer>0</integer>
+			<key>right hand</key> <integer>0</integer>
+		</dict>
+		
+		<!-- finalized poses -->
+		
+		<key>disabled</key>
+		<dict>
+			<!-- flags -->
+			<key>stop undulation</key> <integer>0</integer>
+			<!-- angles -->
+			<key>torso</key> <integer>-90</integer>
+		</dict>
+		
+		<key>neutral</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>-1</integer>
+			<!-- angles -->
+		</dict>
+		
+		<key>left neutral</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>-1</integer>
+			<!-- angles -->
+			<key>left ulna</key> <integer>90</integer>
+		</dict>
+		
+		<key>right neutral</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>-1</integer>
+			<!-- angles -->
+			<key>right ulna</key> <integer>-90</integer>
+		</dict>
+		
+		<key>right gun</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+		</dict>
+		
+		<key>right gun shoot</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>right ulna</key> <integer>-15</integer>
+		</dict>
+		
+		<key>left gun</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>left arm</key> <integer>-90</integer>
+		</dict>
+		
+		<key>left gun shoot</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>left arm</key> <integer>-90</integer>
+			<key>left ulna</key> <integer>-15</integer>
+		</dict>
+		
+		<key>left punch</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>left arm</key> <integer>80</integer>
+			<key>left ulna</key> <integer>-180</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-75</integer>
+			<key>right ulna</key> <integer>0</integer>
+			<key>right hand</key> <integer>-20</integer>
+		</dict>
+		
+		<key>left punch throw</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>left arm</key> <integer>-90</integer>
+			<key>left ulna</key> <integer>0</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-45</integer>
+			<key>right ulna</key> <integer>-90</integer>
+			<key>right hand</key> <integer>0</integer>
+		</dict>
+		
+		<key>right punch</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>left arm</key> <integer>-75</integer>
+			<key>left ulna</key> <integer>0</integer>
+			<key>left hand</key> <integer>-20</integer>
+			<key>right arm</key> <integer>80</integer>
+			<key>right ulna</key> <integer>-180</integer>
+			<key>right hand</key> <integer>0</integer>
+		</dict>
+		
+		<key>right punch throw</key>
+		<dict>
+			<!-- flags -->
+			<key>base pose</key> <integer>0</integer>
+			<!-- angles -->
+			<key>left arm</key> <integer>-45</integer>
+			<key>left ulna</key> <integer>-90</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-90</integer>
+			<key>right ulna</key> <integer>0</integer>
+			<key>right hand</key> <integer>0</integer>
+		</dict>
+		
+		<key>defend</key>
+		<dict>
+			<!-- flags -->
+			<key>stop undulation</key> <integer>0</integer>
+			<key>vibrate</key> <integer>0</integer>
+			<!-- angles -->
+			<key>head</key> <integer>0</integer>
+			<key>torso</key> <integer>-5</integer>
+			<key>left arm</key> <integer>-80</integer>
+			<key>left ulna</key> <integer>-90</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-90</integer>
+			<key>right ulna</key> <integer>-90</integer>
+			<key>right hand</key> <integer>0</integer>
+		</dict>
+		
+		<key>flinch</key>
+		<dict>
+			<!-- flags -->
+			<key>stop undulation</key> <integer>0</integer>
+			<key>vibrate</key> <integer>0</integer>
+			<!-- angles -->
+			<key>head</key> <integer>30</integer>
+			<key>torso</key> <integer>-15</integer>
+			<key>left arm</key> <integer>30</integer>
+			<key>left ulna</key> <integer>-30</integer>
+			<key>left hand</key> <integer>0</integer>
+			<key>right arm</key> <integer>-60</integer>
+			<key>right ulna</key> <integer>-10</integer>
+			<key>right hand</key> <integer>0</integer>
+		</dict>
+	</dict>
 </dict>
 </plist>

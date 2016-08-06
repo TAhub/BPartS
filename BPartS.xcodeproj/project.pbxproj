@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E431BFD41D565B6D002B34D9 /* CreatureTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E431BFD31D565B6D002B34D9 /* CreatureTypes.plist */; };
 		E43E952B1D5530E5008B6828 /* Specials.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43E952A1D5530E5008B6828 /* Specials.plist */; };
 		E4CFD79D1D51103400D6A93B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CFD79C1D51103400D6A93B /* AppDelegate.swift */; };
 		E4CFD79F1D51103400D6A93B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CFD79E1D51103400D6A93B /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E431BFD31D565B6D002B34D9 /* CreatureTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CreatureTypes.plist; sourceTree = "<group>"; };
 		E43E952A1D5530E5008B6828 /* Specials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Specials.plist; sourceTree = "<group>"; };
 		E4CFD7991D51103400D6A93B /* BPartS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BPartS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4CFD79C1D51103400D6A93B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		E4CFD7BF1D5110B000D6A93B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E431BFD31D565B6D002B34D9 /* CreatureTypes.plist */,
 				E43E952A1D5530E5008B6828 /* Specials.plist */,
 				E4E72ED91D52B7A600843AB5 /* Animations.plist */,
 				E4E72ED71D52B2E400843AB5 /* Weapons.plist */,
@@ -249,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E43E952B1D5530E5008B6828 /* Specials.plist in Resources */,
+				E431BFD41D565B6D002B34D9 /* CreatureTypes.plist in Resources */,
 				E4E72ED81D52B2E400843AB5 /* Weapons.plist in Resources */,
 				E4CFD7C71D51121800D6A93B /* BodyStates.plist in Resources */,
 				E4CFD7A71D51103400D6A93B /* LaunchScreen.storyboard in Resources */,
