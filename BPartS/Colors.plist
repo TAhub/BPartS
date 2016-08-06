@@ -19,16 +19,15 @@
 	
 	<!-- body colors -->
 	<key>skin light</key> <string>F9DBBD</string>
+	<key>skin pale</key> <string>FBF2E9</string>
 	<key>skin swarthy</key> <string>D8B896</string>
 	<key>skin dark</key> <string>6F3C20</string>
-	<key>human hair blonde</key> <string>A56B46</string>
-	<key>human hair brown</key> <string>504444</string>
+	<key>human hair blonde</key> <string>B0A63B</string>
+	<key>human hair red</key> <string>A14736</string>
+	<key>human hair brown</key> <string>7A5252</string>
 	<key>human hair black</key> <string>2C222C</string>
 	
 	<!-- material colors -->
-	<key>bone</key> <string>E3DAC9</string>
-	<key>wool</key> <string>DEDEDE</string>
-	<key>cloth</key> <string>E5E5C0</string>
 	<key>iron</key> <string>545B5D</string>
 	<key>silver</key> <string>C0C0C0</string>
 	<key>gold</key> <string>FFDD00</string>
@@ -37,6 +36,15 @@
 	<key>mercury</key> <string>E2E2E2</string>
 	<key>steel</key> <string>BBCCDD</string>
 	<key>leather</key> <string>997755</string>
-	<key>blue cloth</key> <string>111188</string>
+	
+	<!-- painted material colors -->
+	<key>light material</key> <string>CCCCCC</string>
+	<key>medium material</key> <string>999999</string>
+	<key>dark material</key> <string>666666</string>
+	<key>red material</key> <string>E64C4C</string>
+	<key>blue material</key> <string>4C4CE6</string>
+	<key>yellow material</key> <string>E6E64C</string>
+	<key>green material</key> <string>4CE64C</string>
+	<key>purple material</key> <string>E64CE6</string>
 </dict>
 </plist>

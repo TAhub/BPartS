@@ -816,8 +816,9 @@ class CreatureController
 	
 	func makeEffectForSpecial(special:Special, toController:CreatureController, toLimb:CreatureLimb) -> SKShapeNode?
 	{
-		if let limbName = special.effectFromMorphLimb, let limb = limbs[limbName], let effectColor = special.effectColor
+		if let limbName = special.effectFromMorphLimb, let limb = limbs[limbName]
 		{
+			let effectColor = special.effectColor ?? limb.spriteNode.color
 			return makeEffect(muzzleX: limb.centerX, muzzleY: limb.centerY, effectColor: effectColor, limb: limb, toController: toController, toLimb: toLimb)
 		}
 		return nil

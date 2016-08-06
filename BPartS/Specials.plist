@@ -57,7 +57,7 @@
 		<!-- animation data -->
 		<!-- <key>animation</key> <string>manual gun shoot</string> --> <!-- TODO: eye laser anim, with 5 shots in rapid succession -->
 		<key>effect from morph limb</key> <string>eye</string>
-		<key>effect color</key> <string>red</string>
+		<!-- if there's no effect color, it defaults to the part color (in this case, the eye color) -->
 	</dict>
 	
 	<!-- force an enemy to target you, and you to target them, until the end of the battle -->

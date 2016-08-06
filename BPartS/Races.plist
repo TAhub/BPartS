@@ -68,25 +68,33 @@
 				<key>skin</key> <string>skin light</string>
 				<key>hair</key> <string>human hair blonde</string>
 				<key>eye</key> <string>white</string>
-				<key>armor</key> <string>blue cloth</string>
-				<key>clothing</key> <string>wool</string>
-				<key>weapon</key> <string>steel</string>
+				<key>armor</key> <string>blue material</string>
+				<key>clothing</key> <string>dark material</string>
+				<key>weapon</key> <string>lead</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>skin pale</string>
+				<key>hair</key> <string>human hair red</string>
+				<key>eye</key> <string>white</string>
+				<key>armor</key> <string>red material</string>
+				<key>clothing</key> <string>dark material</string>
+				<key>weapon</key> <string>iron</string>
 			</dict>
 			<dict>
 				<key>skin</key> <string>skin swarthy</string>
 				<key>hair</key> <string>human hair brown</string>
 				<key>eye</key> <string>white</string>
-				<key>armor</key> <string>blue cloth</string>
-				<key>clothing</key> <string>wool</string>
+				<key>armor</key> <string>green material</string>
+				<key>clothing</key> <string>medium material</string>
 				<key>weapon</key> <string>steel</string>
 			</dict>
 			<dict>
 				<key>skin</key> <string>skin dark</string>
 				<key>hair</key> <string>human hair black</string>
 				<key>eye</key> <string>white</string>
-				<key>armor</key> <string>blue cloth</string>
-				<key>clothing</key> <string>wool</string>
-				<key>weapon</key> <string>steel</string>
+				<key>armor</key> <string>yellow material</string>
+				<key>clothing</key> <string>light material</string>
+				<key>weapon</key> <string>silver</string>
 			</dict>
 		</array>
 	</dict>
@@ -158,24 +166,24 @@
 		<array>
 			<dict>
 				<key>skin</key> <string>skin light</string>
-				<key>eye</key> <string>lead</string>
-				<key>armor</key> <string>blue cloth</string>
-				<key>clothing</key> <string>wool</string>
-				<key>weapon</key> <string>steel</string>
+				<key>eye</key> <string>white</string>
+				<key>armor</key> <string>blue material</string>
+				<key>clothing</key> <string>dark material</string>
+				<key>weapon</key> <string>lead</string>
 			</dict>
 			<dict>
 				<key>skin</key> <string>skin swarthy</string>
-				<key>eye</key> <string>lead</string>
-				<key>armor</key> <string>blue cloth</string>
-				<key>clothing</key> <string>wool</string>
+				<key>eye</key> <string>white</string>
+				<key>armor</key> <string>green material</string>
+				<key>clothing</key> <string>medium material</string>
 				<key>weapon</key> <string>steel</string>
 			</dict>
 			<dict>
 				<key>skin</key> <string>skin dark</string>
-				<key>eye</key> <string>lead</string>
-				<key>armor</key> <string>blue cloth</string>
-				<key>clothing</key> <string>wool</string>
-				<key>weapon</key> <string>steel</string>
+				<key>eye</key> <string>white</string>
+				<key>armor</key> <string>yellow material</string>
+				<key>clothing</key> <string>light material</string>
+				<key>weapon</key> <string>silver</string>
 			</dict>
 		</array>
 	</dict>
@@ -227,10 +235,27 @@
 		<key>colorations</key>
 		<array>
 			<dict>
-				<key>skin</key> <string>steel</string>
-				<key>eye</key> <string>white</string>
-				<key>armor</key> <string>blue cloth</string>
-				<key>clothing</key> <string>wool</string>
+				<key>skin</key> <string>blue material</string>
+				<key>eye</key> <string>yellow</string>
+				<key>armor</key> <string>blue material</string>
+				<key>weapon</key> <string>lead</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>red material</string>
+				<key>eye</key> <string>green</string>
+				<key>armor</key> <string>red material</string>
+				<key>weapon</key> <string>iron</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>yellow material</string>
+				<key>eye</key> <string>blue</string>
+				<key>armor</key> <string>yellow material</string>
+				<key>weapon</key> <string>silver</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>green material</string>
+				<key>eye</key> <string>red</string>
+				<key>armor</key> <string>green material</string>
 				<key>weapon</key> <string>steel</string>
 			</dict>
 		</array>

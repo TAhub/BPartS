@@ -39,12 +39,14 @@ class ViewController: UIViewController {
 		
 		//make the game
 		let game = Game()
+		game.players.append(Creature(creatureType: "engineer", player: true))
 		game.players.append(Creature(creatureType: "drifter", player: true))
-		game.players.append(Creature(creatureType: "drifter", player: true))
-		game.players.append(Creature(creatureType: "drifter", player: true))
+		game.players.append(Creature(creatureType: "grappler", player: true))
+		game.players.append(Creature(creatureType: "robot", player: true))
 		game.enemies.append(Creature(creatureType: "engineer", player: false))
-		game.enemies.append(Creature(creatureType: "robot", player: false))
+		game.enemies.append(Creature(creatureType: "drifter", player: false))
 		game.enemies.append(Creature(creatureType: "grappler", player: false))
+		game.enemies.append(Creature(creatureType: "robot", player: false))
 		scene.game = game
 		game.delegate = scene
 		
