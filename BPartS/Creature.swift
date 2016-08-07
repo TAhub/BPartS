@@ -250,7 +250,7 @@ let levelFactor:CGFloat = 0.034
 let biggerLevelFactor:CGFloat = 0.05 //roughly 1.5x level factor
 let baseStat = 20
 let maxDefendChance = 90
-let baseDefendChance = 50
+let baseDefendChance = 60
 
 class Creature
 {
@@ -513,19 +513,45 @@ class Creature
 		return (0, limbs.first!.1)
 	}
 	
-	func tauntCheck(by:Creature) -> Bool
+	func validTargetCheck(target:Creature, special:Special?, weapon:Weapon?) -> Bool
 	{
-		if let tauntedBy = by.tauntedBy
+		if let special = special
 		{
-			if !(tauntedBy === self)
+			if !target.canBeTargetedWith(special, by: self)
 			{
 				return false
+			}
+		}
+		else if let weapon = weapon
+		{
+			//TODO: check if you have enough ammo, and return false if you don't
+			
+			if target.player == player || target.dead
+			{
+				//no, you can't shoot your allies, nor can you shoot corpses
+				return false
+			}
+		}
+		else
+		{
+			assertionFailure()
+		}
+		
+		//when you're taunted, you can only target the enemy, or use self-targeting attacks
+		if special == nil || !special!.targetsSelf
+		{
+			if let tauntedBy = tauntedBy
+			{
+				if !(tauntedBy === target)
+				{
+					return false
+				}
 			}
 		}
 		return true
 	}
 	
-	func canBeTargetedWith(special:Special, by:Creature) -> Bool
+	private func canBeTargetedWith(special:Special, by:Creature) -> Bool
 	{
 		if special.targetsSelf
 		{
@@ -536,7 +562,7 @@ class Creature
 		}
 		else if special.targetsAllies
 		{
-			if player != by.player
+			if player != by.player || by === self //ally-targeting attacks cannot target yourself, to prevent animation weirdness
 			{
 				return false
 			}

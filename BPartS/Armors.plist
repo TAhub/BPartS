@@ -10,8 +10,13 @@
 <plist version="1.0">
 <dict>
 	<!-- NOTE:
-		at the moment, a "light" armor should be +1 strain, -5 defend
-		and a "heavy" armor should be +2 strain, +5 health, -10 defend
+		current guidelines
+		torso armor
+			heavy		+2 strain, +7 health, -10 defend
+			light		+1 strain, -5 defend
+		non-torso armor
+			heavy		+4 strain, +10 health, -20 defend
+			light		+2 strain, -10 defend
 		dunno if this is fair; it'll require more testing
 	-->
 	
@@ -106,9 +111,9 @@
 		<!-- identity -->
 		<key>slot</key> <string>torso</string>
 		<!-- stats -->
-		<key>bonus strain</key> <integer>1</integer>
+		<key>bonus strain</key> <integer>2</integer>
 		<key>bonus health</key> <integer>0</integer>
-		<key>bonus defend</key> <integer>-5</integer>
+		<key>bonus defend</key> <integer>-10</integer>
 		<!-- graphical data -->
 		<key>appearance by morph</key>
 		<dict>
@@ -149,9 +154,9 @@
 		<!-- identity -->
 		<key>slot</key> <string>torso</string>
 		<!-- stats -->
-		<key>bonus strain</key> <integer>2</integer>
-		<key>bonus health</key> <integer>5</integer>
-		<key>bonus defend</key> <integer>-10</integer>
+		<key>bonus strain</key> <integer>4</integer>
+		<key>bonus health</key> <integer>10</integer>
+		<key>bonus defend</key> <integer>-20</integer>
 		<!-- graphical data -->
 		<key>appearance by morph</key>
 		<dict>
@@ -240,7 +245,7 @@
 		<key>slot</key> <string>head</string>
 		<!-- stats -->
 		<key>bonus strain</key> <integer>2</integer>
-		<key>bonus health</key> <integer>5</integer>
+		<key>bonus health</key> <integer>7</integer>
 		<key>bonus defend</key> <integer>-10</integer>
 		<!-- graphical data -->
 		<key>appearance by morph</key>
@@ -356,7 +361,7 @@
 		<key>slot</key> <string>leg</string>
 		<!-- stats -->
 		<key>bonus strain</key> <integer>2</integer>
-		<key>bonus health</key> <integer>5</integer>
+		<key>bonus health</key> <integer>7</integer>
 		<key>bonus defend</key> <integer>-10</integer>
 		<!-- graphical data -->
 		<key>appearance by morph</key>
@@ -543,7 +548,7 @@
 		<key>slot</key> <string>arm</string>
 		<!-- stats -->
 		<key>bonus strain</key> <integer>2</integer>
-		<key>bonus health</key> <integer>5</integer>
+		<key>bonus health</key> <integer>7</integer>
 		<key>bonus defend</key> <integer>-10</integer>
 		<!-- graphical data -->
 		<key>appearance by morph</key>
@@ -720,9 +725,9 @@
 		<key>breaks into</key> <string>robot torso</string>
 		<!-- TODO: no un-equip -->
 		<!-- stats -->
-		<key>bonus strain</key> <integer>2</integer>
-		<key>bonus health</key> <integer>5</integer>
-		<key>bonus defend</key> <integer>-10</integer>
+		<key>bonus strain</key> <integer>4</integer>
+		<key>bonus health</key> <integer>10</integer>
+		<key>bonus defend</key> <integer>-20</integer>
 		<!-- graphical data -->
 		<key>appearance by morph</key>
 		<dict>
@@ -737,7 +742,7 @@
 		<!-- TODO: no un-equip -->
 		<!-- stats -->
 		<key>bonus strain</key> <integer>2</integer>
-		<key>bonus health</key> <integer>5</integer>
+		<key>bonus health</key> <integer>7</integer>
 		<key>bonus defend</key> <integer>-10</integer>
 		<!-- graphical data -->
 		<key>appearance by morph</key>
@@ -752,9 +757,9 @@
 		<key>breaks into</key> <string>robot treads</string>
 		<!-- TODO: no un-equip -->
 		<!-- stats -->
-		<key>bonus strain</key> <integer>2</integer>
-		<key>bonus health</key> <integer>5</integer>
-		<key>bonus defend</key> <integer>-10</integer>
+		<key>bonus strain</key> <integer>4</integer>
+		<key>bonus health</key> <integer>10</integer>
+		<key>bonus defend</key> <integer>-20</integer>
 		<!-- graphical data -->
 		<key>appearance by morph</key>
 		<dict>
@@ -769,7 +774,7 @@
 		<!-- TODO: no un-equip -->
 		<!-- stats -->
 		<key>bonus strain</key> <integer>2</integer>
-		<key>bonus health</key> <integer>5</integer>
+		<key>bonus health</key> <integer>7</integer>
 		<key>bonus defend</key> <integer>-10</integer>
 		<!-- graphical data -->
 		<key>appearance by morph</key>
