@@ -8,6 +8,18 @@
 
 import SpriteKit
 
+//spacing info
+let creatureOffset:CGFloat = 75
+let auraWidth:CGFloat = 125.0
+let auraHeight:CGFloat = 60.0
+let selectDistance:CGFloat = 75
+let barHeight:CGFloat = 15
+let barYOff:CGFloat = 20
+let barWidth:CGFloat = 55
+let energyIconSize:CGFloat = 5
+let energyIconSpacing:CGFloat = 2
+
+
 class ViewController: UIViewController {
 	
 	@IBOutlet weak var gameView: SKView!
@@ -26,7 +38,7 @@ class ViewController: UIViewController {
 		gameView.presentScene(scene)
 		
 		
-		let height:CGFloat = 400
+		let height:CGFloat = 375
 		
 		
 		
@@ -64,8 +76,8 @@ class ViewController: UIViewController {
 				scene.creatureControllers.append(cc)
 			}
 		}
-		makeCC(game.players, xStart: 50, xOff: 75, flipped: false)
-		makeCC(game.enemies, xStart: gameView.frame.size.width - 50, xOff: -75, flipped: true)
+		makeCC(game.players, xStart: 50, xOff: creatureOffset, flipped: false)
+		makeCC(game.enemies, xStart: gameView.frame.size.width - 50, xOff: -creatureOffset, flipped: true)
 		
 		
 		//and start everything

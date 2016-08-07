@@ -8,8 +8,8 @@
 
 import SpriteKit
 
-let auraWidth:CGFloat = 125.0
-let auraHeight:CGFloat = 60.0
+//constants
+let vibrateMagnitude:CGFloat = 3
 
 extension UIColor
 {
@@ -135,7 +135,6 @@ class BodyLimb
 	//animation variables
 	var rotateFrom:CGFloat = 0
 	var rotateTo:CGFloat = 0
-	
 	
 	//misc flags
 	var startFlag = false
@@ -298,10 +297,12 @@ class CreatureController
 			flipNode.xScale = flipped ? -1 : 1
 		}
 	}
+	let startPosition:CGPoint
 	let creature:Creature
 	let creatureNode:SKNode
 	private let flipNode:SKNode
 	private var auraNode:SKShapeNode!
+	private var statsNode:SKNode!
 	var morph:String
 	{
 		return creature.morph
@@ -318,12 +319,13 @@ class CreatureController
 	private var limbs = [String : BodyLimb]()
 	private var undulations = [String : Undulation]()
 	private var memories = [String : CreatureLimbMemory]()
-	
-	//TODO: constants
-	let vibrateMagnitude:CGFloat = 3
+	private var statsHealthMemory = 0
+	private var statsMaxHealthMemory = 0
+	private var statsEnergyMemory = 0
 	
 	init(rootNode:SKNode, creature:Creature, position:CGPoint)
 	{
+		startPosition = position
 		self.creature = creature
 		
 		creatureNode = SKNode()
@@ -354,12 +356,74 @@ class CreatureController
 		auraNode = SKShapeNode(ellipseOfSize: CGSize(width: auraWidth / 2, height: auraHeight / 2))
 		creatureNode.insertChild(auraNode, atIndex: 0)
 		auraNode.alpha = 0
+		
+		//make the stats node
+		statsNode = SKNode()
+		statsNode.position = startPosition
+		rootNode.addChild(statsNode)
+		updateStatsNode()
 	}
 	
 	private func setAuraNodeColor(active:Bool)
 	{
 		auraNode.fillColor = active ? UIColor.whiteColor() : (creature.action ? UIColor.lightGrayColor() : UIColor.darkGrayColor())
 		auraNode.alpha = 0.5
+	}
+	
+	private func updateStatsNode()
+	{
+		if statsHealthMemory != creature.health || statsMaxHealthMemory != creature.maxHealth || statsEnergyMemory != creature.energy
+		{
+			statsHealthMemory = creature.health
+			statsMaxHealthMemory = creature.maxHealth
+			statsEnergyMemory = creature.energy
+			
+			//clear any previous values
+			statsNode.removeAllChildren()
+			
+			func makeBar(startX startX:CGFloat, endX:CGFloat, startY:CGFloat, endY:CGFloat, percentage:CGFloat, color:UIColor, sideColor:UIColor?)
+			{
+				let cornerOffset:CGFloat = sideColor == nil ? 1 : 0
+				let rect = CGRect(x: startX + cornerOffset, y: startY + cornerOffset, width: (endX - startX - cornerOffset * 2) * percentage, height: endY - startY - cornerOffset * 2)
+				let bar = SKShapeNode(rect: rect)
+				bar.fillColor = color
+				if let sideColor = sideColor
+				{
+					bar.strokeColor = sideColor
+				}
+				else
+				{
+					bar.lineWidth = 0
+				}
+				statsNode.addChild(bar)
+			}
+			func makeEnergyIcon(centerX centerX:CGFloat, startY:CGFloat, iconOn:Int)
+			{
+				let x = centerX + (energyIconSize + energyIconSize) * (CGFloat(iconOn) - CGFloat(creature.maxEnergy) / 2 + 0.5)
+				let rect = CGRect(x: x - energyIconSize / 2, y: startY, width: energyIconSize, height: energyIconSize)
+				let icon = SKShapeNode(rect: rect)
+				icon.fillColor = creature.energy > iconOn ? UIColor.blueColor() : UIColor.darkGrayColor()
+				icon.lineWidth = 0
+				statsNode.addChild(icon)
+			}
+			
+			//make health bar
+			let sX = -barWidth / 2
+			let eX = barWidth / 2
+			let sY:CGFloat = barYOff
+			let eY:CGFloat = sY + barHeight
+			makeBar(startX: sX, endX: eX, startY: sY, endY: eY, percentage: 1, color: UIColor.darkGrayColor(), sideColor: UIColor.whiteColor())
+			makeBar(startX: sX, endX: eX, startY: sY, endY: eY, percentage: CGFloat(creature.health) / CGFloat(creature.maxHealth), color: UIColor.redColor(), sideColor: nil)
+			
+			//make energy icons
+			for i in 0..<creature.maxEnergy
+			{
+				makeEnergyIcon(centerX: 0, startY: eY + energyIconSpacing, iconOn: i)
+			}
+			
+			//make strain indicator
+			//TODO: this will require making some icons, I suppose
+		}
 	}
 	
 	private func constructUndulations()
@@ -467,6 +531,7 @@ class CreatureController
 	
 	func animate(elapsed:CGFloat, active:Bool)
 	{
+		updateStatsNode()
 		setAuraNodeColor(active)
 		
 		if animationLength != nil && animationProgress != nil

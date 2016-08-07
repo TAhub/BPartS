@@ -8,9 +8,8 @@
 
 import SpriteKit
 
-//TODO: select distance, aura size, and player spacing should probably all be based on some single variable
+//constants
 let returnToNeutralTime:CGFloat = 0.4
-let selectDistance:CGFloat = 75
 let textDistance:CGFloat = 150
 let textTime:Double = 0.75
 let effectTime:Double = 0.15
