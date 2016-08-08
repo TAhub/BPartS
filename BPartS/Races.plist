@@ -133,46 +133,78 @@
 				<key>type</key> <string>arm</string>
 				<key>max strain</key> <integer>1</integer>
 				<key>prefix</key> <string>upper left</string>
+				<key>display x</key> <integer>10</integer>
+				<key>display width</key> <integer>25</integer>
+				<key>display y</key> <integer>5</integer>
+				<key>display height</key> <integer>25</integer>
 			</dict>
 			<key>lower left arm</key>
 			<dict>
 				<key>type</key> <string>arm</string>
 				<key>max strain</key> <integer>1</integer>
 				<key>prefix</key> <string>lower left</string>
+				<key>display x</key> <integer>5</integer>
+				<key>display width</key> <integer>25</integer>
+				<key>display y</key> <integer>25</integer>
+				<key>display height</key> <integer>25</integer>
 			</dict>
 			<key>upper right arm</key>
 			<dict>
 				<key>type</key> <string>arm</string>
 				<key>max strain</key> <integer>1</integer>
 				<key>prefix</key> <string>upper right</string>
+				<key>display x</key> <integer>65</integer>
+				<key>display width</key> <integer>25</integer>
+				<key>display y</key> <integer>5</integer>
+				<key>display height</key> <integer>25</integer>
 			</dict>
 			<key>lower right arm</key>
 			<dict>
 				<key>type</key> <string>arm</string>
 				<key>max strain</key> <integer>1</integer>
 				<key>prefix</key> <string>lower right</string>
+				<key>display x</key> <integer>70</integer>
+				<key>display width</key> <integer>25</integer>
+				<key>display y</key> <integer>25</integer>
+				<key>display height</key> <integer>25</integer>
 			</dict>
 			<key>left leg</key>
 			<dict>
 				<key>type</key> <string>leg</string>
 				<key>max strain</key> <integer>2</integer>
 				<key>prefix</key> <string>left</string>
+				<key>display x</key> <integer>0</integer>
+				<key>display width</key> <integer>30</integer>
+				<key>display y</key> <integer>70</integer>
+				<key>display height</key> <integer>30</integer>
 			</dict>
 			<key>right leg</key>
 			<dict>
 				<key>type</key> <string>leg</string>
 				<key>max strain</key> <integer>2</integer>
 				<key>prefix</key> <string>right</string>
+				<key>display x</key> <integer>70</integer>
+				<key>display width</key> <integer>30</integer>
+				<key>display y</key> <integer>70</integer>
+				<key>display height</key> <integer>30</integer>
 			</dict>
 			<key>head</key>
 			<dict>
 				<key>type</key> <string>head</string>
 				<key>max strain</key> <integer>2</integer>
+				<key>display x</key> <integer>35</integer>
+				<key>display width</key> <integer>30</integer>
+				<key>display y</key> <integer>0</integer>
+				<key>display height</key> <integer>30</integer>
 			</dict>
 			<key>torso</key>
 			<dict>
 				<key>type</key> <string>torso</string>
 				<key>max strain</key> <integer>4</integer>
+				<key>display x</key> <integer>30</integer>
+				<key>display width</key> <integer>40</integer>
+				<key>display y</key> <integer>30</integer>
+				<key>display height</key> <integer>40</integer>
 			</dict>
 		</dict>
 		<!-- graphical data -->
@@ -222,28 +254,48 @@
 				<key>type</key> <string>leg</string>
 				<key>max strain</key> <integer>4</integer>
 				<key>prefix</key> <string>tread</string>
+				<key>display x</key> <integer>25</integer>
+				<key>display width</key> <integer>50</integer>
+				<key>display y</key> <integer>70</integer>
+				<key>display height</key> <integer>30</integer>
 			</dict>
 			<key>left arm</key>
 			<dict>
 				<key>type</key> <string>arm</string>
 				<key>max strain</key> <integer>2</integer>
 				<key>prefix</key> <string>left</string>
+				<key>display x</key> <integer>0</integer>
+				<key>display width</key> <integer>30</integer>
+				<key>display y</key> <integer>10</integer>
+				<key>display height</key> <integer>30</integer>
 			</dict>
 			<key>right arm</key>
 			<dict>
 				<key>type</key> <string>arm</string>
 				<key>max strain</key> <integer>2</integer>
 				<key>prefix</key> <string>right</string>
+				<key>display x</key> <integer>70</integer>
+				<key>display width</key> <integer>30</integer>
+				<key>display y</key> <integer>10</integer>
+				<key>display height</key> <integer>30</integer>
 			</dict>
 			<key>head</key>
 			<dict>
 				<key>type</key> <string>head</string>
 				<key>max strain</key> <integer>2</integer>
+				<key>display x</key> <integer>35</integer>
+				<key>display width</key> <integer>30</integer>
+				<key>display y</key> <integer>0</integer>
+				<key>display height</key> <integer>30</integer>
 			</dict>
 			<key>torso</key>
 			<dict>
 				<key>type</key> <string>torso</string>
 				<key>max strain</key> <integer>4</integer>
+				<key>display x</key> <integer>30</integer>
+				<key>display width</key> <integer>40</integer>
+				<key>display y</key> <integer>30</integer>
+				<key>display height</key> <integer>40</integer>
 			</dict>
 		</dict>
 		<!-- graphical data -->

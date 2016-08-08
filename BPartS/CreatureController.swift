@@ -387,7 +387,10 @@ class CreatureController
 			statsEnergyMemory = creature.energy
 			statsStrainChecksum = strainChecksum
 			
-			print("REMAKING UI FOR \(creature.creatureType)")
+			
+			//TODO: enemies should probably only show the strain indicator, not health or energy
+			//and accordingly, it should probably center that indicator
+			
 			
 			//clear any previous values
 			statsNode.removeAllChildren()
@@ -421,13 +424,31 @@ class CreatureController
 			func drawStrainIcon(limb:CreatureLimb, cornerX:CGFloat, cornerY:CGFloat)
 			{
 				//TODO: make actual icons
-				let rect = CGRect(x: limb.displayX * strainIndicatorWidth + cornerX, y: limb.displayY * strainIndicatorHeight + cornerY, width: limb.displayWidth * strainIndicatorWidth, height: limb.displayHeight * strainIndicatorHeight)
+				let iX = (creature.player ? limb.displayX : 1 - limb.displayX - limb.displayWidth) * strainIndicatorWidth + cornerX //mirror for bad guys
+				let iY = limb.displayY * strainIndicatorHeight + cornerY
+				let iW = limb.displayWidth * strainIndicatorWidth
+				let iH = limb.displayHeight * strainIndicatorHeight
+				let rect = CGRect(x: iX, y: iY, width: iW, height: iH)
 				let icon = SKShapeNode(rect: rect)
 				icon.lineWidth = 0
 				statsNode.addChild(icon)
 				
 				//the color smoothly scales from green to red, then switch to dark grey when broken
-				let color:UIColor = limb.broken ? UIColor.darkGrayColor() : UIColor.blendColor(color1: UIColor.redColor(), color2: UIColor.greenColor(), blendFactor: CGFloat(limb.strain) / CGFloat(limb.maxStrain - 1))
+				let color:UIColor
+				if limb.broken
+				{
+					color = UIColor.darkGrayColor()
+				}
+				else if limb.maxStrain == 1
+				{
+					//max strain 1 limbs destroy the calculation I use to ensure that 1-strain limbs are red instead of green-reddish
+					//so this is a special case
+					color = UIColor.greenColor()
+				}
+				else
+				{
+					color = UIColor.blendColor(color1: UIColor.redColor(), color2: UIColor.greenColor(), blendFactor: CGFloat(limb.strain) / CGFloat(limb.maxStrain - 1))
+				}
 				icon.fillColor = color
 			}
 			
