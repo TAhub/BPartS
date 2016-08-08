@@ -206,6 +206,10 @@ class CreatureLimb
 	let type:String
 	let baseMaxStrain:Int
 	let prefix:String?
+	let displayX:CGFloat
+	let displayY:CGFloat
+	let displayWidth:CGFloat
+	let displayHeight:CGFloat
 	
 	//variables
 	var strain:Int
@@ -228,6 +232,21 @@ class CreatureLimb
 		self.prefix = limbDict["prefix"] as? String
 		self.baseMaxStrain = intWithName("max strain")!
 		self.strain = 0
+		
+		if let dX = intWithName("display x"), let dY = intWithName("display y"), let dW = intWithName("display width"), let dH = intWithName("display height")
+		{
+			displayX = CGFloat(min(dX, 100)) / 100
+			displayY = CGFloat(min(dY, 100)) / 100
+			displayWidth = min(CGFloat(dW) / 100, 1 - displayX)
+			displayHeight = min(CGFloat(dH) / 100, 1 - displayY)
+		}
+		else
+		{
+			displayX = 0
+			displayY = 0
+			displayWidth = 0
+			displayHeight = 0
+		}
 	}
 	
 	var maxStrain:Int
@@ -245,6 +264,7 @@ class CreatureLimb
 	}
 }
 
+//constants
 let baseMaxHealth:CGFloat = 350
 let levelFactor:CGFloat = 0.034
 let biggerLevelFactor:CGFloat = 0.05 //roughly 1.5x level factor

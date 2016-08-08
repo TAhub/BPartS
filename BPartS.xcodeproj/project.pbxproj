@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E431BFD41D565B6D002B34D9 /* CreatureTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E431BFD31D565B6D002B34D9 /* CreatureTypes.plist */; };
 		E43E952B1D5530E5008B6828 /* Specials.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43E952A1D5530E5008B6828 /* Specials.plist */; };
+		E4599F0A1D57E3F0006288FB /* MapGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4599F091D57E3F0006288FB /* MapGenerator.swift */; };
 		E4CFD79D1D51103400D6A93B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CFD79C1D51103400D6A93B /* AppDelegate.swift */; };
 		E4CFD79F1D51103400D6A93B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CFD79E1D51103400D6A93B /* ViewController.swift */; };
 		E4CFD7A21D51103400D6A93B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4CFD7A01D51103400D6A93B /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		E431BFD31D565B6D002B34D9 /* CreatureTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CreatureTypes.plist; sourceTree = "<group>"; };
 		E43E952A1D5530E5008B6828 /* Specials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Specials.plist; sourceTree = "<group>"; };
+		E4599F091D57E3F0006288FB /* MapGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGenerator.swift; sourceTree = "<group>"; };
 		E4CFD7991D51103400D6A93B /* BPartS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BPartS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4CFD79C1D51103400D6A93B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4CFD79E1D51103400D6A93B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				E4E72ECF1D52648100843AB5 /* Creature.swift */,
+				E4599F091D57E3F0006288FB /* MapGenerator.swift */,
 				E4E72ED51D5293BA00843AB5 /* Game.swift */,
 				E4CFD7C21D5111D000D6A93B /* DataStore.swift */,
 			);
@@ -282,6 +285,7 @@
 			files = (
 				E4CFD7C91D511CBC00D6A93B /* GameScene.swift in Sources */,
 				E4CFD79F1D51103400D6A93B /* ViewController.swift in Sources */,
+				E4599F0A1D57E3F0006288FB /* MapGenerator.swift in Sources */,
 				E4E72ED61D5293BA00843AB5 /* Game.swift in Sources */,
 				E4E72ED01D52648100843AB5 /* Creature.swift in Sources */,
 				E4CFD7C31D5111D000D6A93B /* DataStore.swift in Sources */,

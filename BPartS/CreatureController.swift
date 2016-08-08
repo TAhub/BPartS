@@ -13,7 +13,7 @@ let vibrateMagnitude:CGFloat = 3
 
 extension UIColor
 {
-	static func blendColor(color1:UIColor, color2:UIColor, blendFactor:CGFloat) -> UIColor
+	static func blendColor(color1 color1:UIColor, color2:UIColor, blendFactor:CGFloat) -> UIColor
 	{
 		let nBlendFactor = 1-blendFactor
 		var r1:CGFloat = 0
@@ -25,7 +25,7 @@ extension UIColor
 		var b2:CGFloat = 0
 		var a2:CGFloat = 0
 		color1.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
-		color1.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
+		color2.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
 		return UIColor(red: r1 * blendFactor + r2 * nBlendFactor,
 		               green: g1 * blendFactor + g2 * nBlendFactor,
 		               blue: b1 * blendFactor + b2 * nBlendFactor,
@@ -322,6 +322,7 @@ class CreatureController
 	private var statsHealthMemory = 0
 	private var statsMaxHealthMemory = 0
 	private var statsEnergyMemory = 0
+	private var statsStrainChecksum = 0
 	
 	init(rootNode:SKNode, creature:Creature, position:CGPoint)
 	{
@@ -372,11 +373,21 @@ class CreatureController
 	
 	private func updateStatsNode()
 	{
-		if statsHealthMemory != creature.health || statsMaxHealthMemory != creature.maxHealth || statsEnergyMemory != creature.energy
+		var strainChecksum = 0
+		for limb in creature.limbs.values
+		{
+			strainChecksum *= 20
+			strainChecksum += limb.strain
+		}
+		
+		if statsHealthMemory != creature.health || statsMaxHealthMemory != creature.maxHealth || statsEnergyMemory != creature.energy || statsStrainChecksum != strainChecksum
 		{
 			statsHealthMemory = creature.health
 			statsMaxHealthMemory = creature.maxHealth
 			statsEnergyMemory = creature.energy
+			statsStrainChecksum = strainChecksum
+			
+			print("REMAKING UI FOR \(creature.creatureType)")
 			
 			//clear any previous values
 			statsNode.removeAllChildren()
@@ -399,17 +410,30 @@ class CreatureController
 			}
 			func makeEnergyIcon(centerX centerX:CGFloat, startY:CGFloat, iconOn:Int)
 			{
-				let x = centerX + (energyIconSize + energyIconSize) * (CGFloat(iconOn) - CGFloat(creature.maxEnergy) / 2 + 0.5)
-				let rect = CGRect(x: x - energyIconSize / 2, y: startY, width: energyIconSize, height: energyIconSize)
+				let x = centerX + (energyIconSize + energyIconSpacing) * (CGFloat(iconOn % maxEnergyIconsPerRow) - CGFloat(min(creature.maxEnergy, maxEnergyIconsPerRow)) / 2 + 0.5)
+				let y = CGFloat(Int(iconOn / maxEnergyIconsPerRow)) * (energyIconSize + energyIconSpacing) + startY
+				let rect = CGRect(x: x - energyIconSize / 2, y: y, width: energyIconSize, height: energyIconSize)
 				let icon = SKShapeNode(rect: rect)
 				icon.fillColor = creature.energy > iconOn ? UIColor.blueColor() : UIColor.darkGrayColor()
 				icon.lineWidth = 0
 				statsNode.addChild(icon)
 			}
+			func drawStrainIcon(limb:CreatureLimb, cornerX:CGFloat, cornerY:CGFloat)
+			{
+				//TODO: make actual icons
+				let rect = CGRect(x: limb.displayX * strainIndicatorWidth + cornerX, y: limb.displayY * strainIndicatorHeight + cornerY, width: limb.displayWidth * strainIndicatorWidth, height: limb.displayHeight * strainIndicatorHeight)
+				let icon = SKShapeNode(rect: rect)
+				icon.lineWidth = 0
+				statsNode.addChild(icon)
+				
+				//the color smoothly scales from green to red, then switch to dark grey when broken
+				let color:UIColor = limb.broken ? UIColor.darkGrayColor() : UIColor.blendColor(color1: UIColor.redColor(), color2: UIColor.greenColor(), blendFactor: CGFloat(limb.strain) / CGFloat(limb.maxStrain - 1))
+				icon.fillColor = color
+			}
 			
 			//make health bar
-			let sX = -barWidth / 2
-			let eX = barWidth / 2
+			let sX:CGFloat = -barWidth
+			let eX:CGFloat = 0
 			let sY:CGFloat = barYOff
 			let eY:CGFloat = sY + barHeight
 			makeBar(startX: sX, endX: eX, startY: sY, endY: eY, percentage: 1, color: UIColor.darkGrayColor(), sideColor: UIColor.whiteColor())
@@ -418,11 +442,19 @@ class CreatureController
 			//make energy icons
 			for i in 0..<creature.maxEnergy
 			{
-				makeEnergyIcon(centerX: 0, startY: eY + energyIconSpacing, iconOn: i)
+				makeEnergyIcon(centerX: -barWidth / 2, startY: eY + uiElementSeparation, iconOn: i)
 			}
 			
+			
 			//make strain indicator
-			//TODO: this will require making some icons, I suppose
+			let strainIconBackNode = SKShapeNode(rect: CGRect(x: uiElementSeparation, y: barYOff, width: strainIndicatorWidth, height: strainIndicatorHeight))
+			strainIconBackNode.fillColor = UIColor.lightGrayColor()
+			strainIconBackNode.lineWidth = 0
+			statsNode.addChild(strainIconBackNode)
+			for limb in creature.limbs.values
+			{
+				drawStrainIcon(limb, cornerX: uiElementSeparation, cornerY: barYOff)
+			}
 		}
 	}
 	

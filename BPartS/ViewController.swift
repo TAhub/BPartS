@@ -13,11 +13,15 @@ let creatureOffset:CGFloat = 75
 let auraWidth:CGFloat = 125.0
 let auraHeight:CGFloat = 60.0
 let selectDistance:CGFloat = 75
-let barHeight:CGFloat = 15
+let barHeight:CGFloat = 12
 let barYOff:CGFloat = 20
-let barWidth:CGFloat = 55
+let barWidth:CGFloat = 35
 let energyIconSize:CGFloat = 5
 let energyIconSpacing:CGFloat = 2
+let maxEnergyIconsPerRow:Int = 4
+let strainIndicatorWidth:CGFloat = 30
+let strainIndicatorHeight:CGFloat = 45
+let uiElementSeparation:CGFloat = 4
 
 
 class ViewController: UIViewController {
@@ -53,12 +57,12 @@ class ViewController: UIViewController {
 		let game = Game()
 		game.players.append(Creature(creatureType: "engineer", player: true))
 		game.players.append(Creature(creatureType: "drifter", player: true))
-		game.players.append(Creature(creatureType: "grappler", player: true))
-		game.players.append(Creature(creatureType: "robot", player: true))
+//		game.players.append(Creature(creatureType: "grappler", player: true))
+//		game.players.append(Creature(creatureType: "robot", player: true))
 		game.enemies.append(Creature(creatureType: "engineer", player: false))
 		game.enemies.append(Creature(creatureType: "drifter", player: false))
-		game.enemies.append(Creature(creatureType: "grappler", player: false))
-		game.enemies.append(Creature(creatureType: "robot", player: false))
+//		game.enemies.append(Creature(creatureType: "grappler", player: false))
+//		game.enemies.append(Creature(creatureType: "robot", player: false))
 		scene.game = game
 		game.delegate = scene
 		
