@@ -9,8 +9,14 @@
 -->
 <plist version="1.0">
 <dict>
+	<!-- resistance note:
+		humans have energy resistance
+		everything that is non-human should have physical
+		-->
+	
     <key>human</key>
 	<dict>
+		<key>resistance type</key> <string>energy</string>
 		<!-- limb data -->
 		<key>limbs</key>
 		<dict>
@@ -125,6 +131,7 @@
 	
     <key>grappler</key>
 	<dict>
+		<key>resistance type</key> <string>physical</string>
 		<!-- limb data -->
 		<key>limbs</key>
 		<dict>
@@ -246,6 +253,7 @@
 	
     <key>robot</key>
 	<dict>
+		<key>resistance type</key> <string>physical</string>
 		<!-- limb data -->
 		<key>limbs</key>
 		<dict>

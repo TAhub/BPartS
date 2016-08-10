@@ -22,6 +22,7 @@
 		<!-- stats -->
 		<key>type</key> <string>auto</string>
 		<key>damage</key> <integer>55</integer>
+		<key>damage type</key> <string>physical</string>
 		<key>accuracy bonus</key> <integer>0</integer>
 		<key>shots</key> <integer>4</integer>
 		<!-- TODO: ammo cost, etc -->
@@ -39,6 +40,7 @@
 		<!-- stats -->
 		<key>type</key> <string>auto</string>
 		<key>damage</key> <integer>52</integer>
+		<key>damage type</key> <string>energy</string>
 		<key>accuracy bonus</key> <integer>0</integer>
 		<key>shots</key> <integer>3</integer>
 		<!-- TODO: ammo cost, etc -->
@@ -58,6 +60,7 @@
 		<!-- stats -->
 		<key>type</key> <string>manual</string>
 		<key>damage</key> <integer>50</integer>
+		<key>damage type</key> <string>physical</string>
 		<key>accuracy bonus</key> <integer>0</integer>
 		<key>shots</key> <integer>1</integer>
 		<!-- TODO: ammo cost, etc -->
@@ -75,6 +78,7 @@
 		<!-- stats -->
 		<key>type</key> <string>manual</string>
 		<key>damage</key> <integer>45</integer>
+		<key>damage type</key> <string>energy</string>
 		<key>accuracy bonus</key> <integer>5</integer>
 		<key>shots</key> <integer>1</integer>
 		<!-- TODO: ammo cost, etc -->
@@ -94,6 +98,7 @@
 		<!-- stats -->
 		<key>type</key> <string>high</string>
 		<key>damage</key> <integer>45</integer>
+		<key>damage type</key> <string>physical</string>
 		<key>accuracy bonus</key> <integer>5</integer>
 		<key>shots</key> <integer>2</integer>
 		<!-- TODO: ammo cost, etc -->
@@ -109,12 +114,29 @@
 		<!-- stats -->
 		<key>type</key> <string>high</string>
 		<key>damage</key> <integer>50</integer>
+		<key>damage type</key> <string>physical</string>
 		<key>accuracy bonus</key> <integer>0</integer>
 		<key>shots</key> <integer>1</integer>
 		<!-- TODO: ammo cost, etc -->
 		<!-- animation data -->
 		<key>animation</key> <string>one punch</string>
 		<key>sprite</key> <string>knife</string>
+		<!-- name data -->
+		<!-- TODO: name generation data -->
+	</dict>
+	
+	<key>stun glove</key>
+	<dict>
+		<!-- stats -->
+		<key>type</key> <string>high</string>
+		<key>damage</key> <integer>40</integer>
+		<key>damage type</key> <string>energy</string>
+		<key>accuracy bonus</key> <integer>10</integer>
+		<key>shots</key> <integer>1</integer>
+		<!-- TODO: ammo cost, etc -->
+		<!-- animation data -->
+		<key>animation</key> <string>one punch</string> <!-- TODO: sprite -->
+		<key>sprite</key> <string>knuckle</string>
 		<!-- name data -->
 		<!-- TODO: name generation data -->
 	</dict>

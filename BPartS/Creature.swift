@@ -76,6 +76,10 @@ class Special
 	{
 		return DataStore.getInt("Specials", type, "damage") ?? 0
 	}
+	var damageType:String
+	{
+		return DataStore.getString("Specials", type, "damage type")!
+	}
 	var numShots:Int
 	{
 		return DataStore.getInt("Specials", type, "shots")!
@@ -133,6 +137,10 @@ class Weapon
 	var damage:Int
 	{
 		return DataStore.getInt("Weapons", type, "damage")!
+	}
+	var damageType:String
+	{
+		return DataStore.getString("Weapons", type, "damage type")!
 	}
 	var accuracyBonus:Int
 	{
@@ -271,6 +279,7 @@ let biggerLevelFactor:CGFloat = 0.05 //roughly 1.5x level factor
 let baseStat = 20
 let maxDefendChance = 90
 let baseDefendChance = 60
+let resistanceFactor = 75
 
 class Creature
 {
@@ -419,7 +428,11 @@ class Creature
 	
 	func startTurn()
 	{
-		//TODO: apply DOT from broken limbs, poison, whatever
+		//TODO: apply DOT from poison
+		
+		//TODO: apply DOT from broken head
+		
+		//TODO: apply DOT from broken torso
 		
 		//taunts are canceled if the person you are taunted by is dead
 		if tauntedBy != nil && tauntedBy!.dead
@@ -498,6 +511,7 @@ class Creature
 			let hitLimb = activeAttack.hitLimb
 			let accuracyBonus = activeAttack.accuracyBonus
 			let numShots = activeAttack.numShots
+			let damageType = activeAttack.damageType
 			
 			let damage = Int(CGFloat(baseDamage) * (1 + biggerLevelFactor * CGFloat(intellect - baseStat))) / numShots
 			if damage < 0
@@ -508,7 +522,7 @@ class Creature
 			}
 			else
 			{
-				return target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, initialHit: shotNumber == 1)
+				return target.takeHit(damage, damageType: damageType, accuracyBonus: accuracyBonus, hitLimb: hitLimb, initialHit: shotNumber == 1)
 			}
 		}
 		else if let activeWeapon = activeWeapon
@@ -519,6 +533,7 @@ class Creature
 			let damageStat = activeWeapon.melee ? strength : perception
 			let weaponStat = activeWeapon.weaponStat
 			let numShots = activeWeapon.numShots
+			let damageType = activeWeapon.damageType
 			
 			if shotNumber > numShots
 			{
@@ -527,7 +542,7 @@ class Creature
 			}
 			
 			let damage = Int(CGFloat(baseDamage) + (1 + levelFactor * CGFloat(damageStat + weaponStat - baseStat))) / numShots
-			return target.takeHit(damage, accuracyBonus: accuracyBonus, hitLimb: hitLimb, initialHit: shotNumber == 1)
+			return target.takeHit(damage, damageType: damageType, accuracyBonus: accuracyBonus, hitLimb: hitLimb, initialHit: shotNumber == 1)
 		}
 		assertionFailure()
 		return (0, limbs.first!.1)
@@ -672,7 +687,7 @@ class Creature
 		return w
 	}
 	
-	func takeHit(baseDamage:Int, accuracyBonus:Int, hitLimb:String?, initialHit:Bool) -> (Int?, CreatureLimb)
+	func takeHit(baseDamage:Int, damageType:String, accuracyBonus:Int, hitLimb:String?, initialHit:Bool) -> (Int?, CreatureLimb)
 	{
 		//the entire attack either hits or misses, just to make the animations tidier
 		let defended:Bool
@@ -760,6 +775,11 @@ class Creature
 				finalDamage *= 2
 			}
 			
+			if damageType == DataStore.getString("Races", self.race, "resistance type")!
+			{
+				finalDamage = (finalDamage * resistanceFactor) / 100
+			}
+			
 			//take damage
 			health = max(0, health - finalDamage)
 			
@@ -768,6 +788,27 @@ class Creature
 		
 		//just in case, adjust health to max health, because if a limb is broken your max health might be different not
 		health = min(maxHealth, health)
+		
+		
+		//if all your legs were destroyed, you "fell over" and are now "dead"
+		var hasLegs:Bool = false
+		var hasWorkingLegs:Bool = false
+		for limb in limbs.values
+		{
+			if limb.type == "leg"
+			{
+				hasLegs = true
+				if !limb.broken
+				{
+					hasWorkingLegs = true
+				}
+			}
+		}
+		if hasLegs && !hasWorkingLegs
+		{
+			health = 0
+		}
+		
 		
 		return (baseDamage == 0 ? nil : displayDamage, displayLimb)
 	}
