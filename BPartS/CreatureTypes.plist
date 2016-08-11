@@ -126,8 +126,8 @@
 		<!-- identity -->
 		<key>race</key> <string>robot</string>
 		<!-- stats -->
-		<key>strength</key> <integer>16</integer>
-		<key>perception</key> <integer>22</integer>
+		<key>strength</key> <integer>15</integer>
+		<key>perception</key> <integer>21</integer>
 		<key>intellect</key> <integer>18</integer>
 		<key>endurance</key> <integer>24</integer>
 		<key>energy</key> <integer>5</integer>

@@ -51,6 +51,7 @@
 			
 			<!-- right leg -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right thigh</string>
 				<key>parent</key> <string>torso</string>
@@ -65,6 +66,7 @@
 				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right calf</string>
 				<key>parent</key> <string>right thigh</string>
@@ -79,6 +81,7 @@
 				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right foot</string>
 				<key>parent</key> <string>right calf</string>
@@ -95,6 +98,7 @@
 			
 			<!-- right arm -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right arm</string>
 				<key>parent</key> <string>torso</string>
@@ -109,6 +113,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right ulna</string>
 				<key>parent</key> <string>right arm</string>
@@ -123,6 +128,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right hand</string>
 				<key>parent</key> <string>right ulna</string>
@@ -151,6 +157,7 @@
 			
 			<!-- torso -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>torso</string>
 				<key>sprite name</key> <string>human_torso_m</string>
 				<key>color name</key> <string>skin</string>
@@ -177,6 +184,7 @@
 			
 			<!-- head -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>head</string>
 				<key>parent</key> <string>torso</string>
 				<key>sprite name</key> <string>human_head</string>
@@ -229,6 +237,7 @@
 			
 			<!-- left leg -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left thigh</string>
 				<key>parent</key> <string>torso</string>
@@ -243,6 +252,7 @@
 				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left calf</string>
 				<key>parent</key> <string>left thigh</string>
@@ -257,6 +267,7 @@
 				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left foot</string>
 				<key>parent</key> <string>left calf</string>
@@ -273,6 +284,7 @@
 			
 			<!-- left arm -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left arm</string>
 				<key>parent</key> <string>torso</string>
@@ -287,6 +299,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left ulna</string>
 				<key>parent</key> <string>left arm</string>
@@ -301,6 +314,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left hand</string>
 				<key>parent</key> <string>left ulna</string>
@@ -377,6 +391,7 @@
 			
 			<!-- right leg -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right thigh</string>
 				<key>parent</key> <string>torso</string>
@@ -391,6 +406,7 @@
 				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right calf</string>
 				<key>parent</key> <string>right thigh</string>
@@ -405,6 +421,7 @@
 				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right foot</string>
 				<key>parent</key> <string>right calf</string>
@@ -421,6 +438,7 @@
 			
 			<!-- right arm -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right arm</string>
 				<key>parent</key> <string>torso</string>
@@ -435,6 +453,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right ulna</string>
 				<key>parent</key> <string>right arm</string>
@@ -449,6 +468,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right hand</string>
 				<key>parent</key> <string>right ulna</string>
@@ -477,6 +497,7 @@
 			
 			<!-- torso -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>torso</string>
 				<key>sprite name</key> <string>human_torso_f</string>
 				<key>color name</key> <string>skin</string>
@@ -529,6 +550,7 @@
 			
 			<!-- head -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>head</string>
 				<key>parent</key> <string>torso</string>
 				<key>sprite name</key> <string>human_head</string>
@@ -581,6 +603,7 @@
 			
 			<!-- left leg -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left thigh</string>
 				<key>parent</key> <string>torso</string>
@@ -595,6 +618,7 @@
 				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left calf</string>
 				<key>parent</key> <string>left thigh</string>
@@ -609,6 +633,7 @@
 				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left foot</string>
 				<key>parent</key> <string>left calf</string>
@@ -625,6 +650,7 @@
 			
 			<!-- left arm -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left arm</string>
 				<key>parent</key> <string>torso</string>
@@ -639,6 +665,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left ulna</string>
 				<key>parent</key> <string>left arm</string>
@@ -653,6 +680,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left hand</string>
 				<key>parent</key> <string>left ulna</string>
@@ -708,6 +736,7 @@
 		<array>
 			<!-- right leg -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right thigh</string>
 				<key>parent</key> <string>torso</string>
@@ -722,6 +751,7 @@
 				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right calf</string>
 				<key>parent</key> <string>right thigh</string>
@@ -736,6 +766,7 @@
 				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>right foot</string>
 				<key>parent</key> <string>right calf</string>
@@ -752,6 +783,7 @@
 			
 			<!-- lower right arm -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>lower right arm</string>
 				<key>parent</key> <string>torso</string>
@@ -766,6 +798,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>lower right ulna</string>
 				<key>parent</key> <string>lower right arm</string>
@@ -780,6 +813,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>lower right hand</string>
 				<key>parent</key> <string>lower right ulna</string>
@@ -808,6 +842,7 @@
 			
 			<!-- upper right arm -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>upper right arm</string>
 				<key>parent</key> <string>torso</string>
@@ -822,6 +857,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>upper right ulna</string>
 				<key>parent</key> <string>upper right arm</string>
@@ -836,6 +872,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>upper right hand</string>
 				<key>parent</key> <string>upper right ulna</string>
@@ -864,6 +901,7 @@
 			
 			<!-- torso -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>torso</string>
 				<key>sprite name</key> <string>human_torso_m</string>
 				<key>color name</key> <string>skin</string>
@@ -890,6 +928,7 @@
 			
 			<!-- head -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>head</string>
 				<key>parent</key> <string>torso</string>
 				<key>sprite name</key> <string>human_head</string>
@@ -930,6 +969,7 @@
 			
 			<!-- left leg -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left thigh</string>
 				<key>parent</key> <string>torso</string>
@@ -944,6 +984,7 @@
 				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left calf</string>
 				<key>parent</key> <string>left thigh</string>
@@ -958,6 +999,7 @@
 				<key>undulation</key> <string>leg undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>left foot</string>
 				<key>parent</key> <string>left calf</string>
@@ -974,6 +1016,7 @@
 			
 			<!-- lower left arm -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>lower left arm</string>
 				<key>parent</key> <string>torso</string>
@@ -988,6 +1031,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>lower left ulna</string>
 				<key>parent</key> <string>lower left arm</string>
@@ -1002,6 +1046,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>lower left hand</string>
 				<key>parent</key> <string>lower left ulna</string>
@@ -1030,6 +1075,7 @@
 			
 			<!-- upper left arm -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>upper left arm</string>
 				<key>parent</key> <string>torso</string>
@@ -1044,6 +1090,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>upper left ulna</string>
 				<key>parent</key> <string>upper left arm</string>
@@ -1058,6 +1105,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>invisible unless replaced</key> <true/>
 				<key>name</key> <string>upper left hand</string>
 				<key>parent</key> <string>upper left ulna</string>
@@ -1101,6 +1149,7 @@
 		<array>
 			<!-- right arm -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>right arm</string>
 				<key>parent</key> <string>torso</string>
 				<key>sprite name</key> <string>human_arm_f</string>
@@ -1114,6 +1163,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>right ulna</string>
 				<key>parent</key> <string>right arm</string>
 				<key>sprite name</key> <string>human_arm_f</string>
@@ -1127,6 +1177,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>right hand</string>
 				<key>parent</key> <string>right ulna</string>
 				<key>sprite name</key> <string>human_hand</string>
@@ -1154,6 +1205,7 @@
 			
 			<!-- treads -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>tread leg</string>
 				<key>parent</key> <string>torso</string>
 				<key>sprite name</key> <string>robot_treads</string>
@@ -1168,6 +1220,7 @@
 			
 			<!-- torso -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>torso</string>
 				<key>sprite name</key> <string>robot_torso</string>
 				<key>color name</key> <string>skin</string>
@@ -1181,6 +1234,7 @@
 			
 			<!-- head -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>head</string>
 				<key>parent</key> <string>torso</string>
 				<key>sprite name</key> <string>human_head</string>
@@ -1207,6 +1261,7 @@
 			
 			<!-- left arm -->
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>left arm</string>
 				<key>parent</key> <string>torso</string>
 				<key>sprite name</key> <string>human_arm_f</string>
@@ -1220,6 +1275,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>left ulna</string>
 				<key>parent</key> <string>left arm</string>
 				<key>sprite name</key> <string>human_arm_f</string>
@@ -1233,6 +1289,7 @@
 				<key>undulation</key> <string>arm undulation</string>
 			</dict>
 			<dict>
+				<key>hit location</key> <true/>
 				<key>name</key> <string>left hand</string>
 				<key>parent</key> <string>left ulna</string>
 				<key>sprite name</key> <string>human_hand</string>

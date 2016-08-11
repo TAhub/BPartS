@@ -18,7 +18,9 @@ class Game
 	var delegate:GameDelegate?
 	
 	var players = [Creature]()
+	let playersAmmo = AmmoStore()
 	var enemies = [Creature]()
+	let enemiesAmmo = AmmoStore()
 	
 	var playersActive:Bool = false
 	var creatureOn:Int = 0

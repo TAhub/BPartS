@@ -110,6 +110,29 @@ class Special
 	}
 }
 
+class AmmoStore
+{
+	private var ammo = [String : Int]()
+	init()
+	{
+		//TODO: for now, start with a lot of every ammo type
+		//eventually, it should give enemies ammo based on their weapons and expected ammo usage
+		//like, enough for 4 turns or w/e
+		ammo["large bullet"] = 5
+		ammo["small bullet"] = 20
+		ammo["a-cell"] = 5
+		ammo["e-pip"] = 20
+	}
+	func ammoOfType(type:String) -> Int
+	{
+		return ammo[type] ?? 0
+	}
+	func useAmmoOfType(type:String)
+	{
+		ammo[type] = max(0, ammoOfType(type) - 1)
+	}
+}
+
 class Weapon
 {
 	let type:String
@@ -153,6 +176,10 @@ class Weapon
 	var targetType:String
 	{
 		return DataStore.getString("Weapons", type, "type")!
+	}
+	var ammo:String?
+	{
+		return DataStore.getString("Weapons", type, "ammo")
 	}
 	var melee:Bool
 	{
@@ -280,6 +307,8 @@ let baseStat = 20
 let maxDefendChance = 90
 let baseDefendChance = 60
 let resistanceFactor = 75
+let headLossAccuracyPenalty = 25
+let ongoingDamage = 5
 
 class Creature
 {
@@ -289,6 +318,7 @@ class Creature
 	let race:String
 	var limbs = [String : CreatureLimb]()
 	var specials = [Special]()
+	let sideAmmo:AmmoStore
 	
 	//appearance data
 	let morph:String
@@ -350,8 +380,9 @@ class Creature
 		return dC
 	}
 	
-	init(creatureType:String, player:Bool)
+	init(creatureType:String, player:Bool, sideAmmo:AmmoStore)
 	{
+		self.sideAmmo = sideAmmo
 		self.creatureType = creatureType
 		self.player = player
 		self.race = DataStore.getString("CreatureTypes", creatureType, "race")!
@@ -428,11 +459,28 @@ class Creature
 	
 	func startTurn()
 	{
-		//TODO: apply DOT from poison
+		var ongoingDamageSources = 0
 		
-		//TODO: apply DOT from broken head
+		if false //TODO: if poisoned
+		{
+			ongoingDamageSources += 1
+		}
 		
-		//TODO: apply DOT from broken torso
+		for limb in limbs.values
+		{
+			if limb.type == "torso" && limb.broken
+			{
+				ongoingDamageSources += 1
+			}
+		}
+		
+		let damage = ongoingDamageSources * ongoingDamage * maxHealth / 100
+		if damage > 0
+		{
+			health = max(0, health - damage)
+			//TODO: display the damage as a damage number; make sure to not mess up the defend animation system with this
+		}
+		
 		
 		//taunts are canceled if the person you are taunted by is dead
 		if tauntedBy != nil && tauntedBy!.dead
@@ -474,6 +522,15 @@ class Creature
 	{
 		shotNumber += 1
 		
+		var baseAccuracyBonus = 0
+		for limb in limbs.values
+		{
+			if limb.type == "head" && limb.broken
+			{
+				baseAccuracyBonus -= headLossAccuracyPenalty
+			}
+		}
+		
 		if let activeAttack = activeAttack
 		{
 			//pay costs
@@ -509,7 +566,7 @@ class Creature
 			
 			let baseDamage = activeAttack.damage
 			let hitLimb = activeAttack.hitLimb
-			let accuracyBonus = activeAttack.accuracyBonus
+			let accuracyBonus = activeAttack.accuracyBonus - headLossAccuracyPenalty
 			let numShots = activeAttack.numShots
 			let damageType = activeAttack.damageType
 			
@@ -527,9 +584,15 @@ class Creature
 		}
 		else if let activeWeapon = activeWeapon
 		{
+			//cost ammo
+			if let ammo = activeWeapon.ammo
+			{
+				sideAmmo.useAmmoOfType(ammo)
+			}
+			
 			let baseDamage = activeWeapon.damage
 			let hitLimb = activeWeapon.hitLimb
-			let accuracyBonus = activeWeapon.accuracyBonus
+			let accuracyBonus = activeWeapon.accuracyBonus - headLossAccuracyPenalty
 			let damageStat = activeWeapon.melee ? strength : perception
 			let weaponStat = activeWeapon.weaponStat
 			let numShots = activeWeapon.numShots
@@ -559,8 +622,6 @@ class Creature
 		}
 		else if let weapon = weapon
 		{
-			//TODO: check if you have enough ammo, and return false if you don't
-			
 			if target.player == player || target.dead
 			{
 				//no, you can't shoot your allies, nor can you shoot corpses
@@ -680,7 +741,11 @@ class Creature
 			{
 				if let weapon = limb.weapon
 				{
-					w.append(weapon)
+					//do you have enough ammo?
+					if weapon.ammo == nil || sideAmmo.ammoOfType(weapon.ammo!) >= weapon.numShots
+					{
+						w.append(weapon)
+					}
 				}
 			}
 		}

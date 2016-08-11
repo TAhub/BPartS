@@ -131,6 +131,7 @@ class BodyLimb
 	let creatureLimb:CreatureLimb?
 	let weaponLimb:Bool
 	var invisible:Bool
+	let hitLocation:Bool
 	
 	//animation variables
 	var rotateFrom:CGFloat = 0
@@ -165,6 +166,7 @@ class BodyLimb
 		centerY = intWithName("center y")!
 		connectX = intWithName("connect x")!
 		connectY = intWithName("connect y")!
+		hitLocation = limbDict["hit location"] != nil
 		
 		invisible = true
 		if weaponLimb
@@ -476,6 +478,10 @@ class CreatureController
 			{
 				drawStrainIcon(limb, cornerX: uiElementSeparation, cornerY: barYOff)
 			}
+			
+			
+			//make ammo indicator
+			//TODO: display ammo (it should keep an ammo memory of this, too)
 		}
 	}
 	
@@ -894,12 +900,23 @@ class CreatureController
 	{
 		//find non-invisible, non-weapon body parts on the target to hit
 		var possibleHits = [BodyLimb]()
+		var possibleHitLocations = 0
 		for limb in toController.limbs.values
 		{
-			if !limb.weaponLimb && !limb.invisible && limb.creatureLimb != nil && limb.creatureLimb! === toLimb
+			if limb.hitLocation
 			{
-				possibleHits.append(limb)
+				possibleHitLocations += 1
+				if !limb.invisible && limb.creatureLimb != nil && limb.creatureLimb! === toLimb
+				{
+					possibleHits.append(limb)
+				}
 			}
+		}
+		
+		if possibleHitLocations == 0
+		{
+			//this means that I forgot to give a limb any hit locations
+			assertionFailure()
 		}
 		
 		if possibleHits.count == 0
